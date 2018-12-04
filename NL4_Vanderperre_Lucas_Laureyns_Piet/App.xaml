@@ -1,0 +1,14 @@
+﻿<Application
+    x:Class="NL4_Vanderperre_Lucas_Laureyns_Piet.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NL4_Vanderperre_Lucas_Laureyns_Piet">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <x:String x:Key="AppName">All controls</x:String>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

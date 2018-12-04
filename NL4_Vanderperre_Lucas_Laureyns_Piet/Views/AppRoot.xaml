@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="NL4_Vanderperre_Lucas_Laureyns_Piet.Views.AppRoot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView x:Name="NavView" SelectionChanged="NavView_SelectionChanged" Header="Stads App">
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader Content="Ondernemingen"/>
+                <NavigationViewItem Icon="Street" Content="Winkels" Tag="winkel"/>
+                <NavigationViewItem Icon="Contact2" Content="Cafés" Tag="cafe"/>
+                <NavigationViewItem Icon="Street" Content="Restaurants" Tag="restaurant"/>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItemHeader Content="Info"/>
+                <NavigationViewItem Icon="Street" Content="About" Tag="about"/>
+            </NavigationView.MenuItems>
+
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox x:Name="ASB" QueryIcon="Find"/>
+            </NavigationView.AutoSuggestBox>
+            
+            <Frame x:Name="ContentFrame">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+        </NavigationView>
+    </Grid>
+</Page>
