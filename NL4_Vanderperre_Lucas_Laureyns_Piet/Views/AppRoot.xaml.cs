@@ -25,7 +25,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         public AppRoot()
         {
             this.InitializeComponent();
-
         }
 
 
@@ -42,6 +41,10 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
                 switch (item.Tag.ToString())
                 {
+                    case "home":
+                        ContentFrame.Navigate(typeof(HomePage));
+                        NavView.Header = "Home";
+                        break;
                     case "winkel":
                         ContentFrame.Navigate(typeof(ContentListPage));
                         NavView.Header = "Winkels";

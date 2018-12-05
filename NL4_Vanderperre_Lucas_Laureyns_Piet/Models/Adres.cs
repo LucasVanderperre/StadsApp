@@ -13,5 +13,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public int Postcode { get; set; }
         public string Stad { get; set; }
         public string Land { get; set; }
+
+        public Adres(string straat, int nummer, int postcode, string stad, string land)
+        {
+            Straat = straat;
+            Nummer = nummer;
+            Postcode = postcode;
+            Stad = stad;
+            Land = land;
+        }
     }
 }
