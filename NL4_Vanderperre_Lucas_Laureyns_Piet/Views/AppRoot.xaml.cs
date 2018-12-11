@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +27,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         public AppRoot()
         {
             this.InitializeComponent();
+            foreach (Categorie item in System.Enum.GetValues(typeof(Categorie)).Cast<Categorie>())
+            {
+                NavigationViewItem ni = new NavigationViewItem();
+                ni.Content = item.ToString();
+                ni.Tag = item.ToString();
+                NavView.MenuItems.Add(ni);
+            }
+
         }
 
 
@@ -42,27 +52,29 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 switch (item.Tag.ToString())
                 {
                     case "home":
-                        ContentFrame.Navigate(typeof(HomePage));
                         NavView.Header = "Home";
-                        break;
-                    case "winkel":
-                        ContentFrame.Navigate(typeof(ContentListPage));
-                        NavView.Header = "Winkels";
-                        break;
-                    case "cafe":
-                        ContentFrame.Navigate(typeof(ContentListPage));
-                        NavView.Header = "Cafés";
-                        break;
-                    case "restaurant":
-                        ContentFrame.Navigate(typeof(ContentListPage));
-                        NavView.Header = "Restaurants";
+                        ContentFrame.Navigate(typeof(HomePage));
                         break;
                     case "about":
                         ContentFrame.Navigate(typeof(ContentListPage));
                         NavView.Header = "About";
                         break;
+                    default:
+                        ContentFrame.Navigate(typeof(ContentListPage));
+                        ContentListPage page = (ContentListPage)ContentFrame.Content;
+                        // page.viewModel.ondernemingen = ondernemingen;
+                        NavView.Header = item.Tag.ToString();
+                        break;
                 }
             }
+        }
+
+        public void NavigateContentFrame(OndernemingList ondernemingen)
+        {
+            ContentFrame.Navigate(typeof(ContentListPage));
+            ContentListPage page = (ContentListPage)ContentFrame.Content;
+            page.viewModel.ondernemingen = ondernemingen;
+            NavView.Header = ondernemingen.categorie.ToString();
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +25,15 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
     /// </summary>
     public sealed partial class ContentListPage : Page
     {
+        //public ObservableCollection<Onderneming> ondernemingen { get; set; } = new ObservableCollection<Onderneming>();
+        public ContentListPageViewModel viewModel { get; set; } = new ContentListPageViewModel();
+
         public ContentListPage()
         {
             this.InitializeComponent();
+
         }
+
+
     }
 }

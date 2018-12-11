@@ -130,6 +130,7 @@
     <Compile Include="Models\NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPIContext.cs" />
     <Compile Include="Models\Ondernemer.cs" />
     <Compile Include="Models\Onderneming.cs" />
+    <Compile Include="Models\OndernemingList.cs" />
     <Compile Include="Models\Openingsuren.cs" />
     <Compile Include="Models\Promotie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

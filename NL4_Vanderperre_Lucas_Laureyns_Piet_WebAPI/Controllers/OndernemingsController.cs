@@ -17,9 +17,17 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
         private NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPIContext db = new NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPIContext();
 
         // GET: api/Ondernemings
-        public IQueryable<Onderneming> GetOndernemings()
+        public IEnumerable<OndernemingList> GetOndernemings()
         {
-            return db.Ondernemings;
+            List<OndernemingList> ondernemingenPerCategorie = new List<OndernemingList>();
+            foreach (CategorieEnum item in Enum.GetValues(typeof(CategorieEnum)).Cast<CategorieEnum>())
+            {
+                OndernemingList list = new OndernemingList(item);
+                list.ondernemingen = db.Ondernemings.ToList().FindAll(o => o.Categorie.Equals(item));
+                ondernemingenPerCategorie.Add(list);
+
+            }
+            return ondernemingenPerCategorie;
         }
 
         // GET: api/Ondernemings/5

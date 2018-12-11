@@ -5,9 +5,32 @@
     xmlns:local="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:datamodels="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <GridView ItemsSource="{x:Bind viewModel.ondernemingen.ondernemingen, Mode=OneWay}">
+        <GridView.ItemTemplate>
+            <DataTemplate  x:DataType="datamodels:Onderneming">
+                <StackPanel Height="280" Width="180" Margin="12">
+                    <Image x:Name="Image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="190" Width="190">
+                        <Image.Source>
+                            <BitmapImage UriSource="/Assets/Square44x44Logo.scale-200.png">
+                            </BitmapImage>
+                        </Image.Source>
+                    </Image>
+                    <StackPanel Margin="0,12">
+                        <TextBlock Text="{x:Bind Naam}"/>
+                        <TextBlock Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
+        </GridView.ItemTemplate>
+        <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+        </GridView.ItemsPanel>
+    </GridView>
 
-    <Grid>
-    </Grid>
+    
 </Page>

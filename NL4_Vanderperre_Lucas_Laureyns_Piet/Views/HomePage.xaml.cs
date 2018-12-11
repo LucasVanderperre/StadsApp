@@ -1,11 +1,14 @@
-﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Data;
+﻿using Newtonsoft.Json;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Data;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -31,22 +34,47 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         public HomePageViewModel viewModel { get; set; }
 
-
         public HomePage()
         {
-            this.InitializeComponent();
             this.viewModel = new HomePageViewModel();
+            this.InitializeComponent();
 
             /* foreach (var item in System.Enum.GetNames(typeof(Categorie)))
              {
                  categories.Add(item.ToString());
              }*/
-           
-            
 
-
+        }
+        
+        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+            base.OnNavigatedTo(e);
+            progressring.IsActive = true;
+            txtLaden.Visibility = Visibility.Visible;
+            await viewModel.LoadData();
+            lv.ItemsSource = viewModel.OndernemingenPerCategorie;
+            progressring.IsActive = false;
+            txtLaden.Visibility = Visibility.Collapsed;
 
 
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lv.SelectedItem != null)
+            {
+                Frame parentFrame = Window.Current.Content as Frame;
+                //parentFrame.Navigate(typeof(MainPage));
+                AppRoot root = parentFrame.Content as AppRoot;
+
+                root.NavigateContentFrame((OndernemingList)lv.SelectedItem);
+            }
+            else
+            {
+               
+            }
+          
+        }
+
+
     }
 }
