@@ -27,11 +27,12 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
 
         }
 
-        public async Task<List<OndernemingList>> GetOndernemingenAsync(Categorie cat)
+        public async Task<OndernemingList> GetOndernemingenAsync(Categorie cat)
         {
             HttpClient client = new HttpClient();
-            var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Ondernemings"));
-            var lst = JsonConvert.DeserializeObject<List<OndernemingList>>(json);
+            Uri uri = new Uri("http://localhost:51155/api/Ondernemings/categorie/" + cat.ToString());
+            var json = await client.GetStringAsync(uri);
+            var lst = JsonConvert.DeserializeObject<OndernemingList>(json);
             return lst;
 
 

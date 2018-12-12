@@ -65,7 +65,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 Frame parentFrame = Window.Current.Content as Frame;
                 //parentFrame.Navigate(typeof(MainPage));
                 AppRoot root = parentFrame.Content as AppRoot;
-
+                //root.Nav
                 root.NavigateContentFrame((OndernemingList)lv.SelectedItem);
             }
             else

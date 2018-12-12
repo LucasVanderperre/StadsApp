@@ -30,6 +30,24 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             return ondernemingenPerCategorie;
         }
 
+        // GET: api/Ondernemings/categorie
+        [HttpGet]
+        [Route("api/Ondernemings/categorie/{categorie}")]
+        public IHttpActionResult GetOndernemingList(string categorie) {
+            CategorieEnum myCategorie;
+            Enum.TryParse(categorie, out myCategorie);
+            OndernemingList list =  new OndernemingList(myCategorie)
+            {
+                ondernemingen = db.Ondernemings.ToList().FindAll(o => o.Categorie.Equals(myCategorie))
+            };
+            if (list == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(list);
+        }
+
         // GET: api/Ondernemings/5
         [ResponseType(typeof(Onderneming))]
         public IHttpActionResult GetOnderneming(int id)

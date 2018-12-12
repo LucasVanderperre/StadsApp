@@ -8,7 +8,8 @@
     xmlns:datamodels="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <GridView ItemsSource="{x:Bind viewModel.ondernemingen.ondernemingen, Mode=OneWay}">
+    <StackPanel>
+    <GridView x:Name="gridview">
         <GridView.ItemTemplate>
             <DataTemplate  x:DataType="datamodels:Onderneming">
                 <StackPanel Height="280" Width="180" Margin="12">
@@ -31,6 +32,8 @@
             </ItemsPanelTemplate>
         </GridView.ItemsPanel>
     </GridView>
-
-    
+        <TextBox x:Name="txtGeenGevonden" Text="Geen ondernemingen in deze categorie gevonden" HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+        <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+    </StackPanel>
 </Page>
