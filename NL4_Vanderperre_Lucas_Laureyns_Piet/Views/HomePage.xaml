@@ -17,11 +17,11 @@
                         <StackPanel>
                         <TextBlock Text="{x:Bind categorie}"/>
                             <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                                <GridView ItemsSource="{x:Bind ondernemingen, Mode=OneWay}">
+                                <GridView ItemsSource="{x:Bind ondernemingen, Mode=OneWay}" SelectionChanged="GridView_SelectionChanged">
                                 <GridView.ItemTemplate>
                                     <DataTemplate  x:DataType="datamodels:Onderneming">
                                         <StackPanel Height="280" Width="200" Margin="12">
-                                                <Image x:Name="image"  HorizontalAlignment="Left" Stretch="Uniform" Height="200" Width="200" Source="{Binding imageUrl}">
+                                                <Image x:Name="image"  HorizontalAlignment="Left" Stretch="Uniform" Height="200" Width="200" Source="{Binding ImageUrl}">
                                                 </Image>
                                             <StackPanel Margin="0,12">
                                                 <TextBlock Text="{x:Bind Naam}"/>

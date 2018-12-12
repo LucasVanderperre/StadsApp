@@ -96,8 +96,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             }
         }
 
-     
-
         public void NavigateContentFrame(OndernemingList ondernemingen)
         {
             int index = System.Enum.GetValues(typeof(Categorie)).Cast<Categorie>().ToList().IndexOf(ondernemingen.categorie);
@@ -108,6 +106,15 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             //ContentListPage page = (ContentListPage)ContentFrame.Content;
             //page.viewModel.ondernemingen = ondernemingen;
             NavView.Header = ondernemingen.categorie.ToString();
+        }
+
+        public void NavigateOndernemingFrame(Onderneming onderneming)
+        {
+            ContentFrame.Navigate(typeof(OndernemingPage));
+            OndernemingPage page = (OndernemingPage)ContentFrame.Content;
+            page.viewModel.onderneming = onderneming;
+            //page.viewModel.ondernemingen = ondernemingen;
+            NavView.Header = onderneming.Naam;
         }
     }
 }

@@ -61,18 +61,22 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             if (lv.SelectedItem != null)
             {
                 Frame parentFrame = Window.Current.Content as Frame;
-                //parentFrame.Navigate(typeof(MainPage));
                 AppRoot root = parentFrame.Content as AppRoot;
-                //root.Nav
                 root.NavigateContentFrame((OndernemingList)lv.SelectedItem);
             }
-            else
-            {
-               
-            }
-          
         }
 
+        private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GridView grid = (GridView)sender;
+
+            if (grid.SelectedItem != null)
+            {
+                Frame parentFrame = Window.Current.Content as Frame;
+                AppRoot root = parentFrame.Content as AppRoot;
+                root.NavigateOndernemingFrame((Onderneming)grid.SelectedItem);
+            }
+        }
 
     }
 }

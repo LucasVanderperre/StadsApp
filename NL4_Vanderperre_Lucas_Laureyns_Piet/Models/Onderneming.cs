@@ -18,49 +18,52 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public Categorie Categorie { get; set; }
         public string Soort { get; set; }
         public List<Adres> Adressen { get; set; } = new List<Adres>();
-        public List<Openingsuren> Openingsuren { get; private set; } = new List<Openingsuren>(7);
+        public List<Openingsuren> Openingsuren { get; set; }
         public string Facebook { get; set; }
         public BitmapImage Image { get; set; } = new BitmapImage();
         public List<Promotie> Promoties { get; set; }
         public List<Event> Events { get; set; }
-        public string imageUrl { get; set; }
-        public ImageSource imageSource { get; set; }
+        public string ImageUrl { get; set; }
+        public string FacebookUrl { get { return "https://" + Facebook; }  }
+        public bool hasEvents { get { return Events.Count > 0; } }
+        public bool hasPromoties { get { return Promoties.Count > 0; } }
 
-
-        public Onderneming(string naam, Categorie categorie, Adres adres)
+        public Onderneming(string naam, Categorie categorie, Adres adres, List<Openingsuren> openingsuren)
         {
             Naam = naam;
             Categorie = categorie;
+            Openingsuren = openingsuren;
             Adressen.Add(adres);
-            switch (categorie)
+            switch (categorie) // ImageUrl zal nog als string moeten opgeslaan worden in db + mss nog wat extra fotos opzoeken.
             {
                 case Categorie.Winkel:
-                    imageUrl = "/Assets/winkel_icon.png";
+                    ImageUrl = "/Assets/winkel_icon.png";
                     break;
                 case Categorie.Café:
-                    imageUrl = "/Assets/cafe_icon.png";
+                    ImageUrl = "/Assets/cafe_icon.png";
                     break;
                 case Categorie.Restaurant:
-                    imageUrl = "/Assets/restaurant_icon.png";
+                    ImageUrl = "/Assets/restaurant_icon.png";
                     break;
                 case Categorie.School:
-                    imageUrl = "/Assets/school_icon.png";
+                    ImageUrl = "/Assets/school_icon.png";
                     break;
                 default:
-                    imageUrl = "/Assets/Square44x44Logo.scale-200.png";
+                    ImageUrl = "/Assets/Square44x44Logo.scale-200.png";
                     break;
             }
-            Image = new BitmapImage(new Uri("ms-appx:///NL4_Vanderperre_Lucas_Laureyns_Piet/Assets/Square44x44Logo.scale-200.png"));
         }
 
-        public override string ToString()
+        public string OpeningsurenToString
         {
-            StringBuilder me = new StringBuilder();
+            get { 
+                StringBuilder me = new StringBuilder();
 
-            foreach (Openingsuren openTime in Openingsuren)
-                me.AppendLine(openTime.HoursOfOperation());
+                foreach (Openingsuren openTime in Openingsuren)
+                    me.AppendLine(openTime.HoursOfOperation);
 
-            return me.ToString();
+                return me.ToString();
+            }
         }
     }
 }
