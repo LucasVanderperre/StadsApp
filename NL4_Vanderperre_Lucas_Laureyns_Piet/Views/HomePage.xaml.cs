@@ -54,8 +54,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             lv.ItemsSource = viewModel.OndernemingenPerCategorie;
             progressring.IsActive = false;
             txtLaden.Visibility = Visibility.Collapsed;
-
-
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

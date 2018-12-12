@@ -10,25 +10,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel>
+        <StackPanel>
             <ListView x:Name="lv" SelectionChanged="ListView_SelectionChanged">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="datamodels:OndernemingList">
-                    
-                    <StackPanel>
-                        <TextBlock Text="{x:Bind categorie }"/>
-                        <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                            
-                            <GridView ItemsSource="{x:Bind ondernemingen, Mode=OneWay}">
+                    <DataTemplate x:DataType="datamodels:OndernemingList">
+                        <StackPanel>
+                        <TextBlock Text="{x:Bind categorie}"/>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                <GridView ItemsSource="{x:Bind ondernemingen, Mode=OneWay}">
                                 <GridView.ItemTemplate>
                                     <DataTemplate  x:DataType="datamodels:Onderneming">
-                                        <StackPanel Height="280" Width="180" Margin="12">
-                                            <Image x:Name="Image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="190" Width="190">
-                                                <Image.Source>
-                                                    <BitmapImage UriSource="/Assets/quare44x44Logo.scale-200.png">
-                                                    </BitmapImage>
-                                                </Image.Source>
-                                            </Image>
+                                        <StackPanel Height="280" Width="200" Margin="12">
+                                                <Image x:Name="image"  HorizontalAlignment="Left" Stretch="Uniform" Height="200" Width="200" Source="{Binding imageUrl}">
+                                                </Image>
                                             <StackPanel Margin="0,12">
                                                 <TextBlock Text="{x:Bind Naam}"/>
                                                 <TextBlock Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>

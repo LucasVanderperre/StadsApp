@@ -31,9 +31,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         public ContentListPage()
         {
             this.InitializeComponent();
-
         }
-
-
     }
 }

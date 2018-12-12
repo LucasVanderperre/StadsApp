@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
 {
@@ -22,15 +23,34 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public BitmapImage Image { get; set; } = new BitmapImage();
         public List<Promotie> Promoties { get; set; }
         public List<Event> Events { get; set; }
+        public string imageUrl { get; set; }
+        public ImageSource imageSource { get; set; }
+
 
         public Onderneming(string naam, Categorie categorie, Adres adres)
         {
             Naam = naam;
             Categorie = categorie;
             Adressen.Add(adres);
+            switch (categorie)
+            {
+                case Categorie.Winkel:
+                    imageUrl = "/Assets/winkel_icon.png";
+                    break;
+                case Categorie.Café:
+                    imageUrl = "/Assets/cafe_icon.png";
+                    break;
+                case Categorie.Restaurant:
+                    imageUrl = "/Assets/restaurant_icon.png";
+                    break;
+                case Categorie.School:
+                    imageUrl = "/Assets/school_icon.png";
+                    break;
+                default:
+                    imageUrl = "/Assets/Square44x44Logo.scale-200.png";
+                    break;
+            }
             Image = new BitmapImage(new Uri("ms-appx:///NL4_Vanderperre_Lucas_Laureyns_Piet/Assets/Square44x44Logo.scale-200.png"));
-            BitmapImage bi = new BitmapImage();
-
         }
 
         public override string ToString()
