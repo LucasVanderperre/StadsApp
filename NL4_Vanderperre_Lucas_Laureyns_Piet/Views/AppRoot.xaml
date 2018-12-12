@@ -12,14 +12,6 @@
         <NavigationView x:Name="NavView" SelectionChanged="NavView_SelectionChanged" Header="Stads App">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="StadsApp"/>
-                <NavigationViewItem Icon="Home" Content="Home" Tag="home"/>
-                <NavigationViewItemHeader Content="Ondernemingen"/>
-                <NavigationViewItem Icon="Street" Content="Winkels" Tag="winkel"/>
-                <NavigationViewItem Icon="Contact2" Content="Cafés" Tag="cafe"/>
-                <NavigationViewItem Icon="Street" Content="Restaurants" Tag="restaurant"/>
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader Content="Info"/>
-                <NavigationViewItem Icon="Street" Content="About" Tag="about"/>
             </NavigationView.MenuItems>
 
             <NavigationView.AutoSuggestBox>

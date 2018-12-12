@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Symbols.cs" />
     <Compile Include="Data\DataController.cs" />
     <Compile Include="Data\OndernemingController.cs" />
     <Compile Include="Enum\Categorie.cs" />
