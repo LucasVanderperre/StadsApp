@@ -67,7 +67,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             }
            
             //login hier doorvoeren
-            LogController.LoginNieuweGebruiker(gebruiker.username, password);
+            LogController.LoginNieuweGebruiker(gebruiker, password);
 
             //navigate naar homeview
 

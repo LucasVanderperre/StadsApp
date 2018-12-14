@@ -21,15 +21,24 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 
         public async Task<bool> checkAbonnee()
         {
-            var abon = await controller.GetAbonnementen(User.Username);
-            foreach (var item in abon)
+            var abon = (Klant) await controller.GetAbonnementen(User.Username);
+            if(abon.Abonnementen != null)
             {
-                if(item.Onderneming == onderneming)
+                foreach (var item in abon.Abonnementen)
                 {
-                    return true;
+                    if (item.Onderneming == onderneming)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
         }
+        /*
+        public async Task<bool> abonneer()
+        {
+
+        }*/
+        
     }
 }

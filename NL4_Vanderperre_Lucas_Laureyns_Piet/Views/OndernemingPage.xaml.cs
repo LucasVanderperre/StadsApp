@@ -29,7 +29,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         public OndernemingPage()
         {
             this.InitializeComponent();
-            if (User.isKlant)
+            if (User.isKlant == true)
             {
                 btnAbonneer.Visibility = Visibility.Visible;
             }
@@ -42,7 +42,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         public async void AbonneeCheck()
         {
-            if (User.isKlant)
+            if (User.isKlant == true)
             {
                 btnAbonneer.Visibility = Visibility.Visible;
            
@@ -56,6 +56,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         private void Abonneer_Click(object sender, RoutedEventArgs args)
         {
+            //viewModel.abonneer();
             AbonneeCheck();
         }
     }

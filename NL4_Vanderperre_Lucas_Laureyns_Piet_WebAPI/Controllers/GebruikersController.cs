@@ -26,7 +26,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
         [ResponseType(typeof(Gebruiker))]
         public IHttpActionResult GetGebruiker(string username)
         {
-            Gebruiker gebruiker = db.Gebruikers.Include("Abonnementen").FirstOrDefault(geb => geb.username == username);
+            Gebruiker gebruiker = db.Gebruikers.FirstOrDefault(geb => geb.username == username);
             if (gebruiker == null)
             {
                 return NotFound();
@@ -37,35 +37,22 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
         // PUT: api/Gebruikers/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutGebruiker(int id, Gebruiker gebruiker)
+        [Route("api/Gebruikers/login")]
+        public IHttpActionResult PutGebruiker(Gebruiker gbr)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            Gebruiker gebruiker = db.Gebruikers.FirstOrDefault(geb => geb.username == gbr.username);
 
-            if (id != gebruiker.GebruikerId)
+            if (gebruiker == null || gebruiker.password != gbr.password)
             {
                 return BadRequest();
             }
+            
 
             db.Entry(gebruiker).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GebruikerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
             return StatusCode(HttpStatusCode.NoContent);
         }

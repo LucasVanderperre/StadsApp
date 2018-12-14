@@ -15,11 +15,17 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
         public string username { get; set; }
         public string password { get; set; }
 
-        public void Login()
+        public async Task Login()
         {
             Gebruiker gb = new Klant("","",username, "");
-            LogController.Login(gb, password);
+            gb.Password = password;
+            await LogController.Login(gb);
 
+        }
+
+        public void LogOut()
+        {
+            LogController.LogOut();
         }
     }
 }

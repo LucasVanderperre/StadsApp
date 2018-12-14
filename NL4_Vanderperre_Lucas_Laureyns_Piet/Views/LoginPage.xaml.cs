@@ -31,18 +31,25 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             this.InitializeComponent();
         }
 
-        private void PassportSignInButton_Click(object sender, RoutedEventArgs args){
+        private async void PassportSignInButton_Click(object sender, RoutedEventArgs args){
             try
             {
-                ViewModel.Login();
+                ErrorMessage.Text = "";
+                progressring.IsActive = true;
+                txtLaden.Visibility = Visibility.Visible;
+                await ViewModel.Login();
+                progressring.IsActive = false;
+                txtLaden.Visibility = Visibility.Collapsed;
                 Frame parentFrame = Window.Current.Content as Frame;
                 //parentFrame.Navigate(typeof(MainPage));
                 AppRoot root = parentFrame.Content as AppRoot;
                 //root.Nav
-                root.NavigateHome();
+                root.NavigateProfiel();
             }
             catch(Exception ex)
             {
+                progressring.IsActive = false;
+                txtLaden.Visibility = Visibility.Collapsed;
                 ErrorMessage.Text = ex.Message;
             }
             
