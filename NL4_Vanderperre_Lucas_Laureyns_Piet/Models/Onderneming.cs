@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
 {
@@ -33,14 +34,19 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
             Openingsuren.Add(new Openingsuren(DayOfWeek.Saturday, "00:00", "00:00"));
             Openingsuren.Add(new Openingsuren(DayOfWeek.Sunday, "00:00", "00:00"));
         }
+        public List<Promotie> Promoties { get; set; }
+        public List<Event> Events { get; set; }
+        public string ImageUrl { get; set; }
+        public string FacebookUrl { get { return "https://" + Facebook; }  }
+        public bool hasEvents { get { return Events.Count > 0; } }
+        public bool hasPromoties { get { return Promoties.Count > 0; } }
 
         public Onderneming(string naam, Categorie categorie, Adres adres)
         {
             Naam = naam;
             Categorie = categorie;
             Adressen.Add(adres);
-            Image = new BitmapImage(new Uri("ms-appx:///NL4_Vanderperre_Lucas_Laureyns_Piet/Assets/Square44x44Logo.scale-200.png"));
-            BitmapImage bi = new BitmapImage();
+            
             Openingsuren.Add(new Openingsuren(DayOfWeek.Monday, "0000", "0000"));
             Openingsuren.Add(new Openingsuren(DayOfWeek.Tuesday, "0000", "0000"));
             Openingsuren.Add(new Openingsuren(DayOfWeek.Wednesday, "0000", "0000"));
@@ -50,16 +56,36 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
             Openingsuren.Add(new Openingsuren(DayOfWeek.Sunday, "0000", "0000"));
 
 
+            switch (categorie) // ImageUrl zal nog als string moeten opgeslaan worden in db + mss nog wat extra fotos opzoeken.
+            {
+                case Categorie.Winkel:
+                    ImageUrl = "/Assets/winkel_icon.png";
+                    break;
+                case Categorie.Café:
+                    ImageUrl = "/Assets/cafe_icon.png";
+                    break;
+                case Categorie.Restaurant:
+                    ImageUrl = "/Assets/restaurant_icon.png";
+                    break;
+                case Categorie.School:
+                    ImageUrl = "/Assets/school_icon.png";
+                    break;
+                default:
+                    ImageUrl = "/Assets/Square44x44Logo.scale-200.png";
+                    break;
+            }
         }
 
-        public override string ToString()
+        public string OpeningsurenToString
         {
-            StringBuilder me = new StringBuilder();
+            get { 
+                StringBuilder me = new StringBuilder();
 
-            foreach (Openingsuren openTime in Openingsuren)
-                me.AppendLine(openTime.HoursOfOperation());
+                foreach (Openingsuren openTime in Openingsuren)
+                    me.AppendLine(openTime.HoursOfOperation);
 
-            return me.ToString();
+                return me.ToString();
+            }
         }
     }
 }

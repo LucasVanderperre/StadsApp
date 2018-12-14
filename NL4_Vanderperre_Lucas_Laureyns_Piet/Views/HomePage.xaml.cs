@@ -54,8 +54,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             lv.ItemsSource = viewModel.OndernemingenPerCategorie;
             progressring.IsActive = false;
             txtLaden.Visibility = Visibility.Collapsed;
-
-
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -63,18 +61,22 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             if (lv.SelectedItem != null)
             {
                 Frame parentFrame = Window.Current.Content as Frame;
-                //parentFrame.Navigate(typeof(MainPage));
                 AppRoot root = parentFrame.Content as AppRoot;
-                //root.Nav
                 root.NavigateContentFrame((OndernemingList)lv.SelectedItem);
             }
-            else
-            {
-               
-            }
-          
         }
 
+        private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GridView grid = (GridView)sender;
+
+            if (grid.SelectedItem != null)
+            {
+                Frame parentFrame = Window.Current.Content as Frame;
+                AppRoot root = parentFrame.Content as AppRoot;
+                root.NavigateOndernemingFrame((Onderneming)grid.SelectedItem);
+            }
+        }
 
     }
 }

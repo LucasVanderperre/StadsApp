@@ -57,6 +57,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         }
 
+        private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GridView grid = (GridView)sender;
 
+            if (grid.SelectedItem != null)
+            {
+                Frame parentFrame = Window.Current.Content as Frame;
+                AppRoot root = parentFrame.Content as AppRoot;
+                root.NavigateOndernemingFrame((Onderneming)grid.SelectedItem);
+            }
+        }
     }
 }

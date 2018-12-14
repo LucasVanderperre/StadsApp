@@ -23,7 +23,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             foreach (CategorieEnum item in Enum.GetValues(typeof(CategorieEnum)).Cast<CategorieEnum>())
             {
                 OndernemingList list = new OndernemingList(item);
-                list.ondernemingen = db.Ondernemings.ToList().FindAll(o => o.Categorie.Equals(item));
+                list.ondernemingen = db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FindAll(o => o.Categorie.Equals(item));
                 ondernemingenPerCategorie.Add(list);
 
             }
@@ -38,7 +38,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             Enum.TryParse(categorie, out myCategorie);
             OndernemingList list =  new OndernemingList(myCategorie)
             {
-                ondernemingen = db.Ondernemings.ToList().FindAll(o => o.Categorie.Equals(myCategorie))
+                ondernemingen = db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FindAll(o => o.Categorie.Equals(myCategorie))
             };
             if (list == null)
             {

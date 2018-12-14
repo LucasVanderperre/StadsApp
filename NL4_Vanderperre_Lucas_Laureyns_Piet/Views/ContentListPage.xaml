@@ -9,15 +9,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel>
-    <GridView x:Name="gridview">
+        <GridView x:Name="gridview" SelectionChanged="GridView_SelectionChanged">
         <GridView.ItemTemplate>
             <DataTemplate  x:DataType="datamodels:Onderneming">
-                <StackPanel Height="280" Width="180" Margin="12">
-                    <Image x:Name="Image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="190" Width="190">
-                        <Image.Source>
-                            <BitmapImage UriSource="/Assets/Square44x44Logo.scale-200.png">
-                            </BitmapImage>
-                        </Image.Source>
+                <StackPanel Height="280" Width="200" Margin="12">
+                    <Image x:Name="image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="200" Width="200" Source="{x:Bind ImageUrl}">
                     </Image>
                     <StackPanel Margin="0,12">
                         <TextBlock Text="{x:Bind Naam}"/>
