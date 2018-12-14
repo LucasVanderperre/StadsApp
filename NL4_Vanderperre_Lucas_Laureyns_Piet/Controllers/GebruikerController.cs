@@ -25,19 +25,43 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
         public async Task<Klant> CreateKlant(Klant gebruiker)
         {
             HttpClient client = new HttpClient();
-            var response = await client.PostAsJsonAsync("http://localhost:51155/api/Gebruikers", gebruiker);
+            var response = await client.PostAsJsonAsync("http://localhost:51155/api/Klants", gebruiker);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsAsync<Klant>();
             // return URI of the created resource.
             return result;
         }
 
-        public async Task<List<Abonnement>> GetAbonnementen(string gebruiker)
+        public async Task<Klant> GetAbonnementen(string gebruiker)
         {
             HttpClient client = new HttpClient();
-            var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Gebruikers/"+ gebruiker));
+            var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Klants/" + gebruiker));
             var lst = JsonConvert.DeserializeObject<Klant>(json);
-            return lst.Abonnementen;
+            return lst;
+
+        }
+        public async Task CheckAbonnement(string gebruiker, Onderneming onderneming)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync("http://localhost:51155/api/Klants/Abonnement/" + gebruiker, onderneming);
+            response.EnsureSuccessStatusCode();
+
+        }
+
+
+        public async Task Abonneer(Onderneming onderneming)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync("http://localhost:51155/api/Klants/VoegAboToe/" + User.Username, onderneming);
+            response.EnsureSuccessStatusCode();
+           
+        }
+
+        public async Task SchrijfUit(Onderneming onderneming)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync("http://localhost:51155/api/Klants/SchrijfUit/" + User.Username, onderneming);
+            response.EnsureSuccessStatusCode();
 
         }
     }

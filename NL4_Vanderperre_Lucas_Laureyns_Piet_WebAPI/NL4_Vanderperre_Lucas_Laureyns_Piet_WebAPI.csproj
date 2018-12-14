@@ -113,6 +113,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GebruikersController.cs" />
+    <Compile Include="Controllers\KlantsController.cs" />
     <Compile Include="Controllers\OndernemingsController.cs" />
     <Compile Include="Controllers\PromotiesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

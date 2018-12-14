@@ -11,6 +11,8 @@
     <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Login" FontSize="36" Margin="4" TextAlignment="Center"/>
+            <ProgressRing Height="20" Width="20" x:Name="progressring" IsActive="False"/>
+            <TextBox x:Name="txtLaden" Text="Inloggen..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
             <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
             <TextBlock Text="Gebruikersnaam:" Margin="0,0,0,20"
                TextWrapping="Wrap" Width="300"
@@ -30,9 +32,6 @@
                PointerPressed="RegisterButtonTextBlock_OnPointerPressed"
                Foreground="DodgerBlue"
                TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-            
-            <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
 
         </StackPanel>
     </Grid>

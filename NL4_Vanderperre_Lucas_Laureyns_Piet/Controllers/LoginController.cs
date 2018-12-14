@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +12,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
     {
         private string resourceName = "My App";
 
+        public async Task LoginBackend(Gebruiker gebruiker)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync("http://localhost:51155/api/Gebruikers/login", gebruiker);
+             response.EnsureSuccessStatusCode();
 
-        public void Login(Gebruiker gebruiker, string password)
+        }
+
+
+        public async Task Login(Gebruiker gebruiker)
         {
             var vault = new Windows.Security.Credentials.PasswordVault();
             // check hier de inloggegevens
@@ -23,34 +32,51 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             }
             catch (Exception ex)
             {
+                try
+                {
+                    await LoginBackend(gebruiker);
+                    vault.Add(new Windows.Security.Credentials.PasswordCredential(
+                        "My App", gebruiker.username, gebruiker.Password));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("De username of passwoord is niet correct");
+                }
+               
                 //check via restapi passwoord
                 //Als oke login anders exception throw
-                throw new Exception("De username of passwoord is niet correct");
+                
             }
+            
             User.Username = gebruiker.username;
-            User.isKlant =  (gebruiker.GetType() == typeof(Klant)) ;
+            User.isKlant = (gebruiker.GetType() == typeof(Klant));
+            User.Id = gebruiker.id;
 
         }
 
 
 
-        public void LoginNieuweGebruiker(string gebruiker, string password)
+        public void LoginNieuweGebruiker(Gebruiker gebruiker, string password)
         {
             var vault = new Windows.Security.Credentials.PasswordVault();
             vault.Add(new Windows.Security.Credentials.PasswordCredential(
-                "My App", gebruiker, password));
-            User.Username = gebruiker;
+                "My App", gebruiker.username, password));
+            User.Username = gebruiker.username;
+            User.isKlant = (gebruiker.GetType() == typeof(Klant));
+            User.Id = gebruiker.id;
         }
 
 
-        public void LogOut(Gebruiker gebruiker)
+        public void LogOut()
         {
             var vault = new Windows.Security.Credentials.PasswordVault();
-            var credentials = vault.Retrieve(resourceName, gebruiker.username);
+            var credentials = vault.Retrieve(resourceName, User.Username);
             credentials.RetrievePassword();
             vault.Remove(new Windows.Security.Credentials.PasswordCredential(
-                resourceName, gebruiker.username, credentials.Password));
+                resourceName, User.Username, credentials.Password));
             User.Username = "";
+            User.isKlant = null;
+            User.Id = null;
         }
 
         /*

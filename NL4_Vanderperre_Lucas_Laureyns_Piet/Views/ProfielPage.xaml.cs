@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,21 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
     /// </summary>
     public sealed partial class ProfielPage : Page
     {
+        public LoginPageViewModel ViewModel { get; set; } = new LoginPageViewModel();
+
         public ProfielPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs args)
+        {
+            ViewModel.LogOut();
+            Frame parentFrame = Window.Current.Content as Frame;
+            //parentFrame.Navigate(typeof(MainPage));
+            AppRoot root = parentFrame.Content as AppRoot;
+            //root.Nav
+            root.NavigateLogin();
         }
     }
 }
