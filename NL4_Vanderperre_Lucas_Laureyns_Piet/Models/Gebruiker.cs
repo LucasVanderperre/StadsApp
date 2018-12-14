@@ -18,5 +18,12 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
          
         }
 
+        protected Gebruiker(string naam, string voornaam, string username, string email)
+        {
+            this.naam = naam;
+            this.voornaam = voornaam;
+            this.username = username;
+            Email = email;
+        }
     }
 }

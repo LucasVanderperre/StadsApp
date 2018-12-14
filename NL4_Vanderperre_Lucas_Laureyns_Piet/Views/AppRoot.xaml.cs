@@ -1,8 +1,10 @@
 ﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Assets;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Data;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,8 +30,11 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
     {
         public Categorie categorie { get; set; }
 
+        public Stack<string> queue { get; set; } = new Stack<string>();
+
         public AppRoot()
         {
+
             this.InitializeComponent();
             Symbols syms = new Symbols();
 
@@ -48,7 +53,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 ni.Content = item.ToString();
                 ni.Tag = item.ToString();
                 ni.Icon = new SymbolIcon(Symbol.Home);
-               // ni.Icon = (FontIcon)(syms.symbolen.First().Value);
+                // ni.Icon = (FontIcon)(syms.symbolen.First().Value);
                 NavView.MenuItems.Add(ni);
             }
             hdr = new NavigationViewItemHeader();
@@ -65,49 +70,137 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            NavView.IsBackEnabled = true;
+
             if (args.IsSettingsSelected)
             {
                 ContentFrame.Navigate(typeof(SettingPage));
                 NavView.Header = "Settings";
+                queue.Push("settings");
             }
             else
             {
                 NavigationViewItem item = args.SelectedItem as NavigationViewItem;
-
-                switch (item.Tag.ToString())
-                {
-                    case "home":
-                        NavView.Header = "Home";
-                        ContentFrame.Navigate(typeof(HomePage));
-                        break;
-                    case "about":
-                        ContentFrame.Navigate(typeof(ContentListPage));
-                        NavView.Header = "About";
-                        break;
-                    default:
-                       // ContentListPage page = (ContentListPage)ContentFrame.Content;
-                        Categorie myCategorie;
-                        System.Enum.TryParse(item.Tag.ToString(), out myCategorie);
-                        categorie = myCategorie;
-                        ContentFrame.Navigate(typeof(ContentListPage));
-                        NavView.Header = item.Tag.ToString();
-                        break;
-                }
+                navigate(item.Tag.ToString());
             }
         }
 
-     
+        public void NavigateHome()
+        {
+            NavView.SelectedItem = NavView.MenuItems.ElementAt(2);
+        }
+
+        public void NavigateRegistreer()
+        {
+            ContentFrame.Navigate(typeof(RegistreerPage));
+        }
+
 
         public void NavigateContentFrame(OndernemingList ondernemingen)
         {
+            NavView.IsBackEnabled = true;
+
             int index = System.Enum.GetValues(typeof(Categorie)).Cast<Categorie>().ToList().IndexOf(ondernemingen.categorie);
 
-            NavView.SelectedItem = NavView.MenuItems.ElementAt(index+3);
+            NavView.SelectedItem = NavView.MenuItems.ElementAt(index + 4);
 
-            ContentFrame.Navigate(typeof(ContentListPage));
+            //ContentFrame.Navigate(typeof(ContentListPage));
             //ContentListPage page = (ContentListPage)ContentFrame.Content;
             //page.viewModel.ondernemingen = ondernemingen;
-            NavView.Header = ondernemingen.categorie.ToString();
+            //NavView.Header = ondernemingen.categorie.ToString();
+            // queue.Push(ondernemingen.categorie.ToString());
+
+        }
+
+        private void navigate(string tag)
+        {
+            NavView.IsBackEnabled = true;
+            switch (tag)
+            {
+                case "settings":
+                    ContentFrame.Navigate(typeof(SettingPage));
+                    NavView.Header = "Settings";
+                    queue.Push("settings");
+                    break;
+                case "home":
+                    NavView.Header = "Home";
+                    ContentFrame.Navigate(typeof(HomePage));
+                    queue.Push(tag);
+                    break;
+                case "profiel":
+                    if (User.Username != null && User.Username != "")
+                    {
+                        ContentFrame.Navigate(typeof(ProfielPage));
+                        NavView.Header = "Profiel";
+                    }
+                    else
+                    {
+                        ContentFrame.Navigate(typeof(LoginPage));
+                        NavView.Header = "Profiel";
+                    }
+                    queue.Push(tag);
+                    break;
+                case "about":
+                    ContentFrame.Navigate(typeof(RegistreerPage));
+                    NavView.Header = "About";
+                    queue.Push(tag);
+                    break;
+                default:
+                    // ContentListPage page = (ContentListPage)ContentFrame.Content;
+                    Categorie myCategorie;
+                    System.Enum.TryParse(tag, out myCategorie);
+                    categorie = myCategorie;
+                    ContentFrame.Navigate(typeof(ContentListPage));
+                    NavView.Header = tag;
+                    queue.Push(tag);
+                    break;
+            }
+        }
+
+
+        public void NavView_Back(NavigationView sender, NavigationViewBackRequestedEventArgs e)
+        {
+            if (queue.Count() == 0 || queue.Count() == 1)
+            {
+                NavView.IsBackEnabled = false;
+            }
+            else
+            {
+                queue.Pop();
+                string tag = queue.Pop();
+                //navigate(tag);
+
+
+                switch (tag)
+                {
+                    case "settings":
+                        NavView.SelectedItem = NavView.SettingsItem;
+                        break;
+                    case "home":
+                        NavView.SelectedItem = NavView.MenuItems.ElementAt(2);
+                        break;
+                    case "about":
+                        NavView.SelectedItem = NavView.MenuItems.ElementAt(System.Enum.GetValues(typeof(Categorie)).Cast<Categorie>().ToList().Count() + 5);
+                        break;
+                    case "profiel":
+                        NavView.SelectedItem = NavView.MenuItems.ElementAt(1);
+                        break;
+                    default:
+                        Categorie myCategorie;
+                        System.Enum.TryParse(tag, out myCategorie);
+                        int index = System.Enum.GetValues(typeof(Categorie)).Cast<Categorie>().ToList().IndexOf(myCategorie);
+
+                        NavView.SelectedItem = NavView.MenuItems.ElementAt(index + 4);
+                        break;
+                }
+                if (queue.Count() == 1)
+                {
+                    NavView.IsBackEnabled = false;
+                }
+
+            }
+
+
         }
     }
 }

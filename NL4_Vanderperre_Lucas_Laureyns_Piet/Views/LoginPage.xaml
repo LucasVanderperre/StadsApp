@@ -9,6 +9,31 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Login" FontSize="36" Margin="4" TextAlignment="Center"/>
+            <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
+            <TextBlock Text="Gebruikersnaam:" Margin="0,0,0,20"
+               TextWrapping="Wrap" Width="300"
+               TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+            <TextBox x:Name="UsernameTextBox" Margin="4" Width="250" Text="{x:Bind ViewModel.username, Mode=TwoWay}"/>
+            <TextBlock Text="Passwoord:" Margin="0,0,0,20"
+               TextWrapping="Wrap" Width="300"
+               TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+            <PasswordBox Margin="4" Width="250" PlaceholderText="Geef hier je paswoord in" PasswordChar="#" 
+                         Password="{x:Bind ViewModel.password, Mode=TwoWay}"/>
 
+            <Button x:Name="PassportSignInButton" Content="Login" Background="DodgerBlue" Foreground="White"
+        Click="PassportSignInButton_Click" Width="80" HorizontalAlignment="Center" Margin="0,20"/>
+            <TextBlock Text="Nog geen account?"
+                TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock x:Name="RegisterButtonTextBlock" Text="Registreer nu"
+               PointerPressed="RegisterButtonTextBlock_OnPointerPressed"
+               Foreground="DodgerBlue"
+               TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+            
+            <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+
+        </StackPanel>
     </Grid>
 </Page>

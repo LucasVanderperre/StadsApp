@@ -9,5 +9,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
     public class Ondernemer : Gebruiker
     {
         public List<Onderneming> Ondernemingen { get; set; } = new List<Onderneming>();
+
+        public Ondernemer(string naam, string voornaam, string username, string Email) : base(naam, voornaam, username, Email)
+        {
+        }
     }
 }

@@ -22,5 +22,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
             Stad = stad;
             Land = land;
         }
+
+        public Adres()
+        {
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
 {
     public class OndernemingController
     {
-        private readonly string baseUrl = "http://localhost:51155/api";
+        //private readonly string baseUrl = "http://localhost:51155/api";
         //public ObservableCollection<Onderneming> Ondernemingen { get; set; } = new ObservableCollection<Onderneming>();
 
         public async Task <List<OndernemingList>> GetOndernemingenAsync()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,38 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
     /// </summary>
     public sealed partial class LoginPage : Page
     {
+        public LoginPageViewModel ViewModel { get; set; } = new LoginPageViewModel();
+
+
         public LoginPage()
         {
             this.InitializeComponent();
+        }
+
+        private void PassportSignInButton_Click(object sender, RoutedEventArgs args){
+            try
+            {
+                ViewModel.Login();
+                Frame parentFrame = Window.Current.Content as Frame;
+                //parentFrame.Navigate(typeof(MainPage));
+                AppRoot root = parentFrame.Content as AppRoot;
+                //root.Nav
+                root.NavigateHome();
+            }
+            catch(Exception ex)
+            {
+                ErrorMessage.Text = ex.Message;
+            }
+            
+
+        }
+        private void RegisterButtonTextBlock_OnPointerPressed(object sender, RoutedEventArgs args)
+        {
+            Frame parentFrame = Window.Current.Content as Frame;
+            //parentFrame.Navigate(typeof(MainPage));
+            AppRoot root = parentFrame.Content as AppRoot;
+            //root.Nav
+            root.NavigateRegistreer();
         }
     }
 }
