@@ -36,7 +36,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         private void CheckBox_Click(object sender, RoutedEventArgs args)
         {
-            
+
             if (Ondernemer_Checkbox.IsChecked == true)
             {
                 OndernemerPanel.Visibility = Visibility.Visible;
@@ -50,22 +50,35 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         private async void Registreer_Click(object sender, RoutedEventArgs args)
         {
-            if(Ondernemer_Checkbox.IsChecked == true)
+            try
             {
-                await ViewModel.Registreer(true);
+
+                if (Ondernemer_Checkbox.IsChecked == true)
+                {
+                    await ViewModel.Registreer(true);
+                    Frame parentFrame = Window.Current.Content as Frame;
+                    //parentFrame.Navigate(typeof(MainPage));
+                    AppRoot root = parentFrame.Content as AppRoot;
+                    //root.Nav
+                    root.NavigateHome();
+                }
+                else
+                {
+                    await ViewModel.Registreer(false);
+                    Frame parentFrame = Window.Current.Content as Frame;
+                    //parentFrame.Navigate(typeof(MainPage));
+                    AppRoot root = parentFrame.Content as AppRoot;
+                    //root.Nav
+                    root.NavigateHome();
+                }
 
             }
-            else
+            catch (Exception ex)
             {
-                await ViewModel.Registreer(false);
+                ErrorMessage.Text = ex.Message;
             }
 
-            Frame parentFrame = Window.Current.Content as Frame;
-            //parentFrame.Navigate(typeof(MainPage));
-            AppRoot root = parentFrame.Content as AppRoot;
-            //root.Nav
-            root.NavigateHome();
         }
 
-        }
+    }
 }

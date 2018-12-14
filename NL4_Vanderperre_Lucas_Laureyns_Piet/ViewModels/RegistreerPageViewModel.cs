@@ -27,11 +27,24 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
         public RegistreerPageViewModel()
         {
             onderneming = new Onderneming();
+            onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Monday, "00:00", "00:00"));
+            onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Tuesday, "00:00", "00:00"));
+            onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Wednesday, "00:00", "00:00"));
+            onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Thursday, "00:00", "00:00"));
+            onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Friday, "00:00", "00:00"));
+            onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Saturday, "00:00", "00:00"));
+            onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Sunday, "00:00", "00:00"));
             adres = new Adres();
         }
 
         public async Task Registreer(bool boolean)
         {
+            if (naam == null || username == null || password == null || voornaam == null || Email == null)
+            {
+                throw new Exception("Alle velden zijn verplicht");
+            }
+
+
             if (boolean)
             {
                 Ondernemer ondernemer = new Ondernemer(naam,voornaam,username,Email);
@@ -41,19 +54,20 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
                 onderneming.Categorie = myCategorie;
                 ondernemer.Ondernemingen.Add(onderneming);
                 //Toevoegen aan de databank
-                gebruiker = await GebController.CreateOndernemer(gebruiker);
+                gebruiker = await GebController.CreateOndernemer(ondernemer);
 
             }
             else
             {
-                gebruiker = new Klant(naam, voornaam, username, Email);
+                Klant klant = new Klant(naam, voornaam, username, Email);
+                klant.Password = password;
 
                 //Toevoegen aan de databank
-                gebruiker = await GebController.CreateKlant(gebruiker);
+                gebruiker = await GebController.CreateKlant(klant);
             }
            
             //login hier doorvoeren
-            LogController.Login(gebruiker.username, password);
+            LogController.LoginNieuweGebruiker(gebruiker.username, password);
 
             //navigate naar homeview
 

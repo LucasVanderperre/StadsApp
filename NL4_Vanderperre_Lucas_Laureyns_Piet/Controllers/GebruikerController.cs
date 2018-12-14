@@ -12,7 +12,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
     public class GebruikerController
     {
 
-        public async Task<Ondernemer> CreateOndernemer(Gebruiker gebruiker)
+        public async Task<Ondernemer> CreateOndernemer(Ondernemer gebruiker)
         {
             HttpClient client = new HttpClient();
             var response = await client.PostAsJsonAsync("http://localhost:51155/api/Ondernemings", gebruiker);
@@ -22,7 +22,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             return result;
         }
 
-        public async Task<Klant> CreateKlant(Gebruiker gebruiker)
+        public async Task<Klant> CreateKlant(Klant gebruiker)
         {
             HttpClient client = new HttpClient();
             var response = await client.PostAsJsonAsync("http://localhost:51155/api/Gebruikers", gebruiker);
@@ -30,6 +30,15 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             var result = await response.Content.ReadAsAsync<Klant>();
             // return URI of the created resource.
             return result;
+        }
+
+        public async Task<List<Abonnement>> GetAbonnementen(string gebruiker)
+        {
+            HttpClient client = new HttpClient();
+            var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Gebruikers/"+ gebruiker));
+            var lst = JsonConvert.DeserializeObject<Klant>(json);
+            return lst.Abonnementen;
+
         }
     }
 }

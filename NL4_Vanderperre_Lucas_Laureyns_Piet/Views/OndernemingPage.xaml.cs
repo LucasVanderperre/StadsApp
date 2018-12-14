@@ -1,4 +1,5 @@
-﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
+﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,6 +29,34 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         public OndernemingPage()
         {
             this.InitializeComponent();
+            if (User.isKlant)
+            {
+                btnAbonneer.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnAbonneer.Visibility = Visibility.Collapsed;
+            }
+        }
+
+
+        public async void AbonneeCheck()
+        {
+            if (User.isKlant)
+            {
+                btnAbonneer.Visibility = Visibility.Visible;
+           
+            if (await viewModel.checkAbonnee())
+            {
+                btnAbonneer.Content = "Uitschrijven";
+                txtBevestiging.Text = "Zeker dat je wil uitschrijven";
+            }
+            }
+        }
+
+        private void Abonneer_Click(object sender, RoutedEventArgs args)
+        {
+            AbonneeCheck();
         }
     }
 }

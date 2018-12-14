@@ -1,4 +1,5 @@
 ﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 
         public void Login()
         {
- 
-                LogController.Login(username, password);
-           
+            Gebruiker gb = new Klant("","",username, "");
+            LogController.Login(gb, password);
+
         }
     }
 }

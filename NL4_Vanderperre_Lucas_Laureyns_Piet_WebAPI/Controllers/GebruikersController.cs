@@ -24,9 +24,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
         // GET: api/Gebruikers/5
         [ResponseType(typeof(Gebruiker))]
-        public IHttpActionResult GetGebruiker(int id)
+        public IHttpActionResult GetGebruiker(string username)
         {
-            Gebruiker gebruiker = db.Gebruikers.Find(id);
+            Gebruiker gebruiker = db.Gebruikers.Include("Abonnementen").FirstOrDefault(geb => geb.username == username);
             if (gebruiker == null)
             {
                 return NotFound();

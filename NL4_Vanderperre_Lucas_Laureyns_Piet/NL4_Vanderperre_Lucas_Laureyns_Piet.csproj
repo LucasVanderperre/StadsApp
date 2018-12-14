@@ -119,6 +119,7 @@
     <Compile Include="ViewModels\ContentListPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\OndernemingPageViewModel.cs" />
     <Compile Include="ViewModels\RegistreerPageViewModel.cs" />
     <Compile Include="Views\AppRoot.xaml.cs">
       <DependentUpon>AppRoot.xaml</DependentUpon>
@@ -131,6 +132,9 @@
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OndernemingPage.xaml.cs">
+      <DependentUpon>OndernemingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfielPage.xaml.cs">
       <DependentUpon>ProfielPage.xaml</DependentUpon>
@@ -149,6 +153,10 @@
     <None Include="NL4_Vanderperre_Lucas_Laureyns_Piet_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+<Content Include="Assets\cafe_icon.png" />
+    <Content Include="Assets\restaurant_icon.png" />
+    <Content Include="Assets\school_icon.png" />
+    <Content Include="Assets\winkel_icon.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -180,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OndernemingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

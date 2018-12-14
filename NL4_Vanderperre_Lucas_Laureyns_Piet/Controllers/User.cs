@@ -9,5 +9,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
     static class User
     {
         public static string Username { get; set; }
+        public static bool isKlant { get; set; }
     }
 }

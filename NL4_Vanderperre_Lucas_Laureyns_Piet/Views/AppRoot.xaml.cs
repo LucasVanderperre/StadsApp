@@ -157,6 +157,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             }
         }
 
+        public void NavigateOndernemingFrame(Onderneming onderneming)
+        {
+            ContentFrame.Navigate(typeof(OndernemingPage));
+            OndernemingPage page = (OndernemingPage)ContentFrame.Content;
+            page.viewModel.onderneming = onderneming;
+            page.AbonneeCheck();
+            //page.viewModel.ondernemingen = ondernemingen;
+            NavView.Header = onderneming.Naam;
+        }
+
 
         public void NavView_Back(NavigationView sender, NavigationViewBackRequestedEventArgs e)
         {

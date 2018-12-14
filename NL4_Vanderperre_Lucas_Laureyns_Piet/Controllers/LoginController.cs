@@ -12,13 +12,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
         private string resourceName = "My App";
 
 
-        public void Login(string gebruiker, string password)
+        public void Login(Gebruiker gebruiker, string password)
         {
             var vault = new Windows.Security.Credentials.PasswordVault();
             // check hier de inloggegevens
             try
             {
-                vault.Retrieve(resourceName, gebruiker);
+                vault.Retrieve(resourceName, gebruiker.username);
+                //get via webAPI
             }
             catch (Exception ex)
             {
@@ -26,7 +27,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
                 //Als oke login anders exception throw
                 throw new Exception("De username of passwoord is niet correct");
             }
-            User.Username = gebruiker;
+            User.Username = gebruiker.username;
+            User.isKlant =  (gebruiker.GetType() == typeof(Klant)) ;
 
         }
 

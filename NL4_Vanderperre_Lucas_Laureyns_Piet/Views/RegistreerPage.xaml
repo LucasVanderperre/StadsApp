@@ -27,6 +27,8 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10"  Grid.Column="0" Grid.Row="0">
 
             <StackPanel>
+                <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
+
 
                 <StackPanel  HorizontalAlignment="Left" MinWidth="400">
                     <TextBox Header="Naam:" PlaceholderText="Naam" x:Name="Naam" Text="{x:Bind ViewModel.naam, Mode=TwoWay}"/>

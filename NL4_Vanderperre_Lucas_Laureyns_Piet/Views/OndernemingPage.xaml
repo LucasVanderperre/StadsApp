@@ -8,12 +8,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <ScrollViewer  VerticalScrollBarVisibility="Auto" >
     <StackPanel DataContext="{x:Bind viewModel.onderneming}" Margin="50,25,50,25" HorizontalAlignment="Left">
-        <StackPanel Margin="100,0,0,0">
-            <Image x:Name="image" Stretch="Fill" Height="200" Width="200" Source="{Binding ImageUrl}"  />
-            <TextBlock FontSize="25" FontWeight="SemiBold" Name="OndernemingNaam" HorizontalAlignment="Center" Text="{Binding Naam}"/>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="btnAbonneer" Content="Abonneer">
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel>
+                                <TextBlock Name="txtBevestiging" Style="{ThemeResource BaseTextBlockStyle}" Text="Zeker dat je wil abonneren?" Margin="0,0,0,12" />
+                                <Button Click="Abonneer_Click" Content="Ja" />
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+
+                <StackPanel Margin="100,0,0,0">
+                    <Image x:Name="image" Stretch="Fill" Height="200" Width="200" Source="{Binding ImageUrl}"  />
+                    <TextBlock FontSize="25" FontWeight="SemiBold" Name="OndernemingNaam" HorizontalAlignment="Center" Text="{Binding Naam}"/>
+                </StackPanel>
+            </StackPanel>
+       
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="100,0,0,0">
             <StackPanel Margin="25,10,100,0">
                 <TextBlock FontSize="20" FontWeight="SemiBold" TextDecorations="Underline" Name="adresTitle" Margin="1" Text="Adres"/>
@@ -56,4 +70,5 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackPanel>
+    </ScrollViewer>
 </Page>
