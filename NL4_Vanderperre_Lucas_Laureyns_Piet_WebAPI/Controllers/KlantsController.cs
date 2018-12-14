@@ -39,17 +39,49 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
         // PUT: api/Klants/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlant(int id, Klant klant)
+        [Route("api/Klants/Abonnement/{username}")]
+        public IHttpActionResult PutAbonneeCheckKlant(string username, Onderneming onderneming)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != klant.GebruikerId)
+            Klant klant = db.Klants.Include("Abonnementen").FirstOrDefault(geb => geb.username == username);
+            if (klant == null)
             {
                 return BadRequest();
             }
+            foreach (var item in klant.Abonnementen)
+            {
+                var abo = db.Abonnements.Include("Onderneming").FirstOrDefault(a => a.AbonnementId == item.AbonnementId);
+                if (abo.Onderneming.OndenemingId == onderneming.OndenemingId)
+                {
+                    return StatusCode(HttpStatusCode.NoContent);
+                }
+            }
+
+            return NotFound();
+        }
+
+
+        // PUT: api/Klants/5
+        [ResponseType(typeof(void))]
+        [Route("api/Klants/VoegAboToe/{username}")]
+        public IHttpActionResult PutKlant(string username, Onderneming onderneming)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Klant klant = db.Klants.Include("Abonnementen").FirstOrDefault(geb => geb.username == username);
+            if (klant == null)
+            {
+                return BadRequest();
+            }
+            Onderneming ondr = db.Ondernemings.Find(onderneming.OndenemingId);
+
+            Abonnement abonnement = new Abonnement(ondr);
+            klant.Abonnementen.Add(abonnement);
 
             db.Entry(klant).State = EntityState.Modified;
 
@@ -59,7 +91,56 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KlantExists(id))
+                if (!KlantExists(klant.GebruikerId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
+        // PUT: api/Klants/5
+        [ResponseType(typeof(void))]
+        [Route("api/Klants/SchrijfUit/{username}")]
+        public IHttpActionResult PutSchrijfUitKlant(string username, Onderneming onderneming)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Klant klant = db.Klants.Include("Abonnementen").FirstOrDefault(geb => geb.username == username);
+            if (klant == null)
+            {
+                return BadRequest();
+            }
+
+               foreach (var item in klant.Abonnementen)
+            {
+                var abo = db.Abonnements.Include("Onderneming").FirstOrDefault(a => a.AbonnementId == item.AbonnementId);
+                if (abo.Onderneming.OndenemingId == onderneming.OndenemingId)
+                {
+                    db.Abonnements.Remove(abo);
+                    db.SaveChanges();
+                    return StatusCode(HttpStatusCode.NoContent);
+                }
+            }
+
+
+            db.Entry(klant).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!KlantExists(klant.GebruikerId))
                 {
                     return NotFound();
                 }

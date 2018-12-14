@@ -15,5 +15,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Models
         public int AbonnementId { get; set; }
         public Onderneming Onderneming { get; set; }
         public List<string> Notificaties { get; set; }
+
+        public Abonnement()
+        {
+        }
+
+        public Abonnement(Onderneming onderneming)
+        {
+            Onderneming = onderneming;
+        }
     }
 }

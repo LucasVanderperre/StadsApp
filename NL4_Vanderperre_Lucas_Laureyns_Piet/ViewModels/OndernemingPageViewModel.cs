@@ -21,24 +21,41 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 
         public async Task<bool> checkAbonnee()
         {
-            var abon = (Klant) await controller.GetAbonnementen(User.Username);
-            if(abon.Abonnementen != null)
+            try
+            {
+                await controller.CheckAbonnement(User.Username, onderneming);
+                return true;
+            } catch(Exception ec)
+            {
+                return false;
+            }
+           /* var abon = (Klant)await controller.GetAbonnementen(User.Username);
+            if (abon.Abonnementen != null)
             {
                 foreach (var item in abon.Abonnementen)
                 {
-                    if (item.Onderneming == onderneming)
+                    if (item.Onderneming.OndenemingId == onderneming.OndenemingId)
                     {
                         return true;
                     }
                 }
             }
-            return false;
+            return false;*/
         }
-        /*
-        public async Task<bool> abonneer()
+
+        public async Task abonneer()
         {
 
-        }*/
+            await controller.Abonneer(onderneming);
+
+        }
+        public async Task schrijfUit()
+        {
+
+            await controller.SchrijfUit(onderneming);
+
+        }
         
+
     }
 }

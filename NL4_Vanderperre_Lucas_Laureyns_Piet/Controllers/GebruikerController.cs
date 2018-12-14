@@ -40,9 +40,29 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             return lst;
 
         }
-        /*
-        public async Task<Klant> Abonneer(string gebruiker)
+        public async Task CheckAbonnement(string gebruiker, Onderneming onderneming)
         {
-        }*/
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync("http://localhost:51155/api/Klants/Abonnement/" + gebruiker, onderneming);
+            response.EnsureSuccessStatusCode();
+
+        }
+
+
+        public async Task Abonneer(Onderneming onderneming)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync("http://localhost:51155/api/Klants/VoegAboToe/" + User.Username, onderneming);
+            response.EnsureSuccessStatusCode();
+           
+        }
+
+        public async Task SchrijfUit(Onderneming onderneming)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync("http://localhost:51155/api/Klants/SchrijfUit/" + User.Username, onderneming);
+            response.EnsureSuccessStatusCode();
+
+        }
     }
 }

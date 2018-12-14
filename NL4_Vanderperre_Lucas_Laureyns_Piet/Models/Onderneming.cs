@@ -15,6 +15,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
     public class Onderneming
     {
         public string Naam { get; set; }
+        public int OndenemingId { get; set; }
         private Categorie cat;
         public Categorie Categorie
         {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -40,24 +41,46 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         }
 
 
-        public async void AbonneeCheck()
+        public async Task AbonneeCheck()
         {
             if (User.isKlant == true)
             {
                 btnAbonneer.Visibility = Visibility.Visible;
-           
-            if (await viewModel.checkAbonnee())
-            {
-                btnAbonneer.Content = "Uitschrijven";
-                txtBevestiging.Text = "Zeker dat je wil uitschrijven";
-            }
+
+                if (await viewModel.checkAbonnee())
+                {
+                    btnAbonneer.Content = "Uitschrijven";
+                    txtBevestiging.Text = "Zeker dat je wil uitschrijven";
+                }
+                else
+                {
+                    btnAbonneer.Content = "Abonneer";
+                    txtBevestiging.Text = "Zeker dat je wil abonneren?";
+                }
             }
         }
 
-        private void Abonneer_Click(object sender, RoutedEventArgs args)
+        private async void Abonneer_Click(object sender, RoutedEventArgs args)
         {
-            //viewModel.abonneer();
-            AbonneeCheck();
+            btnAbonneer.Visibility = Visibility.Collapsed;
+            try
+            {
+                if (btnAbonneer.Content.ToString() == "Uitschrijven")
+                {
+                    await viewModel.schrijfUit();
+                }
+                else
+                {
+                    await viewModel.abonneer();
+
+                }
+                await AbonneeCheck();
+            }
+            catch (Exception e)
+            {
+
+            }
+            btnAbonneer.Visibility = Visibility.Visible;
         }
     }
 }
