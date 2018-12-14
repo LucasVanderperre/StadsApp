@@ -21,6 +21,11 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public List<Openingsuren> Openingsuren { get; set; } = new List<Openingsuren>(7);
         public string Facebook { get; set; }
         public BitmapImage Image { get; set; } = new BitmapImage();
+
+        public string ImageUrl { get; set; }
+        public string FacebookUrl { get { return "https://" + Facebook; }  }
+        public bool hasEvents { get { return Events.Count > 0; } }
+        public bool hasPromoties { get { return Promoties.Count > 0; } }
         public List<Promotie> Promoties { get; set; } = new List<Promotie>();
         public List<Event> Events { get; set; } = new List<Event>();
 
@@ -34,28 +39,12 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
             Openingsuren.Add(new Openingsuren(DayOfWeek.Saturday, "00:00", "00:00"));
             Openingsuren.Add(new Openingsuren(DayOfWeek.Sunday, "00:00", "00:00"));
         }
-        public List<Promotie> Promoties { get; set; }
-        public List<Event> Events { get; set; }
-        public string ImageUrl { get; set; }
-        public string FacebookUrl { get { return "https://" + Facebook; }  }
-        public bool hasEvents { get { return Events.Count > 0; } }
-        public bool hasPromoties { get { return Promoties.Count > 0; } }
 
         public Onderneming(string naam, Categorie categorie, Adres adres)
         {
             Naam = naam;
             Categorie = categorie;
             Adressen.Add(adres);
-            
-            Openingsuren.Add(new Openingsuren(DayOfWeek.Monday, "0000", "0000"));
-            Openingsuren.Add(new Openingsuren(DayOfWeek.Tuesday, "0000", "0000"));
-            Openingsuren.Add(new Openingsuren(DayOfWeek.Wednesday, "0000", "0000"));
-            Openingsuren.Add(new Openingsuren(DayOfWeek.Thursday, "0000", "0000"));
-            Openingsuren.Add(new Openingsuren(DayOfWeek.Friday, "0000", "0000"));
-            Openingsuren.Add(new Openingsuren(DayOfWeek.Saturday, "0000", "0000"));
-            Openingsuren.Add(new Openingsuren(DayOfWeek.Sunday, "0000", "0000"));
-
-
             switch (categorie) // ImageUrl zal nog als string moeten opgeslaan worden in db + mss nog wat extra fotos opzoeken.
             {
                 case Categorie.Winkel:
@@ -74,6 +63,15 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
                     ImageUrl = "/Assets/Square44x44Logo.scale-200.png";
                     break;
             }
+            Openingsuren.Add(new Openingsuren(DayOfWeek.Monday, "0000", "0000"));
+            Openingsuren.Add(new Openingsuren(DayOfWeek.Tuesday, "0000", "0000"));
+            Openingsuren.Add(new Openingsuren(DayOfWeek.Wednesday, "0000", "0000"));
+            Openingsuren.Add(new Openingsuren(DayOfWeek.Thursday, "0000", "0000"));
+            Openingsuren.Add(new Openingsuren(DayOfWeek.Friday, "0000", "0000"));
+            Openingsuren.Add(new Openingsuren(DayOfWeek.Saturday, "0000", "0000"));
+            Openingsuren.Add(new Openingsuren(DayOfWeek.Sunday, "0000", "0000"));
+
+
         }
 
         public string OpeningsurenToString
