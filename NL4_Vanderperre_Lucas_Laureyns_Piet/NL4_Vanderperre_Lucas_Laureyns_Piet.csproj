@@ -97,9 +97,11 @@
     </Compile>
     <Compile Include="Assets\Symbols.cs" />
     <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GebruikerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OndernemingController.cs" />
+    <Compile Include="Controllers\PromotieController.cs" />
     <Compile Include="Controllers\User.cs" />
     <Compile Include="Enum\Categorie.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -116,11 +118,15 @@
     <Compile Include="Models\Openingsuren.cs" />
     <Compile Include="Models\Promotie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddPageOrPromotiePageViewModel.cs" />
     <Compile Include="ViewModels\ContentListPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\OndernemingPageViewModel.cs" />
     <Compile Include="ViewModels\RegistreerPageViewModel.cs" />
+    <Compile Include="Views\AddEventOrPromotiePage.xaml.cs">
+      <DependentUpon>AddEventOrPromotiePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AppRoot.xaml.cs">
       <DependentUpon>AppRoot.xaml</DependentUpon>
     </Compile>
@@ -153,7 +159,7 @@
     <None Include="NL4_Vanderperre_Lucas_Laureyns_Piet_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-<Content Include="Assets\cafe_icon.png" />
+    <Content Include="Assets\cafe_icon.png" />
     <Content Include="Assets\restaurant_icon.png" />
     <Content Include="Assets\school_icon.png" />
     <Content Include="Assets\winkel_icon.png" />
@@ -174,6 +180,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddEventOrPromotiePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AppRoot.xaml">
       <SubType>Designer</SubType>
@@ -209,6 +219,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.1.3</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.7</Version>
     </PackageReference>

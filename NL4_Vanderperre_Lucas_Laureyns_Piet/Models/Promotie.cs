@@ -13,6 +13,20 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public DateTime Einddatum { get; set; }
         public string Beschrijving { get; set; }
         public string Barcode { get; set; }
+
+        public Promotie()
+        {
+
+        }
+
+        public Promotie(string naam, string beschrijving, DateTime startdatum, DateTime einddatum, string barcode)
+        {
+            this.Naam = naam;
+            this.Startdatum = startdatum;
+            this.Einddatum = einddatum;
+            this.Beschrijving = beschrijving;
+            this.Barcode = barcode;
+        }
         public string datum{
             get{
                 return Startdatum.ToString("dd/MM/yy") + " - " + Einddatum.ToString("dd/MM/yy");

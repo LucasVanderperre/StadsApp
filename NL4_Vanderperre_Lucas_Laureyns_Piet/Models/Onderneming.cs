@@ -15,6 +15,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
     public class Onderneming
     {
         public string Naam { get; set; }
+        public int OndenemingId { get; set; }
         private Categorie cat;
         public Categorie Categorie
         {
@@ -47,7 +48,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public List<Openingsuren> Openingsuren { get; set; } = new List<Openingsuren>(7);
         public string Facebook { get; set; }
         public BitmapImage Image { get; set; } = new BitmapImage();
-
         public string ImageUrl { get; set; }
         public string FacebookUrl { get { return "https://" + Facebook; } }
         public bool hasEvents { get { return Events.Count > 0; } }

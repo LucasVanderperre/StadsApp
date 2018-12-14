@@ -45,7 +45,10 @@
                 <TextBlock Text="{Binding OpeningsurenToString}" TextAlignment="right"></TextBlock>
             </StackPanel>
         </StackPanel>
-        <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="eventsText" Text="Events" Visibility="{Binding hasEvents}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="eventsText" Text="Events" Visibility="{Binding hasEvents}"/>
+                <Button Name="btnEvent" Content="Nieuwe Toevoegen" Click="addEventClick" Visibility="{Binding hasEvents}" Margin="25,55,0,0"></Button>
+            </StackPanel>
         <ListView Margin="25,0,0,0" x:Name="events" ItemsSource="{Binding Events}" Visibility="{Binding hasEvents}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="datamodels:Event">
@@ -57,7 +60,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="promotiesText" Text="Promoties" Visibility="{Binding hasPromoties}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="promotiesText" Text="Promoties" Visibility="{Binding hasPromoties}"/>
+                <Button Name="btnPromotie" Content="Nieuwe Toevoegen" Click="addPromotieClick" Visibility="{Binding hasPromoties}" Margin="25,55,0,0"></Button>
+            </StackPanel>
         <ListView Margin="25,0,0,0" x:Name="promoties" ItemsSource="{Binding Promoties}" Visibility="{Binding hasPromoties}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="datamodels:Promotie">
