@@ -97,7 +97,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         public void NavigateProfiel()
         {
-            ContentFrame.Navigate(typeof(ProfielPage));
+            if (User.isKlant == true)
+            {
+                ContentFrame.Navigate(typeof(ProfielPage));
+
+            }
+            if (User.isOndernemer == true)
+            {
+                ContentFrame.Navigate(typeof(ProfielOndernemerPage));
+
+            }
         }
 
         public void NavigateLogin()
@@ -139,8 +148,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 case "profiel":
                     if (User.Username != null && User.Username != "")
                     {
-                        ContentFrame.Navigate(typeof(ProfielPage));
-                        NavView.Header = "Profiel";
+                        NavigateProfiel();
                     }
                     else
                     {

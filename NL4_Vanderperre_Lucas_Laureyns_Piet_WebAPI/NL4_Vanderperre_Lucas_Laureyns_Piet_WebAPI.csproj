@@ -85,6 +85,15 @@
     <EmbeddedResource Include="Migrations\201812051727165_Initial.resx">
       <DependentUpon>201812051727165_Initial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812151627051_Notificaties.resx">
+      <DependentUpon>201812151627051_Notificaties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812151638281_Notificaties1.resx">
+      <DependentUpon>201812151638281_Notificaties1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812151806483_Notificaties2.resx">
+      <DependentUpon>201812151806483_Notificaties2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="WebActivatorEx">
@@ -124,6 +133,18 @@
     <Compile Include="Migrations\201812051727165_Initial.Designer.cs">
       <DependentUpon>201812051727165_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812151627051_Notificaties.cs" />
+    <Compile Include="Migrations\201812151627051_Notificaties.Designer.cs">
+      <DependentUpon>201812151627051_Notificaties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812151638281_Notificaties1.cs" />
+    <Compile Include="Migrations\201812151638281_Notificaties1.Designer.cs">
+      <DependentUpon>201812151638281_Notificaties1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812151806483_Notificaties2.cs" />
+    <Compile Include="Migrations\201812151806483_Notificaties2.Designer.cs">
+      <DependentUpon>201812151806483_Notificaties2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -132,6 +153,7 @@
     <Compile Include="Models\Gebruiker.cs" />
     <Compile Include="Models\Klant.cs" />
     <Compile Include="Models\NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPIContext.cs" />
+    <Compile Include="Models\Notificatie.cs" />
     <Compile Include="Models\Ondernemer.cs" />
     <Compile Include="Models\Onderneming.cs" />
     <Compile Include="Models\OndernemingList.cs" />

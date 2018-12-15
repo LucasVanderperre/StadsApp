@@ -36,7 +36,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
                 {
                     await LoginBackend(gebruiker);
                     vault.Add(new Windows.Security.Credentials.PasswordCredential(
-                        "My App", gebruiker.username, gebruiker.Password));
+                        "My App", gebruiker.username, gebruiker.password));
                 }
                 catch (Exception e)
                 {
@@ -63,6 +63,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
                 "My App", gebruiker.username, password));
             User.Username = gebruiker.username;
             User.isKlant = (gebruiker.GetType() == typeof(Klant));
+            User.isOndernemer = (gebruiker.GetType() == typeof(Ondernemer));
             User.Id = gebruiker.id;
         }
 

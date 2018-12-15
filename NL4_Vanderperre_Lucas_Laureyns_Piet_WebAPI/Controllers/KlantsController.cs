@@ -27,7 +27,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
         [Route("api/Klants/{username}")]
         public IHttpActionResult GetKlant(string username)
         {
-            Klant klant = db.Klants.Include("Abonnementen").FirstOrDefault(geb => geb.username == username);
+            Klant klant = db.Klants.Include("Abonnementen").Include("Abonnementen.Onderneming").Include("Abonnementen.Onderneming.Events")
+                .Include("Abonnementen.Onderneming.Promoties").Include("Abonnementen.Notificaties").FirstOrDefault(geb => geb.username == username);
 
             if (klant == null)
             {

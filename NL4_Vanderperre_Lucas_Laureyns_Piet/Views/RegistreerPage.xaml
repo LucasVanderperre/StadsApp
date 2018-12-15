@@ -36,7 +36,7 @@
                     <TextBox Header="Gebruikersnaam:" PlaceholderText="Gebruikersnaam" x:Name="Gebruikersnaam" Text="{x:Bind ViewModel.username, Mode=TwoWay}"/>
                     <TextBox  Name="EmailValidatorForce" extensions:TextBoxRegex.ValidationType="Email" Header="Email:" PlaceholderText="voorbeeld@voorbeeld.com" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" />
                     <TextBlock Name="EmailValidator" Foreground="Red" Text="Ongeldige email" Visibility="{Binding (extensions:TextBoxRegex.IsValid),  ElementName=EmailValidatorForce, Converter={StaticResource InverseBoolToVisibilityConverter}}" />
-                    <PasswordBox Width="300" Header="Password" PlaceholderText="Geef hier je paswoord in" PasswordChar="#" Name="Password" Password="{x:Bind ViewModel.password, Mode=TwoWay}"/>
+                    <PasswordBox Header="Password" PlaceholderText="Geef hier je paswoord in" PasswordChar="#" Name="Password" Password="{x:Bind ViewModel.password, Mode=TwoWay}"/>
                     <CheckBox x:Name="Ondernemer_Checkbox" Content="Ondernemer"  Click="CheckBox_Click"/>
                     <!--=-->
                 </StackPanel >
@@ -68,84 +68,7 @@
 
 
                     </Grid>
-                    <!-- <Grid  >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition  />
-                    <RowDefinition  />
-                    <RowDefinition  />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition  />
-                    <RowDefinition  />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="Maandag:" FontSize="15" />
-                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="van" FontSize="15" />
-                <TimePicker Grid.Column="2" Grid.Row="0" ClockIdentifier="24HourClock" Time="{x:Bind ViewModel.onderneming.Openingsuren}" />
-                <TextBlock Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" Text="tot" FontSize="15"/>
-                <TimePicker Grid.Column="4" Grid.Row="0" ClockIdentifier="24HourClock"  />
-                <CheckBox Grid.Column="5" Grid.Row="0" x:Name="MG" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
 
-
-                <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Text="Dinsdag:" FontSize="15"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="van" FontSize="15"/>
-                <ComboBox Grid.Column="2" Grid.Row="1" ItemsSource="{x:Bind D1}" SelectionChanged="Combo_TextSubmitted"/>
-                <TextBlock Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Text="tot" FontSize="15"/>
-                <ComboBox Grid.Column="4" Grid.Row="1" ItemsSource="{x:Bind D2}" SelectionChanged="Combo_TextSubmitted"/>
-                <CheckBox Grid.Column="5" Grid.Row="1" x:Name="DG" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-
-
-                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="Woensdag:" FontSize="15"/>
-                <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="van" FontSize="15"/>
-                <ComboBox Grid.Column="2" Grid.Row="2" ItemsSource="{x:Bind W1}" SelectionChanged="Combo_TextSubmitted"/>
-                <TextBlock Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" Text="tot" FontSize="15"/>
-                <ComboBox Grid.Column="4" Grid.Row="2" ItemsSource="{x:Bind W2}" SelectionChanged="Combo_TextSubmitted"/>
-                <CheckBox Grid.Column="5" Grid.Row="2" x:Name="WG" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-
-
-                <TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Text="Donderdag:" FontSize="15"/>
-                <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Text="van" FontSize="15"/>
-                <ComboBox Grid.Column="2" Grid.Row="3" ItemsSource="{x:Bind Do1}" SelectionChanged="Combo_TextSubmitted"/>
-                <TextBlock Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" Text="tot" FontSize="15"/>
-                <ComboBox Grid.Column="4" Grid.Row="3" ItemsSource="{x:Bind Do2}" SelectionChanged="Combo_TextSubmitted"/>
-                <CheckBox Grid.Column="5" Grid.Row="3" x:Name="DoG" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-
-
-                <TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Text="Vrijdag:" FontSize="15"/>
-                <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Text="van" FontSize="15"/>
-                <ComboBox Grid.Column="2" Grid.Row="4" ItemsSource="{x:Bind V1}" SelectionChanged="Combo_TextSubmitted"/>
-                <TextBlock Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" Text="tot" FontSize="15"/>
-                <ComboBox Grid.Column="4" Grid.Row="4" ItemsSource="{x:Bind V2}" SelectionChanged="Combo_TextSubmitted"/>
-                <CheckBox Grid.Column="5" Grid.Row="4" x:Name="VG" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-
-
-                <TextBlock Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Text="Zaterdag:" FontSize="15"/>
-                <TextBlock Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Text="van" FontSize="15"/>
-                <ComboBox Grid.Column="2" Grid.Row="5" ItemsSource="{x:Bind Za1}" SelectionChanged="Combo_TextSubmitted"/>
-                <TextBlock Grid.Column="3" Grid.Row="5" VerticalAlignment="Center" Text="tot" FontSize="15"/>
-                <ComboBox Grid.Column="4" Grid.Row="5" ItemsSource="{x:Bind Za2}" SelectionChanged="Combo_TextSubmitted"/>
-                <CheckBox Grid.Column="5" Grid.Row="5" x:Name="ZaG" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-
-
-                <TextBlock Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Text="Zondag:" FontSize="15"/>
-                <TextBlock Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Text="van" FontSize="15"/>
-                <ComboBox Grid.Column="2" Grid.Row="6" ItemsSource="{x:Bind Zo1}" SelectionChanged="Combo_TextSubmitted"/>
-                <TextBlock Grid.Column="3" Grid.Row="6" VerticalAlignment="Center" Text="tot" FontSize="15"/>
-                <ComboBox Grid.Column="4" Grid.Row="6" ItemsSource="{x:Bind Zo2}" SelectionChanged="Combo_TextSubmitted"/>
-                <CheckBox Grid.Column="5" Grid.Row="6" x:Name="ZoG" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-
-
-
-
-            </Grid>
--->
                     <ListView IsItemClickEnabled="False" ItemsSource="{x:Bind ViewModel.onderneming.Openingsuren}" Header="Openingsuren:">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="model:Openingsuren">

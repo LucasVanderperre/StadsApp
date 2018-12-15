@@ -15,7 +15,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
         public async Task<Ondernemer> CreateOndernemer(Ondernemer gebruiker)
         {
             HttpClient client = new HttpClient();
-            var response = await client.PostAsJsonAsync("http://localhost:51155/api/Ondernemings", gebruiker);
+            var response = await client.PostAsJsonAsync("http://localhost:51155/api/Gebruikers/Ondernemer", gebruiker);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsAsync<Ondernemer>();
             // return URI of the created resource.
@@ -64,5 +64,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             response.EnsureSuccessStatusCode();
 
         }
+
     }
 }

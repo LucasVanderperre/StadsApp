@@ -28,6 +28,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Models
         public System.Data.Entity.DbSet<NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Models.Ondernemer> Ondernemers { get; set; }
         public System.Data.Entity.DbSet<NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Models.Openingsuren> Openingsurens { get; set; }
         public System.Data.Entity.DbSet<NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Models.Promotie> Promoties { get; set; }
+        public System.Data.Entity.DbSet<NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Models.Notificatie> Notificaties { get; set; }
 
+        
     }
 }

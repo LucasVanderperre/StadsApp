@@ -96,6 +96,54 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+        //// PUT: api/Klants/5
+        //[ResponseType(typeof(void))]
+        //[Route("api/Ondernemings/Event/{onderneming}")]
+        //public IHttpActionResult VoegEvenementToe(string onderneming, Event evnt)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    Onderneming ondr = db.Ondernemings.Include("Events").FirstOrDefault(geb => geb.Naam == onderneming);
+        //    if (ondr == null)
+        //    {
+        //        return BadRequest();
+        //    }
+            
+        //    ondr.Events.Add(evnt);
+        //    var abo = db.Abonnements.ToList().FindAll(a => a.Onderneming.OndenemingId == ondr.OndenemingId);
+
+        //    foreach (var item in abo)
+        //    {
+        //        item.Notificaties.Add(ondr.Naam + " heeft een nieuw evenement toegevoegd: " + evnt.Naam);
+        //    }
+
+
+        //    db.Entry(ondr).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!OndernemingExists(ondr.OndenemingId))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
+
+
+
         // POST: api/Ondernemings
         [ResponseType(typeof(Onderneming))]
         public IHttpActionResult PostOnderneming(Onderneming onderneming)

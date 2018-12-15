@@ -72,6 +72,24 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = gebruiker.GebruikerId }, gebruiker);
         }
 
+        // POST: api/Gebruikers/Ondernemer
+        [ResponseType(typeof(Ondernemer))]
+        [Route("api/Gebruikers/Ondernemer", Name = "CreateOndernemer")]
+        public IHttpActionResult PostOndernemer(Ondernemer gebruiker)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+           db.Ondernemings.Add(gebruiker.Ondernemingen.First());
+
+            db.Ondernemers.Add(gebruiker);
+            db.SaveChanges();
+
+
+            return CreatedAtRoute("CreateOndernemer", new { id = gebruiker.GebruikerId }, gebruiker);
+        }
+
         // DELETE: api/Gebruikers/5
         [ResponseType(typeof(Gebruiker))]
         public IHttpActionResult DeleteGebruiker(int id)

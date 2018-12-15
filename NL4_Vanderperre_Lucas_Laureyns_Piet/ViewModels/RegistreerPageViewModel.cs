@@ -47,7 +47,13 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 
             if (boolean)
             {
+                if (onderneming.Naam == null || onderneming.Soort == null || adres.Straat == null || adres.Stad == null
+                    || adres.Land == null )
+                {
+                    throw new Exception("Alle velden zijn verplicht");
+                }
                 Ondernemer ondernemer = new Ondernemer(naam,voornaam,username,Email);
+                ondernemer.password = password;
                 onderneming.Adressen.Add(adres);
                 Categorie myCategorie;
                 System.Enum.TryParse(categorie, out myCategorie);
@@ -60,7 +66,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             else
             {
                 Klant klant = new Klant(naam, voornaam, username, Email);
-                klant.Password = password;
+                klant.password = password;
 
                 //Toevoegen aan de databank
                 gebruiker = await GebController.CreateKlant(klant);

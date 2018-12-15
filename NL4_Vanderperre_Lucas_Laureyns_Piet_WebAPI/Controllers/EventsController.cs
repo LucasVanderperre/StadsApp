@@ -84,6 +84,21 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             db.Events.Add(@event);
             db.SaveChanges();
 
+            var abo = db.Abonnements.Include("Onderneming").ToList().FindAll(a => a.Onderneming.OndenemingId == OndernemingId);
+            var ondr = db.Ondernemings.FirstOrDefault(o => o.OndenemingId == OndernemingId);
+
+            foreach (var item in abo)
+            {
+                Notificatie notificatie = new Notificatie();
+                notificatie.Titel = (ondr.Naam + " heeft een nieuw evenement toegevoegd: " + @event.Naam);
+                notificatie.Toegevoegd = DateTime.Now;
+                notificatie.StartDatum = @event.Startdatum;
+                db.Notificaties.Add(notificatie);
+
+                item.Notificaties.Add(notificatie);
+            }
+            db.SaveChanges();
+
             return CreatedAtRoute("DefaultApi", new { id = @event.EventId }, @event);
         }
 

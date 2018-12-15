@@ -49,11 +49,12 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public string Facebook { get; set; }
         public BitmapImage Image { get; set; } = new BitmapImage();
         public string ImageUrl { get; set; }
+        public List<Promotie> Promoties { get; set; } = new List<Promotie>();
+        public List<Event> Events { get; set; } = new List<Event>();
         public string FacebookUrl { get { return "https://" + Facebook; } }
         public bool hasEvents { get { return Events.Count > 0; } }
         public bool hasPromoties { get { return Promoties.Count > 0; } }
-        public List<Promotie> Promoties { get; set; } = new List<Promotie>();
-        public List<Event> Events { get; set; } = new List<Event>();
+
 
         public Onderneming()
         {

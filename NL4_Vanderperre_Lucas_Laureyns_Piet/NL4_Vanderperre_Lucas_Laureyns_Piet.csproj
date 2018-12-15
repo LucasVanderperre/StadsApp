@@ -112,6 +112,7 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Gebruiker.cs" />
     <Compile Include="Models\Klant.cs" />
+    <Compile Include="Models\Notificatie.cs" />
     <Compile Include="Models\Ondernemer.cs" />
     <Compile Include="Models\Onderneming.cs" />
     <Compile Include="Models\OndernemingList.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\OndernemingPageViewModel.cs" />
+    <Compile Include="ViewModels\ProfielPageViewModel.cs" />
     <Compile Include="ViewModels\RegistreerPageViewModel.cs" />
     <Compile Include="Views\AddEventOrPromotiePage.xaml.cs">
       <DependentUpon>AddEventOrPromotiePage.xaml</DependentUpon>
@@ -141,6 +143,9 @@
     </Compile>
     <Compile Include="Views\OndernemingPage.xaml.cs">
       <DependentUpon>OndernemingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfielOndernemerPage.xaml.cs">
+      <DependentUpon>ProfielOndernemerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfielPage.xaml.cs">
       <DependentUpon>ProfielPage.xaml</DependentUpon>
@@ -202,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OndernemingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfielOndernemerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

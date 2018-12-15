@@ -12,6 +12,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
 
         public Ondernemer(string naam, string voornaam, string username, string Email) : base(naam, voornaam, username, Email)
         {
+
         }
     }
 }
