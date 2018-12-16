@@ -24,6 +24,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
         // GET: api/Gebruikers/5
         [ResponseType(typeof(Gebruiker))]
+        [HttpGet]
+        [Route("api/Gebruikers/isKlant/{username}")]
         public IHttpActionResult GetGebruiker(string username)
         {
             Gebruiker gebruiker = db.Gebruikers.FirstOrDefault(geb => geb.username == username);
@@ -31,8 +33,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             {
                 return NotFound();
             }
-
-            return Ok(gebruiker);
+            if(gebruiker.GetType() == typeof(Ondernemer))
+            {
+                return Ok(false);
+            }
+            else
+            {
+                return Ok(true);
+            }
         }
 
         // PUT: api/Gebruikers/5

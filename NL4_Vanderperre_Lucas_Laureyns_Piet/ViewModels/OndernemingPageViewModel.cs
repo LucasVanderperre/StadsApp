@@ -25,7 +25,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             {
                 await controller.CheckAbonnement(User.Username, onderneming);
                 return true;
-            } catch(Exception ec)
+            } catch(Exception)
             {
                 return false;
             }

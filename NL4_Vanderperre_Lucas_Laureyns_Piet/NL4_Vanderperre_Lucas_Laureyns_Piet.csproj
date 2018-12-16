@@ -124,6 +124,7 @@
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\OndernemingPageViewModel.cs" />
+    <Compile Include="ViewModels\ProfielOndernemerPageViewModel.cs" />
     <Compile Include="ViewModels\ProfielPageViewModel.cs" />
     <Compile Include="ViewModels\RegistreerPageViewModel.cs" />
     <Compile Include="Views\AddEventOrPromotiePage.xaml.cs">

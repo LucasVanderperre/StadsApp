@@ -24,13 +24,15 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
         public async Task Login(Gebruiker gebruiker)
         {
             var vault = new Windows.Security.Credentials.PasswordVault();
+
             // check hier de inloggegevens
             try
             {
                 vault.Retrieve(resourceName, gebruiker.username);
+
                 //get via webAPI
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 try
                 {
@@ -38,7 +40,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
                     vault.Add(new Windows.Security.Credentials.PasswordCredential(
                         "My App", gebruiker.username, gebruiker.password));
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     throw new Exception("De username of passwoord is niet correct");
                 }
@@ -47,14 +49,15 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
                 //Als oke login anders exception throw
                 
             }
-            
+
+            GebruikerController gebruikerController = new GebruikerController();
+            bool isKlant = await gebruikerController.GetGebruikerIsKlant(gebruiker.username);
+  
             User.Username = gebruiker.username;
-            User.isKlant = (gebruiker.GetType() == typeof(Klant));
+            User.isKlant = isKlant;
+            User.isOndernemer = !isKlant;
             User.Id = gebruiker.id;
-
         }
-
-
 
         public void LoginNieuweGebruiker(Gebruiker gebruiker, string password)
         {
@@ -77,7 +80,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
                 resourceName, User.Username, credentials.Password));
             User.Username = "";
             User.isKlant = null;
-            User.Id = null;
+            User.Id = -1;
         }
 
         /*

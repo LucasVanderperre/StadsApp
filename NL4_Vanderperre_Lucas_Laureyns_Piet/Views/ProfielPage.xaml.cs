@@ -35,9 +35,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         {
             ViewModel.LogOut();
             Frame parentFrame = Window.Current.Content as Frame;
-            //parentFrame.Navigate(typeof(MainPage));
             AppRoot root = parentFrame.Content as AppRoot;
-            //root.Nav
             root.NavigateLogin();
         }
 
@@ -64,9 +62,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         private void Onderneming_Click(object sender, RoutedEventArgs args)
         {
             Frame parentFrame = Window.Current.Content as Frame;
-            //parentFrame.Navigate(typeof(MainPage));
             AppRoot root = parentFrame.Content as AppRoot;
-            //root.Nav
             root.NavigateOndernemingFrame(((Abonnement)ondernemingen_listview.SelectedItem).Onderneming);
         }
 
@@ -74,9 +70,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         private void Notificaite_Click(object sender, RoutedEventArgs args)
         {
             Frame parentFrame = Window.Current.Content as Frame;
-            //parentFrame.Navigate(typeof(MainPage));
             AppRoot root = parentFrame.Content as AppRoot;
-            //root.Nav
             Onderneming onderneming = ViewModel.Notificaties[(Notificatie)listview.SelectedItem];
             root.NavigateOndernemingFrame(onderneming);
         }

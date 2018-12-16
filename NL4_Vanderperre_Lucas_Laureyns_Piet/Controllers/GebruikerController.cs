@@ -22,6 +22,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             return result;
         }
 
+
+
+
         public async Task<Klant> CreateKlant(Klant gebruiker)
         {
             HttpClient client = new HttpClient();
@@ -65,5 +68,22 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
 
         }
 
+        public async Task<Ondernemer> GetOndernemer(string username)
+        {
+            HttpClient client = new HttpClient();
+            var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Ondernemers/" + username));
+            var ondernemer = JsonConvert.DeserializeObject<Ondernemer>(json);
+            return ondernemer;
+        }
+
+
+        public async Task<bool> GetGebruikerIsKlant(string username)
+        {
+            HttpClient client = new HttpClient();
+            var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Gebruikers/isKlant/" + username));
+            bool isKlant = Boolean.Parse(json);
+            return isKlant;
+        }
     }
 }
+

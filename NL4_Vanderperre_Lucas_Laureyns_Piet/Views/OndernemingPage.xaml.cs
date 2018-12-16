@@ -78,7 +78,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 }
                 await AbonneeCheck();
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
