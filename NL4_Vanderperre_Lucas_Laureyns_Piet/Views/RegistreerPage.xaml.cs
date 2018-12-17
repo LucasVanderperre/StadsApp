@@ -33,7 +33,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             cmbCategorie.ItemsSource = System.Enum.GetValues(typeof(Categorie)).Cast<Categorie>().ToList();
         }
 
-
+        // past het ondernemingspaneel aan bij het aanvinken van de checkbox
         private void CheckBox_Click(object sender, RoutedEventArgs args)
         {
 
@@ -48,6 +48,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             }
         }
 
+        //submit knop van de form
         private async void Registreer_Click(object sender, RoutedEventArgs args)
         {
             try
@@ -57,7 +58,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 {
                     await ViewModel.Registreer(true);
                     Frame parentFrame = Window.Current.Content as Frame;
-                    //parentFrame.Navigate(typeof(MainPage));
+                    //parentFrame.Navigate(typeof(AppRoot));
                     AppRoot root = parentFrame.Content as AppRoot;
                     //root.Nav
                     root.NavigateProfiel();
@@ -66,7 +67,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 {
                     await ViewModel.Registreer(false);
                     Frame parentFrame = Window.Current.Content as Frame;
-                    //parentFrame.Navigate(typeof(MainPage));
+                    //parentFrame.Navigate(typeof(AppRoot));
                     AppRoot root = parentFrame.Content as AppRoot;
                     //root.Nav
                     root.NavigateProfiel();

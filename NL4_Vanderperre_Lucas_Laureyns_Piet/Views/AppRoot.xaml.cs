@@ -3,6 +3,7 @@ using NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Data;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -122,12 +123,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
             NavView.SelectedItem = NavView.MenuItems.ElementAt(index + 4);
 
-            //ContentFrame.Navigate(typeof(ContentListPage));
-            //ContentListPage page = (ContentListPage)ContentFrame.Content;
-            //page.viewModel.ondernemingen = ondernemingen;
-            //NavView.Header = ondernemingen.categorie.ToString();
-            // queue.Push(ondernemingen.categorie.ToString());
-
         }
 
         private void navigate(string tag)
@@ -176,34 +171,57 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         public void NavigateOndernemingFrame(Onderneming onderneming)
         {
-            ContentFrame.Navigate(typeof(OndernemingPage));
-            OndernemingPage page = (OndernemingPage)ContentFrame.Content;
-            page.viewModel.onderneming = onderneming;
-            page.AbonneeCheck();
+            OndernemingPageViewModel viewmodel = new OndernemingPageViewModel();
+            viewmodel.onderneming = onderneming;
+            ContentFrame.Navigate(typeof(OndernemingPage), viewmodel);
             NavView.Header = onderneming.Naam;
         }
 
         public void NavigateEditOndernemingFrame(Onderneming onderneming)
         {
-            ContentFrame.Navigate(typeof(EditOndernemingPage));
-            EditOndernemingPage page = (EditOndernemingPage)ContentFrame.Content;
-            page.ViewModel.onderneming = onderneming;
-            NavView.Header = "Wijzig "+ onderneming.Naam;
+            EditOndernemingPageViewModel viewmodel = new EditOndernemingPageViewModel();
+            viewmodel.onderneming = onderneming;
+            ContentFrame.Navigate(typeof(EditOndernemingPage), viewmodel);
+            NavView.Header = "Wijzig " + onderneming.Naam;
         }
 
         public void NavigateAddEventOrPromotieFrame(bool isEvent, int OndernemingId)
         {
-            ContentFrame.Navigate(typeof(AddEventOrPromotiePage));
-            AddEventOrPromotiePage page = (AddEventOrPromotiePage)ContentFrame.Content;
-            page.viewModel.isEvent = isEvent;
-            page.viewModel.isPromotie = !isEvent;
-            page.viewModel.ondernemingsId = OndernemingId;
+            AddPageOrPromotiePageViewModel viewmodel = new AddPageOrPromotiePageViewModel();
+            viewmodel.isEvent = isEvent;
+            viewmodel.ondernemingsId = OndernemingId;
+            viewmodel.isPromotie = !isEvent;
+            ContentFrame.Navigate(typeof(AddEventOrPromotiePage), viewmodel);
             NavView.Header = "Toevoegen";
         }
 
 
         public void NavView_Back(NavigationView sender, NavigationViewBackRequestedEventArgs e)
         {
+            On_BackRequested();
+            
+        }
+
+        private void On_BackRequested()
+        {
+           /*
+            if (this.ContentFrame.CanGoBack)
+            {
+                
+                if(this.ContentFrame.BackStack.First().SourcePageType == typeof(ContentListPage))
+                {
+                  
+                    }
+                    this.ContentFrame.GoBack();
+                }
+                else
+                {
+                    this.ContentFrame.GoBack();
+                }
+                return true;
+            }
+            return false;
+            */
             if (queue.Count() == 0 || queue.Count() == 1)
             {
                 NavView.IsBackEnabled = false;
@@ -241,10 +259,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 {
                     NavView.IsBackEnabled = false;
                 }
-
             }
+            
+        }
 
-
+        private void BackInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            On_BackRequested();
+            args.Handled = true;
         }
     }
 }

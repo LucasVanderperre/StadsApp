@@ -71,10 +71,19 @@
                         <TextBlock FontWeight="Bold" Text="{Binding Naam}"/>
                         <TextBlock Text="{Binding Beschrijving}"/>
                         <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
-                    </StackPanel>
+                            <Button Margin="0,25,0,0" Click="PDF_Click" Background="LimeGreen">
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="Print"/>
+                                    <TextBlock Text="Print" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackPanel>
+            <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False"/>
+            <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+        </StackPanel>
+        
     </ScrollViewer>
 </Page>

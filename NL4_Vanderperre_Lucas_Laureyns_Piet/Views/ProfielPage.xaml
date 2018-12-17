@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
-        <ListView IsItemClickEnabled="False" Name="listview" Header="Notificaties:" SelectionChanged="Notificaite_Click">
+        <ListView IsItemClickEnabled="False" Name="listview" Header="Notificaties:" SelectionChanged="Notificatie_Click">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Notificatie">
 

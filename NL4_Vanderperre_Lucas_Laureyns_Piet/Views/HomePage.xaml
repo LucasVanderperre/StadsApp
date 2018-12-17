@@ -8,49 +8,49 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <ListView x:Name="lv" SelectionChanged="ListView_SelectionChanged">
-            <ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate x:DataType="datamodels:OndernemingList">
                         <StackPanel>
-                        <TextBlock Text="{x:Bind categorie}"/>
+                            <TextBlock Text="{x:Bind categorie}"/>
                             <ScrollViewer HorizontalScrollBarVisibility="Auto">
                                 <GridView ItemsSource="{x:Bind ondernemingen, Mode=OneWay}" SelectionChanged="GridView_SelectionChanged">
-                                <GridView.ItemTemplate>
-                                    <DataTemplate  x:DataType="datamodels:Onderneming">
-                                        <StackPanel Height="280" Width="200" Margin="12">
+                                    <GridView.ItemTemplate>
+                                        <DataTemplate  x:DataType="datamodels:Onderneming">
+                                            <StackPanel Height="280" Width="200" Margin="12">
                                                 <Image x:Name="image"  HorizontalAlignment="Left" Stretch="Uniform" Height="200" Width="200" Source="{Binding ImageUrl}">
                                                 </Image>
-                                            <StackPanel Margin="0,12">
-                                                <TextBlock Text="{x:Bind Naam}"/>
-                                                <TextBlock Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                                <StackPanel Margin="0,12">
+                                                    <TextBlock Text="{x:Bind Naam}"/>
+                                                    <TextBlock Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GridView.ItemTemplate>
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                                
-                            </GridView>
-                        </ScrollViewer>
-                    
-                    </StackPanel>
-                    
+                                        </DataTemplate>
+                                    </GridView.ItemTemplate>
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+
+                                </GridView>
+                            </ScrollViewer>
+
+                        </StackPanel>
 
 
-                </DataTemplate>
 
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
             <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False"/>
             <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
-            </StackPanel>
-        </ScrollViewer>
-        
-    
+        </StackPanel>
+    </ScrollViewer>
+
+
 </Page>

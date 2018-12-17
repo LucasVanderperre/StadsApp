@@ -42,7 +42,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             }
         }
 
-
+        //Controlleert of een klant al is geabonneerd en past de tekst aan naar het antwoord uit de database
         public async Task AbonneeCheck()
         {
             if (User.isKlant == true)
@@ -98,5 +98,18 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             AppRoot root = parentFrame.Content as AppRoot;
             root.NavigateAddEventOrPromotieFrame(true, viewModel.onderneming.OndenemingId);
         }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            viewModel = (OndernemingPageViewModel) e.Parameter;
+            progressring.IsActive = true;
+            txtLaden.Visibility = Visibility.Visible;
+            await AbonneeCheck();
+            progressring.IsActive = false;
+            txtLaden.Visibility = Visibility.Collapsed;
+        }
+
+
+
     }
 }

@@ -43,7 +43,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             progressring.IsActive = true;
             txtLaden.Visibility = Visibility.Visible;
             Frame parentFrame = Window.Current.Content as Frame;
-            //parentFrame.Navigate(typeof(MainPage));
+            //parentFrame.Navigate(typeof(AppRoot));
             AppRoot root = parentFrame.Content as AppRoot;
             await viewModel.LoadData(root.categorie);
             gridview.ItemsSource = viewModel.ondernemingen.ondernemingen;

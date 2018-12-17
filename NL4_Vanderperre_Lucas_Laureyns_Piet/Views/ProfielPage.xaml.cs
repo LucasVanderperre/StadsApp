@@ -58,7 +58,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             }
         }
 
-
+        //navigeert naar een geabonneerde onderneming die wordt geselecteerd
         private void Onderneming_Click(object sender, RoutedEventArgs args)
         {
             Frame parentFrame = Window.Current.Content as Frame;
@@ -67,7 +67,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         }
 
 
-        private void Notificaite_Click(object sender, RoutedEventArgs args)
+        //navigeert naar de onderneming die bij de notificatie hoort
+        private void Notificatie_Click(object sender, RoutedEventArgs args)
         {
             Frame parentFrame = Window.Current.Content as Frame;
             AppRoot root = parentFrame.Content as AppRoot;

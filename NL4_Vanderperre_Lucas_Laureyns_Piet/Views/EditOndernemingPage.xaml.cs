@@ -45,5 +45,10 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             AppRoot root = parentFrame.Content as AppRoot;
             root.NavigateAddEventOrPromotieFrame(true, ViewModel.onderneming.OndenemingId);
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ViewModel = (EditOndernemingPageViewModel) e.Parameter;
+        }
     }
 }
