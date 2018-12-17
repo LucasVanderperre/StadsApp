@@ -19,7 +19,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         }
         public string adresStad
         {
-            get { return Postcode + " " + Stad; }
+            get { return "" + Stad; }
         }
 
         public Adres(string straat, int nummer, int postcode, string stad, string land)

@@ -12,47 +12,46 @@ using NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Models;
 
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 {
-    public class OndernemersController : ApiController
+    public class OpeningsurensController : ApiController
     {
         private NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPIContext db = new NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPIContext();
 
-        // GET: api/Ondernemers
-        public IQueryable<Ondernemer> GetGebruikers()
+        // GET: api/Openingsurens
+        public IQueryable<Openingsuren> GetOpeningsurens()
         {
-            return db.Ondernemers;
+            return db.Openingsurens;
         }
 
-        // GET: api/Ondernemers/5
-        [ResponseType(typeof(Ondernemer))]
-        [HttpGet]
-        [Route("api/Ondernemers/{username}")]
-        public IHttpActionResult GetOndernemer(string username)
+        // GET: api/Openingsurens/5
+        [ResponseType(typeof(Openingsuren))]
+        public IHttpActionResult GetOpeningsuren(int id)
         {
-            Ondernemer ondernemer = db.Ondernemers.Include("Ondernemingen").Include("Ondernemingen.Openingsuren").Include("Ondernemingen.Adressen").Include("Ondernemingen.Promoties")
-                .Include("Ondernemingen.Events").FirstOrDefault(geb => geb.username == username);
-            if (ondernemer == null)
+            Openingsuren openingsuren = db.Openingsurens.Find(id);
+            if (openingsuren == null)
             {
                 return NotFound();
             }
 
-            return Ok(ondernemer);
+            return Ok(openingsuren);
         }
 
-        // PUT: api/Ondernemers/5
+        // PUT: api/Openingsurens/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutOndernemer(int id, Ondernemer ondernemer)
+        [HttpPut]
+        [Route("api/Openingsuren/{id}")]
+        public IHttpActionResult PutOpeningsuren(int id, Openingsuren openingsuren)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != ondernemer.GebruikerId)
+            if (id != openingsuren.OpeningsurenId)
             {
                 return BadRequest();
             }
 
-            db.Entry(ondernemer).State = EntityState.Modified;
+            db.Entry(openingsuren).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +59,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OndernemerExists(id))
+                if (!OpeningsurenExists(id))
                 {
                     return NotFound();
                 }
@@ -73,35 +72,35 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Ondernemers
-        [ResponseType(typeof(Ondernemer))]
-        public IHttpActionResult PostOndernemer(Ondernemer ondernemer)
+        // POST: api/Openingsurens
+        [ResponseType(typeof(Openingsuren))]
+        public IHttpActionResult PostOpeningsuren(Openingsuren openingsuren)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Gebruikers.Add(ondernemer);
+            db.Openingsurens.Add(openingsuren);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = ondernemer.GebruikerId }, ondernemer);
+            return CreatedAtRoute("DefaultApi", new { id = openingsuren.OpeningsurenId }, openingsuren);
         }
 
-        // DELETE: api/Ondernemers/5
-        [ResponseType(typeof(Ondernemer))]
-        public IHttpActionResult DeleteOndernemer(int id)
+        // DELETE: api/Openingsurens/5
+        [ResponseType(typeof(Openingsuren))]
+        public IHttpActionResult DeleteOpeningsuren(int id)
         {
-            Ondernemer ondernemer = db.Ondernemers.Find(id);
-            if (ondernemer == null)
+            Openingsuren openingsuren = db.Openingsurens.Find(id);
+            if (openingsuren == null)
             {
                 return NotFound();
             }
 
-            db.Gebruikers.Remove(ondernemer);
+            db.Openingsurens.Remove(openingsuren);
             db.SaveChanges();
 
-            return Ok(ondernemer);
+            return Ok(openingsuren);
         }
 
         protected override void Dispose(bool disposing)
@@ -113,9 +112,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool OndernemerExists(int id)
+        private bool OpeningsurenExists(int id)
         {
-            return db.Gebruikers.Count(e => e.GebruikerId == id) > 0;
+            return db.Openingsurens.Count(e => e.OpeningsurenId == id) > 0;
         }
     }
 }

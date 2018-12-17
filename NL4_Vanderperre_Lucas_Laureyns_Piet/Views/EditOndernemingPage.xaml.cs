@@ -1,4 +1,5 @@
-﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
+﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -78,9 +79,30 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             events.ItemsSource = ViewModel.onderneming.Events;
         }
 
-        private void SaveOndernmingClick(object sender, RoutedEventArgs e)
+        private async void SaveOndernemingClick(object sender, RoutedEventArgs e)
         {
-
+            try {
+                await ViewModel.UpdateOnderneming((Categorie)categorie.SelectedItem);
+                Frame parentFrame = Window.Current.Content as Frame;
+                AppRoot root = parentFrame.Content as AppRoot;
+                root.NavigateProfiel();
+            } catch(Exception ex)
+            {
+                ErrorMessage.Text = ex.Message;
+            }
+           
+        }
+        private void editOpeningsuren(object sender, RoutedEventArgs e)
+        {
+            ViewModel.editOpeningsuren = !ViewModel.editOpeningsuren;
+            if (ViewModel.editOpeningsuren)
+            {
+                openingsurenListView.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                openingsurenListView.Visibility = Visibility.Collapsed;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

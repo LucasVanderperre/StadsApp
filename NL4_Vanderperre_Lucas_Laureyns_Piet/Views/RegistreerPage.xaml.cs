@@ -29,8 +29,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         public RegistreerPage()
         {
             this.InitializeComponent();
-
-            cmbCategorie.ItemsSource = System.Enum.GetValues(typeof(Categorie)).Cast<Categorie>().ToList();
         }
 
         // past het ondernemingspaneel aan bij het aanvinken van de checkbox
@@ -40,35 +38,42 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             if (Ondernemer_Checkbox.IsChecked == true)
             {
                 OndernemerPanel.Visibility = Visibility.Visible;
+                registreerKlantBtn.Visibility = Visibility.Collapsed;
+                registreerOndernemerBtn.Visibility = Visibility.Visible;
             }
             else
             {
                 OndernemerPanel.Visibility = Visibility.Collapsed;
-
+                registreerKlantBtn.Visibility = Visibility.Visible;
+                registreerOndernemerBtn.Visibility = Visibility.Collapsed;
             }
         }
 
         //submit knop van de form
-        private async void Registreer_Click(object sender, RoutedEventArgs args)
+        private async void RegistreerKlant(object sender, RoutedEventArgs args)
         {
             try
             {
-
-                if (Ondernemer_Checkbox.IsChecked == true)
-                {
-                    await ViewModel.Registreer(true);
+                    await ViewModel.Registreer(false, Categorie.Winkel);
                     Frame parentFrame = Window.Current.Content as Frame;
                     AppRoot root = parentFrame.Content as AppRoot;
                     root.NavigateProfiel();
-                }
-                else
-                {
-                    await ViewModel.Registreer(false);
-                    Frame parentFrame = Window.Current.Content as Frame;
-                    AppRoot root = parentFrame.Content as AppRoot;
-                    root.NavigateProfiel();
-                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage.Text = ex.Message;
+            }
 
+        }
+
+        private async void RegistreerOndernemer(object sender, RoutedEventArgs args)
+        {
+            try
+            {
+                await ViewModel.Registreer(true, (Categorie)categorie.SelectedItem);
+                Frame parentFrame = Window.Current.Content as Frame;
+                AppRoot root = parentFrame.Content as AppRoot;
+                root.NavigateProfiel();
             }
             catch (Exception ex)
             {

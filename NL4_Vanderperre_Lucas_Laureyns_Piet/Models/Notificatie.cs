@@ -13,5 +13,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public DateTime Toegevoegd { get; set; }
         public DateTime StartDatum { get; set; }
         public bool Gelezen { get; set; }
+
+        public string getDatumString { get { return Toegevoegd.ToString("MM/dd/yyyy"); } }
+
+
     }
 }

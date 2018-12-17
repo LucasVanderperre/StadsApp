@@ -47,15 +47,29 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
             await ViewModel.getAbonnementen();
             List<Notificatie> lijst = ViewModel.Notificaties.Keys.ToList();
-            listview.ItemsSource = lijst;
+            if(lijst.Count == 0)
+            {
+                notificatieHeader.Visibility = Visibility.Collapsed;
+                notificaties_listview.ItemsSource = lijst;
+            }
+            else
+            {
+                notificaties_listview.ItemsSource = lijst;
+            }
             ondernemingen_listview.ItemsSource = ViewModel.klant.Abonnementen;
+            username.Text = ViewModel.klant.username;
+            voornaam.Text = ViewModel.klant.voornaam;
+            familienaam.Text = ViewModel.klant.naam;
+            email.Text = ViewModel.klant.Email;
 
-            progressring.IsActive = false;
-            txtLaden.Visibility = Visibility.Collapsed;
             if (ViewModel.klant.Abonnementen.Count() == 0)
             {
                 txtGeenGevonden.Visibility = Visibility.Visible;
+                listviews.Visibility = Visibility.Collapsed;
             }
+
+            progressring.IsActive = false;
+            txtLaden.Visibility = Visibility.Collapsed;
         }
 
         //navigeert naar een geabonneerde onderneming die wordt geselecteerd
@@ -72,7 +86,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         {
             Frame parentFrame = Window.Current.Content as Frame;
             AppRoot root = parentFrame.Content as AppRoot;
-            Onderneming onderneming = ViewModel.Notificaties[(Notificatie)listview.SelectedItem];
+            Onderneming onderneming = ViewModel.Notificaties[(Notificatie)notificaties_listview.SelectedItem];
+            
             root.NavigateOndernemingFrame(onderneming);
         }
 

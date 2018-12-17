@@ -63,6 +63,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
         // PUT: api/Ondernemings/5
         [ResponseType(typeof(void))]
+        [HttpPut]
+        [Route("api/Ondernemings/{id}")]
         public IHttpActionResult PutOnderneming(int id, Onderneming onderneming)
         {
             if (!ModelState.IsValid)
