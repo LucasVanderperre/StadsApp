@@ -10,73 +10,108 @@
     xmlns:common="using:Microsoft.Toolkit.Uwp.UI.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <StackPanel x:Name="OndernemerPanel" Margin="10"  HorizontalAlignment="Left" MinWidth="400">
-        <TextBlock FontSize="30" Text="Onderneming:"/>
-        <TextBox Header="Naam:" PlaceholderText="Naam" x:Name="O_Naam" Text="{x:Bind ViewModel.onderneming.Naam, Mode=TwoWay}"/>
-        <ComboBox x:Name="cmbCategorie"  Header="Categorie:" PlaceholderText="Kies een categorie" SelectedItem="{x:Bind ViewModel.onderneming.Naam, Mode=TwoWay}" />
-        <TextBox Header="Soort:" PlaceholderText="vb: Pizzeria, suppermarkt, hogeschool" x:Name="O_Soort" Text="{x:Bind ViewModel.onderneming.Soort, Mode=TwoWay}" />
+    <ScrollViewer>
+    <StackPanel x:Name="OndernemerPanel" Margin="20"  HorizontalAlignment="Left" MinWidth="400">
+        <TextBlock FontSize="30" Text="Onderneming:" TextDecorations="Underline"/>
+        <TextBlock Text="Naam" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+        <TextBox  PlaceholderText="Naam" x:Name="O_Naam" Text="{x:Bind ViewModel.onderneming.Naam, Mode=TwoWay}"/>
+        <TextBlock Text="Categorie" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+        <ComboBox x:Name="categorie" ItemsSource="{x:Bind ViewModel.categories}" SelectedItem="{x:Bind ViewModel.onderneming.Categorie}"/>
+        <TextBlock Text="Soort" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+        <TextBox PlaceholderText="vb: Pizzeria, suppermarkt, hogeschool" x:Name="O_Soort" Text="{x:Bind ViewModel.onderneming.Soort, Mode=TwoWay}" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Adres:" FontSize="20"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Adres" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,10"/>
             <TextBox  Grid.Column="0" Grid.Row="1"  Header="Straat:" PlaceholderText="Straatnaam" x:Name="O_Straat" Text="{x:Bind ViewModel.onderneming.Adressen[0].Straat, Mode=TwoWay}"/>
             <TextBox  Grid.Column="1" Grid.Row="1" Header="Nummer:" PlaceholderText="00" x:Name="O_Nummer" Text="{x:Bind ViewModel.onderneming.Adressen[0].Nummer, Mode=TwoWay}" extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" />
             <TextBox  Grid.Column="0" Grid.Row="2"  Header="Stad:" PlaceholderText="vb: Gent, Brussel,..." x:Name="O_Stad" Text="{x:Bind ViewModel.onderneming.Adressen[0].Stad, Mode=TwoWay}"/>
             <TextBox  Grid.Column="2" Grid.Row="2" Header="Land:" PlaceholderText="België" x:Name="O_Land" Text="{x:Bind ViewModel.onderneming.Adressen[0].Land, Mode=TwoWay}"/>
         </Grid>
-        <ListView IsItemClickEnabled="False" ItemsSource="{x:Bind ViewModel.onderneming.Openingsuren}" Header="Openingsuren:">
+        <TextBlock Text="Openingsuren" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+        <ListView IsItemClickEnabled="False" ItemsSource="{x:Bind ViewModel.onderneming.Openingsuren}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Openingsuren">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="85" VerticalAlignment="Center" Text="{x:Bind Day}" FontSize="15"/>
-                        <TextBlock  Width="30"   VerticalAlignment="Center" Text="van" FontSize="15"/>
-                        <TextBox  Width="30"  Text="{x:Bind OpenTime}" />
+                        <TextBlock Width="30" VerticalAlignment="Center" Text="van" FontSize="15"/>
+                        <TextBox  Width="30" Text="{x:Bind OpenTime}"/>
                         <TextBlock  Width="30"  VerticalAlignment="Center" HorizontalAlignment="Center" Text="tot" FontSize="15"/>
-                        <TextBox  Width="30"  Text="{x:Bind CloseTime}" />
-                        <!--<CheckBox x:Name="{x:Bind Day}" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-                                Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" -->
+                        <TextBox  Width="30" Text="{x:Bind CloseTime}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Margin="0,25,0,0" Click="SaveOndernmingClick" Background="LimeGreen">
+            <StackPanel Orientation="Horizontal">
+                <SymbolIcon Symbol="Save"/>
+                <TextBlock Text="Opslaan" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Button>
         <StackPanel Orientation="Horizontal">
             <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="eventsText" Text="Events"/>
-            <Button Name="btnEvent" Content="Nieuwe Toevoegen" Click="addEventClick" Margin="25,55,0,0"></Button>
+            <Button Name="btnEvent" Click="addEventClick" Margin="25,55,0,0" Background="DarkSeaGreen">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Add"/>
+                    <TextBlock Text="Toevoegen" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
         <ListView Margin="25,0,0,0" x:Name="events" ItemsSource="{x:Bind ViewModel.onderneming.Events}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Event">
-                    <StackPanel Margin="0,10,0,0">
-                        <TextBlock FontWeight="Bold" Text="{Binding Naam}"/>
-                        <TextBlock Text="{Binding Beschrijving}"/>
-                        <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="0,10,0,0" Width="400">
+                            <TextBlock FontWeight="Bold" Text="{Binding Naam}"/>
+                            <TextBlock Text="{Binding Beschrijving}"/>
+                            <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
+                        </StackPanel>
+                        <Button Name="btnWijzigEvent" Tag="{x:Bind EventId}" Click="wijzigEventClick" Margin="25,0,0,0">
+                            <SymbolIcon Symbol="Edit"/>
+                        </Button>
+                        <Button Name="btnDeleteEvent" Tag="{x:Bind EventId}" Foreground="White" Background="Red" Click="deleteEventClick" Margin="15,0,0,0">
+                            <SymbolIcon Symbol="Delete"/>
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Orientation="Horizontal">
             <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="promotiesText" Text="Promoties"/>
-            <Button Name="btnPromotie" Content="Nieuwe Toevoegen" Click="addPromotieClick" Margin="25,55,0,0"></Button>
+            <Button Name="btnPromotie" Click="addPromotieClick" Margin="25,55,0,0" Background="DarkSeaGreen">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Add"/>
+                    <TextBlock Text="Toevoegen" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
         <ListView Margin="25,0,0,0" x:Name="promoties" ItemsSource="{x:Bind ViewModel.onderneming.Promoties}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Promotie">
-                    <StackPanel Margin="0,10,0,0">
-                        <TextBlock FontWeight="Bold" Text="{Binding Naam}"/>
-                        <TextBlock Text="{Binding Beschrijving}"/>
-                        <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="0,10,0,0" Width="400">
+                            <TextBlock FontWeight="Bold" Text="{Binding Naam}"/>
+                            <TextBlock Text="{Binding Beschrijving}"/>
+                            <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
+                        </StackPanel>
+                        <Button Name="btnWijzigPromotie" Tag="{x:Bind PromotieId}" Click="wijzigPromotieClick" Margin="25,0,0,0">
+                            <SymbolIcon Symbol="Edit"/>
+                        </Button>
+                        <Button Name="btnDeletePromotie" Tag="{x:Bind PromotieId}" Foreground="White" Background="Red" Click="deletePromotieClick" Margin="15,0,0,0">
+                            <SymbolIcon Symbol="Delete"/>
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </StackPanel>
+    </ScrollViewer>
 </Page>

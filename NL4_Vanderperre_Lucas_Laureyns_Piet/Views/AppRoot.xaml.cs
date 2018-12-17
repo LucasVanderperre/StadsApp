@@ -181,6 +181,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         {
             EditOndernemingPageViewModel viewmodel = new EditOndernemingPageViewModel();
             viewmodel.onderneming = onderneming;
+            page.ViewModel.setOpeningsUren();
             ContentFrame.Navigate(typeof(EditOndernemingPage), viewmodel);
             NavView.Header = "Wijzig " + onderneming.Naam;
         }
@@ -193,6 +194,26 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             viewmodel.isPromotie = !isEvent;
             ContentFrame.Navigate(typeof(AddEventOrPromotiePage), viewmodel);
             NavView.Header = "Toevoegen";
+        }
+
+        public void NavigateEditEventOrPromotieFrame(Event @event, Promotie promotie)
+        {
+            ContentFrame.Navigate(typeof(EditEventOrPromotiePage));
+            EditEventOrPromotiePage page = (EditEventOrPromotiePage)ContentFrame.Content;
+            if(promotie == null)
+            {
+                page.ViewModel.isEvent = true;
+                page.ViewModel.isPromotie = false;
+                page.ViewModel.Event = @event;
+                NavView.Header = "Event Wijzigen";
+            }
+            else
+            {
+                page.ViewModel.isEvent = false;
+                page.ViewModel.isPromotie = true;
+                page.ViewModel.Promotie = promotie;
+                NavView.Header = "Promotie Wijzigen";
+            }    
         }
 
 

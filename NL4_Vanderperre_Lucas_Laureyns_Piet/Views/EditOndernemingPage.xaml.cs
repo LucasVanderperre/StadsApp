@@ -1,4 +1,5 @@
-﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
+﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
     /// </summary>
     public sealed partial class EditOndernemingPage : Page
     {
-
         public EditOndernemingPageViewModel ViewModel { get; set; } = new EditOndernemingPageViewModel();
 
 
@@ -44,6 +44,43 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             Frame parentFrame = Window.Current.Content as Frame;
             AppRoot root = parentFrame.Content as AppRoot;
             root.NavigateAddEventOrPromotieFrame(true, ViewModel.onderneming.OndenemingId);
+        }
+
+        private void wijzigPromotieClick(object sender, RoutedEventArgs e)
+        {
+            Frame parentFrame = Window.Current.Content as Frame;
+            AppRoot root = parentFrame.Content as AppRoot;
+            int id = (int)((Button)sender).Tag;
+            root.NavigateEditEventOrPromotieFrame(null, ViewModel.onderneming.Promoties.Find(o => o.PromotieId == id));
+        }
+
+        private void wijzigEventClick(object sender, RoutedEventArgs e)
+        {
+            Frame parentFrame = Window.Current.Content as Frame;
+            AppRoot root = parentFrame.Content as AppRoot;
+            int id = (int)((Button)sender).Tag;
+            root.NavigateEditEventOrPromotieFrame(ViewModel.onderneming.Events.Find(o => o.EventId == id),null);
+        }
+
+        private async void deletePromotieClick(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).Tag;
+            await ViewModel.deletePromotie(id);
+            promoties.ItemsSource = null;
+            promoties.ItemsSource = ViewModel.onderneming.Promoties;
+        }
+
+        private async void deleteEventClick(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).Tag;
+            await ViewModel.deleteEvent(id);
+            events.ItemsSource = null;
+            events.ItemsSource = ViewModel.onderneming.Events;
+        }
+
+        private void SaveOndernmingClick(object sender, RoutedEventArgs e)
+        {
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -33,8 +33,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             if (User.isKlant == true)
             {
                 btnAbonneer.Visibility = Visibility.Visible;
-                btnEvent.Visibility = Visibility.Collapsed;
-                btnPromotie.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -84,21 +82,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             }
             btnAbonneer.Visibility = Visibility.Visible;
         }
-
-        private void addPromotieClick(object sender, RoutedEventArgs args)
-        {
-            Frame parentFrame = Window.Current.Content as Frame;
-            AppRoot root = parentFrame.Content as AppRoot;
-            root.NavigateAddEventOrPromotieFrame(false, viewModel.onderneming.OndenemingId);
-        }
-
-        private void addEventClick(object sender, RoutedEventArgs e)
-        {
-            Frame parentFrame = Window.Current.Content as Frame;
-            AppRoot root = parentFrame.Content as AppRoot;
-            root.NavigateAddEventOrPromotieFrame(true, viewModel.onderneming.OndenemingId);
-        }
-
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             viewModel = (OndernemingPageViewModel) e.Parameter;
