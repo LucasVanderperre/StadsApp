@@ -40,7 +40,7 @@
                             <TextBlock Text="{x:Bind Naam}"/>
                             <TextBlock HorizontalAlignment="Center" Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
                         </StackPanel>
-                        <Button HorizontalAlignment="Center" Content="Wijzigen"></Button>
+                        <Button Tag="{Binding OndenemingId}" HorizontalAlignment="Center" Content="Wijzigen" Click="OndernemingWijzigClicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

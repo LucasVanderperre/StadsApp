@@ -41,9 +41,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 progressring.IsActive = false;
                 txtLaden.Visibility = Visibility.Collapsed;
                 Frame parentFrame = Window.Current.Content as Frame;
-                //parentFrame.Navigate(typeof(MainPage));
                 AppRoot root = parentFrame.Content as AppRoot;
-                //root.Nav
                 root.NavigateProfiel();
             }
             catch(Exception ex)
@@ -58,9 +56,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         private void RegisterButtonTextBlock_OnPointerPressed(object sender, RoutedEventArgs args)
         {
             Frame parentFrame = Window.Current.Content as Frame;
-            //parentFrame.Navigate(typeof(MainPage));
             AppRoot root = parentFrame.Content as AppRoot;
-            //root.Nav
             root.NavigateRegistreer();
         }
     }

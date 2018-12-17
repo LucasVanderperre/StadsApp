@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="NL4_Vanderperre_Lucas_Laureyns_Piet.Views.EditOndernemingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Views"
+    xmlns:model="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Models"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel x:Name="OndernemerPanel" Margin="10"  HorizontalAlignment="Left" MinWidth="400">
+        <TextBlock FontSize="30" Text="Onderneming:"/>
+        <TextBox Header="Naam:" PlaceholderText="Naam" x:Name="O_Naam" Text="{x:Bind ViewModel.onderneming.Naam, Mode=TwoWay}"/>
+        <ComboBox x:Name="cmbCategorie"  Header="Categorie:" PlaceholderText="Kies een categorie" SelectedItem="{x:Bind ViewModel.onderneming.Naam, Mode=TwoWay}" />
+        <TextBox Header="Soort:" PlaceholderText="vb: Pizzeria, suppermarkt, hogeschool" x:Name="O_Soort" Text="{x:Bind ViewModel.onderneming.Soort, Mode=TwoWay}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Adres:" FontSize="20"/>
+            <TextBox  Grid.Column="0" Grid.Row="1"  Header="Straat:" PlaceholderText="Straatnaam" x:Name="O_Straat" Text="{x:Bind ViewModel.onderneming.Adressen[0].Straat, Mode=TwoWay}"/>
+            <TextBox  Grid.Column="1" Grid.Row="1" Header="Nummer:" PlaceholderText="00" x:Name="O_Nummer" Text="{x:Bind ViewModel.onderneming.Adressen[0].Nummer, Mode=TwoWay}" extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" />
+            <TextBox  Grid.Column="0" Grid.Row="2"  Header="Stad:" PlaceholderText="vb: Gent, Brussel,..." x:Name="O_Stad" Text="{x:Bind ViewModel.onderneming.Adressen[0].Stad, Mode=TwoWay}"/>
+            <TextBox  Grid.Column="2" Grid.Row="2" Header="Land:" PlaceholderText="België" x:Name="O_Land" Text="{x:Bind ViewModel.onderneming.Adressen[0].Land, Mode=TwoWay}"/>
+        </Grid>
+        <ListView IsItemClickEnabled="False" ItemsSource="{x:Bind ViewModel.onderneming.Openingsuren}" Header="Openingsuren:">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Openingsuren">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="85" VerticalAlignment="Center" Text="{x:Bind Day}" FontSize="15"/>
+                        <TextBlock  Width="30"   VerticalAlignment="Center" Text="van" FontSize="15"/>
+                        <TextBox  Width="30"  Text="{x:Bind OpenTime}" />
+                        <TextBlock  Width="30"  VerticalAlignment="Center" HorizontalAlignment="Center" Text="tot" FontSize="15"/>
+                        <TextBox  Width="30"  Text="{x:Bind CloseTime}" />
+                        <!--<CheckBox x:Name="{x:Bind Day}" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                                Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" -->
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="eventsText" Text="Events"/>
+            <Button Name="btnEvent" Content="Nieuwe Toevoegen" Click="addEventClick" Margin="25,55,0,0"></Button>
+        </StackPanel>
+        <ListView Margin="25,0,0,0" x:Name="events" ItemsSource="{x:Bind ViewModel.onderneming.Events}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Event">
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock FontWeight="Bold" Text="{Binding Naam}"/>
+                        <TextBlock Text="{Binding Beschrijving}"/>
+                        <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="promotiesText" Text="Promoties"/>
+            <Button Name="btnPromotie" Content="Nieuwe Toevoegen" Click="addPromotieClick" Margin="25,55,0,0"></Button>
+        </StackPanel>
+        <ListView Margin="25,0,0,0" x:Name="promoties" ItemsSource="{x:Bind ViewModel.onderneming.Promoties}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Promotie">
+                    <StackPanel Margin="0,10,0,0">
+                        <TextBlock FontWeight="Bold" Text="{Binding Naam}"/>
+                        <TextBlock Text="{Binding Beschrijving}"/>
+                        <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Page>

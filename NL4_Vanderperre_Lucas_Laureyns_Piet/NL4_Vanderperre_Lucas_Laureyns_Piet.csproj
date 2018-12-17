@@ -121,6 +121,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AddPageOrPromotiePageViewModel.cs" />
     <Compile Include="ViewModels\ContentListPageViewModel.cs" />
+    <Compile Include="ViewModels\EditOndernemingPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\OndernemingPageViewModel.cs" />
@@ -135,6 +136,9 @@
     </Compile>
     <Compile Include="Views\ContentListPage.xaml.cs">
       <DependentUpon>ContentListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditOndernemingPage.xaml.cs">
+      <DependentUpon>EditOndernemingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -196,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ContentListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditOndernemingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
