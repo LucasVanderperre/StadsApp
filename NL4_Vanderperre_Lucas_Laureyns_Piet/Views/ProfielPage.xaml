@@ -42,9 +42,9 @@
                         <StackPanel Height="200" Width="150" Margin="12" >
                             <Image x:Name="image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="150" Width="150" Source="{x:Bind Onderneming.ImageUrl}">
                             </Image>
-                            <StackPanel Margin="0,12">
-                                <TextBlock Text="{x:Bind Onderneming.Naam}"/>
-                                <TextBlock Text="{x:Bind Onderneming.Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                            <StackPanel Margin="0,12" HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Bind Onderneming.Naam}" HorizontalAlignment="Center"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{x:Bind Onderneming.Soort}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

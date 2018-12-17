@@ -15,9 +15,9 @@
                 <StackPanel Height="280" Width="200" Margin="12">
                     <Image x:Name="image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="200" Width="200" Source="{x:Bind ImageUrl}">
                     </Image>
-                    <StackPanel Margin="0,12">
-                        <TextBlock Text="{x:Bind Naam}"/>
-                        <TextBlock Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                        <StackPanel Margin="0,12" HorizontalAlignment="Center">
+                            <TextBlock Text="{x:Bind Naam}" HorizontalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" Text="{x:Bind Soort}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>
