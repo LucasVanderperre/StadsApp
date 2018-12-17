@@ -260,6 +260,9 @@
     <PackageReference Include="System.Net.Http.Formatting.Extension">
       <Version>5.2.3</Version>
     </PackageReference>
+    <PackageReference Include="ZXing.Net">
+      <Version>0.16.4</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PDF\" />

@@ -40,18 +40,23 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            viewModel = (ContentListPageViewModel)e.Parameter;
             progressring.IsActive = true;
             txtLaden.Visibility = Visibility.Visible;
             Frame parentFrame = Window.Current.Content as Frame;
             //parentFrame.Navigate(typeof(AppRoot));
             AppRoot root = parentFrame.Content as AppRoot;
-            await viewModel.LoadData(root.categorie);
+            await viewModel.LoadData();
             gridview.ItemsSource = viewModel.ondernemingen.ondernemingen;
             progressring.IsActive = false;
             txtLaden.Visibility = Visibility.Collapsed;
             if(viewModel.ondernemingen.ondernemingen.Count() == 0)
             {
                 txtGeenGevonden.Visibility = Visibility.Visible;
+                if (viewModel.zoekfunctie)
+                {
+                    txtGeenGevonden.Text = "Geen zoekresultaten voor \"" + viewModel.zoekterm + "\"";
+                }
             }
 
 

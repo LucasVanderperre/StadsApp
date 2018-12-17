@@ -27,6 +27,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
 
         }
 
+
         public async Task<OndernemingList> GetOndernemingenAsync(Categorie cat)
         {
             HttpClient client = new HttpClient();
@@ -39,5 +40,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
 
         }
 
+        public async Task<OndernemingList> ZoekOndernemingenAsync(string naam)
+        {
+            HttpClient client = new HttpClient();
+            Uri uri = new Uri("http://localhost:51155/api/Ondernemings/Zoek/" + naam.ToString().ToLower());
+            var json = await client.GetStringAsync(uri);
+            var result = JsonConvert.DeserializeObject<OndernemingList>(json);
+            return result;
+
+
+
+        }
     }
 }

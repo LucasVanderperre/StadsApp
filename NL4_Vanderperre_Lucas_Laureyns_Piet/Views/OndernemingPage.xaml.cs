@@ -26,6 +26,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
     public sealed partial class OndernemingPage : Page
     {
         public OndernemingPageViewModel viewModel { get; set; } = new OndernemingPageViewModel();
+        private PDFController PrintController { get; set; } = new PDFController();
 
         public OndernemingPage()
         {
@@ -94,7 +95,10 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             txtLaden.Visibility = Visibility.Collapsed;
         }
 
-
+        private async void PDF_Click(object sender, RoutedEventArgs args)
+        {
+            await PrintController.PrintFile();
+        }
 
     }
 }

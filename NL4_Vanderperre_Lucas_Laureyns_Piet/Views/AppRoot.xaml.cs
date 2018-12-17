@@ -29,7 +29,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
     /// </summary>
     public sealed partial class AppRoot : Page
     {
-        public Categorie categorie { get; set; }
 
         public Stack<string> queue { get; set; } = new Stack<string>();
 
@@ -161,8 +160,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                     // ContentListPage page = (ContentListPage)ContentFrame.Content;
                     Categorie myCategorie;
                     System.Enum.TryParse(tag, out myCategorie);
-                    categorie = myCategorie;
-                    ContentFrame.Navigate(typeof(ContentListPage));
+                    ContentListPageViewModel viewmodel = new ContentListPageViewModel();
+                    viewmodel.ondernemingen.categorie = myCategorie;
+                    ContentFrame.Navigate(typeof(ContentListPage), viewmodel);
                     NavView.Header = tag;
                     queue.Push(tag);
                     break;
@@ -200,7 +200,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         {
             ContentFrame.Navigate(typeof(EditEventOrPromotiePage));
             EditEventOrPromotiePage page = (EditEventOrPromotiePage)ContentFrame.Content;
-            if(promotie == null)
+            if (promotie == null)
             {
                 page.ViewModel.isEvent = true;
                 page.ViewModel.isPromotie = false;
@@ -213,36 +213,34 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 page.ViewModel.isPromotie = true;
                 page.ViewModel.Promotie = promotie;
                 NavView.Header = "Promotie Wijzigen";
-            }    
+            }
         }
 
 
         public void NavView_Back(NavigationView sender, NavigationViewBackRequestedEventArgs e)
         {
             On_BackRequested();
-            
+
         }
 
         private void On_BackRequested()
         {
-           /*
-            if (this.ContentFrame.CanGoBack)
-            {
-                
-                if(this.ContentFrame.BackStack.First().SourcePageType == typeof(ContentListPage))
-                {
-                  
-                    }
-                    this.ContentFrame.GoBack();
-                }
-                else
-                {
-                    this.ContentFrame.GoBack();
-                }
-                return true;
-            }
-            return false;
-            */
+            /*
+             if (this.ContentFrame.CanGoBack)
+             {
+                 if(this.ContentFrame.BackStack.First().SourcePageType == typeof(ContentListPage))
+                 {
+                     }
+                     this.ContentFrame.GoBack();
+                 }
+                 else
+                 {
+                     this.ContentFrame.GoBack();
+                 }
+                 return true;
+             }
+             return false;
+             */
             if (queue.Count() == 0 || queue.Count() == 1)
             {
                 NavView.IsBackEnabled = false;
@@ -281,13 +279,31 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                     NavView.IsBackEnabled = false;
                 }
             }
-            
+
         }
 
         private void BackInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
             On_BackRequested();
             args.Handled = true;
+        }
+
+        private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion != null)
+            {
+                // User selected an item from the suggestion list, take an action on it here.
+            }
+            else
+            {
+                OndernemingController controller = new OndernemingController();
+                ContentListPageViewModel viewmodel = new ContentListPageViewModel();
+                viewmodel.zoekfunctie = true;
+                viewmodel.zoekterm = args.QueryText;
+                ContentFrame.Navigate(typeof(ContentListPage), viewmodel);
+                NavView.Header = "Zoekresultaten:";
+                // Use args.QueryText to determine what to do.
+            }
         }
     }
 }
