@@ -118,6 +118,7 @@
     <Compile Include="Models\Promotie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AddEventOrPromotiePageViewModel.cs" />
+    <Compile Include="ViewModels\AddOndernemingPageViewModel.cs" />
     <Compile Include="ViewModels\ContentListPageViewModel.cs" />
     <Compile Include="ViewModels\EditEventOrPromotiePageViewModel.cs" />
     <Compile Include="ViewModels\EditOndernemingPageViewModel.cs" />
@@ -129,6 +130,9 @@
     <Compile Include="ViewModels\RegistreerPageViewModel.cs" />
     <Compile Include="Views\AddEventOrPromotiePage.xaml.cs">
       <DependentUpon>AddEventOrPromotiePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddOndernemingPage.xaml.cs">
+      <DependentUpon>AddOndernemingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AppRoot.xaml.cs">
       <DependentUpon>AppRoot.xaml</DependentUpon>
@@ -190,6 +194,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Views\AddEventOrPromotiePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddOndernemingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

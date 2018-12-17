@@ -13,7 +13,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public string username { get; set; }
         public string Email { get; set; }
         public string password { get; set; }
-        public int id { get; set; }
+        public int GebruikerId { get; set; }
 
         public Gebruiker()
         {

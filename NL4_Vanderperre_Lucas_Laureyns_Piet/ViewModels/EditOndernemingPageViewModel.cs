@@ -43,7 +43,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             {
                 if(!IsValidTimeFormat(o.CloseTime) || !IsValidTimeFormat(o.OpenTime))
                 {
-                    throw new Exception("De openingsuren zijn niet correct ingegeven, gelieve het hh:mm formaat te gebruiken.");
+                    throw new Exception("De openingsuren zijn niet correct ingegeven, gelieve het correcte formaat(vb. 19:30) te gebruiken.");
                 }
             });
             onderneming.Openingsuren.ForEach(o =>

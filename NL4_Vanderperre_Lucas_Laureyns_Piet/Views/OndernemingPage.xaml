@@ -63,7 +63,6 @@
         </ListView>
             <StackPanel Orientation="Horizontal" Margin="25,50,0,0">
                 <TextBlock TextDecorations="Underline"  FontSize="30" Name="promotiesText" Text="Promoties" Visibility="{Binding hasPromoties}"/>
-                <SymbolIcon Symbol="SolidStar" Margin="5"></SymbolIcon>
             </StackPanel>
             <ListView Margin="25,0,0,0" x:Name="promoties" ItemsSource="{Binding Promoties}" Visibility="{Binding hasPromoties}">
                 <ListView.ItemTemplate>

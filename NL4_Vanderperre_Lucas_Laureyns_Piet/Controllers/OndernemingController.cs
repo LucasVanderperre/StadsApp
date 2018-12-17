@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using System;
@@ -41,6 +42,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
             var result = await response.Content.ReadAsAsync<Onderneming>();
             return result;
         }
+
+        public async Task<Onderneming> CreateOnderneming(Onderneming onderneming, int ondernemerId)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PostAsJsonAsync(new Uri("http://localhost:51155/api/Ondernemings/" + ondernemerId), onderneming);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsAsync<Onderneming>();
+            return result;
+        }
+        
 
         public async Task UpdateOpeningsuren(Openingsuren openingsuren)
         {
