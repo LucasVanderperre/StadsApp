@@ -67,7 +67,7 @@
                         <TextBlock FontWeight="Bold" Text="{Binding Naam}"/>
                         <TextBlock Text="{Binding Beschrijving}"/>
                         <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
-                            <Button Margin="0,25,0,0" Click="PDF_Click" Background="LimeGreen">
+                            <Button Margin="0,25,0,0" Background="LimeGreen">
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="Print"/>
                                     <TextBlock Text="Print" Margin="10,0,0,0"/>

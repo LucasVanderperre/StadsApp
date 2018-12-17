@@ -82,6 +82,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             }
             btnAbonneer.Visibility = Visibility.Visible;
         }
+
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             viewModel = (OndernemingPageViewModel) e.Parameter;

@@ -181,14 +181,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         {
             EditOndernemingPageViewModel viewmodel = new EditOndernemingPageViewModel();
             viewmodel.onderneming = onderneming;
-            page.ViewModel.setOpeningsUren();
+            viewmodel.setOpeningsUren();
             ContentFrame.Navigate(typeof(EditOndernemingPage), viewmodel);
             NavView.Header = "Wijzig " + onderneming.Naam;
         }
 
         public void NavigateAddEventOrPromotieFrame(bool isEvent, int OndernemingId)
         {
-            AddPageOrPromotiePageViewModel viewmodel = new AddPageOrPromotiePageViewModel();
+            AddEventOrPromotiePageViewModel viewmodel = new AddEventOrPromotiePageViewModel();
             viewmodel.isEvent = isEvent;
             viewmodel.ondernemingsId = OndernemingId;
             viewmodel.isPromotie = !isEvent;

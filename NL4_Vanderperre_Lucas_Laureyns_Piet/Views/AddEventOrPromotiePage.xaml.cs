@@ -71,7 +71,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            viewModel = (AddPageOrPromotiePageViewModel)e.Parameter;
+            viewModel = (AddEventOrPromotiePageViewModel)e.Parameter;
         }
     }
 }
