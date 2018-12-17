@@ -8,28 +8,30 @@
     xmlns:datamodels="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <StackPanel>
-        <GridView x:Name="gridview" SelectionChanged="GridView_SelectionChanged">
-        <GridView.ItemTemplate>
-            <DataTemplate  x:DataType="datamodels:Onderneming">
-                <StackPanel Height="280" Width="200" Margin="12">
-                    <Image x:Name="image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="200" Width="200" Source="{x:Bind ImageUrl}">
-                    </Image>
-                    <StackPanel Margin="0,12">
-                        <TextBlock Text="{x:Bind Naam}"/>
-                        <TextBlock Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
-                    </StackPanel>
-                </StackPanel>
-            </DataTemplate>
-        </GridView.ItemTemplate>
-        <GridView.ItemsPanel>
-            <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal"/>
-            </ItemsPanelTemplate>
-        </GridView.ItemsPanel>
-    </GridView>
-        <TextBox x:Name="txtGeenGevonden" Text="Geen ondernemingen in deze categorie gevonden" HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
-        <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
-    </StackPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <GridView x:Name="gridview" SelectionChanged="GridView_SelectionChanged">
+                <GridView.ItemTemplate>
+                    <DataTemplate  x:DataType="datamodels:Onderneming">
+                        <StackPanel Height="280" Width="200" Margin="12">
+                            <Image x:Name="image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="200" Width="200" Source="{x:Bind ImageUrl}">
+                            </Image>
+                            <StackPanel Margin="0,12">
+                                <TextBlock Text="{x:Bind Naam}"/>
+                                <TextBlock Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+            <TextBox x:Name="txtGeenGevonden" Text="Geen ondernemingen in deze categorie gevonden" HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+            <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

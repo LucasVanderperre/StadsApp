@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
     <StackPanel Margin="25">
         <TextBlock FontSize="35" FontWeight="Medium" Text="Jouw Profiel" />
         <StackPanel DataContext="{x:Bind ViewModel.ondernemer}" Margin="0,25,0,50">
@@ -30,7 +30,10 @@
             </StackPanel>
         </StackPanel>
         <TextBlock FontSize="25" FontWeight="Light" TextDecorations="Underline"  Text="Jouw Ondernemingen"/>
-        <ListView IsItemClickEnabled="False" SelectionChanged="OndernemingClicked" Name="listview">
+        <ListView IsItemClickEnabled="False" SelectionChanged="OndernemingClicked" Name="listview" 
+                  ScrollViewer.HorizontalScrollMode="Enabled"
+          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+          ScrollViewer.IsHorizontalRailEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Onderneming">
                     <StackPanel Height="300" Width="200" Margin="12">
@@ -49,7 +52,12 @@
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
 
         <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
         <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
@@ -60,4 +68,5 @@
             </StackPanel>
         </Button>
     </StackPanel>
+    </ScrollViewer>
 </Page>

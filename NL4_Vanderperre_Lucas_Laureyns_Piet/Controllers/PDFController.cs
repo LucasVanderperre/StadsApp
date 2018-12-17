@@ -37,10 +37,10 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             pdfDoc.AddTitle("Kortingsbon");
             pdfDoc.Add(new Paragraph("Kortingsbon voor de promotie "));
 
-            BarcodeEAN barcode = new BarcodeEAN();
-            barcode.CodeType = (Barcode.EAN8);
-            barcode.Code = ("abcde");
-            pdfDoc.Add(barcode.CreateImageWithBarcode(writer.DirectContent, BaseColor.BLACK, BaseColor.GRAY));
+            //BarcodeEAN barcode = new BarcodeEAN();
+            //barcode.CodeType = (Barcode.EAN8);
+            //barcode.Code = ("abcde");
+            //pdfDoc.Add(barcode.CreateImageWithBarcode(writer.DirectContent, BaseColor.BLACK, BaseColor.GRAY));
 
             //var wrt = new BarcodeWriter();
             //wrt.Format = BarcodeFormat.QR_CODE;
@@ -55,17 +55,17 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             //qr.Format = ZXing.BarcodeFormat.QR_CODE;
             //var result = (qr.Write("teststring"));
 
-            var wrt = new ZXing.BarcodeWriter
-            {
-                Format = ZXing.BarcodeFormat.QR_CODE,
-                Options = new ZXing.Common.EncodingOptions
-                {
-                    Height = 300,
-                    Width = 300
-                },
-                Renderer = new WriteableBitmapRenderer() { Foreground = Windows.UI.Colors.Black }
-            };
-            var writeableBitmap = wrt.Write("teststring");
+            //var wrt = new ZXing.BarcodeWriter
+            //{
+            //    Format = ZXing.BarcodeFormat.QR_CODE,
+            //    Options = new ZXing.Common.EncodingOptions
+            //    {
+            //        Height = 300,
+            //        Width = 300
+            //    },
+            //    Renderer = new WriteableBitmapRenderer() { Foreground = Windows.UI.Colors.Black }
+            //};
+            //var writeableBitmap = wrt.Write("teststring");
 
 
 

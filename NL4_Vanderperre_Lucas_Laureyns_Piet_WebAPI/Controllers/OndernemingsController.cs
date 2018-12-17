@@ -67,10 +67,15 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
         [Route("api/Ondernemings/Zoek/{naam}")]
         public IHttpActionResult GetOnderneming(string naam)
         {
-            OndernemingList lijst = new OndernemingList(CategorieEnum.Winkel)
+            string[] zoektermen = naam.Split(' ');
+            OndernemingList lijst = new OndernemingList(CategorieEnum.Winkel);
+            List<Onderneming> volLijst = new List<Onderneming>();
+            foreach(string item in zoektermen)
             {
-                ondernemingen = db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FindAll(o => o.Naam.ToLower().Contains(naam))
-            };
+                volLijst.AddRange(db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FindAll(o => o.Naam.ToLower().Contains(item)));
+                volLijst.AddRange(db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FindAll(o => o.Soort.ToLower().Contains(item)));
+            }
+            lijst.ondernemingen.AddRange(volLijst.Distinct());
             if (lijst == null)
             {
                 return NotFound();

@@ -8,70 +8,70 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <StackPanel Margin="25">
-        <TextBlock FontSize="35" FontWeight="Medium" Text="Jouw Profiel" />
-        <StackPanel DataContext="{x:Bind ViewModel.klant}" Margin="0,25,0,50">
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="0,0,10,0" Text="Username:" FontWeight="Medium"/>
-                <TextBlock Name="username"/>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="25">
+            <TextBlock FontSize="35" FontWeight="Medium" Text="Jouw Profiel" />
+            <StackPanel DataContext="{x:Bind ViewModel.klant}" Margin="0,25,0,50">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Margin="0,0,10,0" Text="Username:" FontWeight="Medium"/>
+                    <TextBlock Name="username"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Margin="0,0,10,0" Text="Voornaam:" FontWeight="Medium"/>
+                    <TextBlock Name="voornaam" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Margin="0,0,10,0" Text="Familienaam:" FontWeight="Medium"/>
+                    <TextBlock Name="familienaam"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <TextBlock Margin="0,0,10,0" Text="E-mail:" FontWeight="Medium"/>
+                    <TextBlock Name="email" />
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="0,0,10,0" Text="Voornaam:" FontWeight="Medium"/>
-                <TextBlock Name="voornaam" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="0,0,10,0" Text="Familienaam:" FontWeight="Medium"/>
-                <TextBlock Name="familienaam"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="0,0,10,0" Text="E-mail:" FontWeight="Medium"/>
-                <TextBlock Name="email" />
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Name="listviews">
-            <TextBlock FontSize="25" FontWeight="Light" TextDecorations="Underline" Text="Jouw Abonnementen"/>
-            <ListView IsItemClickEnabled="False" Name="ondernemingen_listview" SelectionChanged="Onderneming_Click"  >
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Abonnement">
-                        <StackPanel Height="200" Width="150" Margin="12" >
-                            <Image x:Name="image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="150" Width="150" Source="{x:Bind Onderneming.ImageUrl}">
-                            </Image>
-                            <StackPanel Margin="0,12">
-                                <TextBlock Text="{x:Bind Onderneming.Naam}"/>
-                                <TextBlock Text="{x:Bind Onderneming.Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+            <StackPanel Name="listviews">
+                <TextBlock FontSize="25" FontWeight="Light" TextDecorations="Underline" Text="Jouw Abonnementen"/>
+                <ListView IsItemClickEnabled="False" Name="ondernemingen_listview" SelectionChanged="Onderneming_Click"  >
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Abonnement">
+                            <StackPanel Height="200" Width="150" Margin="12" >
+                                <Image x:Name="image" HorizontalAlignment="Left" Stretch="UniformToFill" Height="150" Width="150" Source="{x:Bind Onderneming.ImageUrl}">
+                                </Image>
+                                <StackPanel Margin="0,12">
+                                    <TextBlock Text="{x:Bind Onderneming.Naam}"/>
+                                    <TextBlock Text="{x:Bind Onderneming.Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <TextBlock Name="notificatieHeader" FontSize="25" FontWeight="Light" TextDecorations="Underline" Text="Jouw Notificaties"/>
-            <ListView IsItemClickEnabled="False" Name="notificaties_listview" SelectionChanged="Notificatie_Click">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Notificatie">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding getDatumString}" FontWeight="Medium"/>
-                            <TextBlock Text=" - "/>
-                            <TextBlock Text="{Binding Titel}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
-        <TextBox x:Name="txtGeenGevonden" Text="Nog geen abonnementen." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
-        <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
-        <Button Margin="0,25,0,0" Click="Logout_Click">
-            <StackPanel Orientation="Horizontal">
-                <SymbolIcon Symbol="Back"/>
-                <TextBlock Text="Uitloggen" Margin="10,0,0,0"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBlock Name="notificatieHeader" FontSize="25" FontWeight="Light" TextDecorations="Underline" Text="Jouw Notificaties"/>
+                <ListView IsItemClickEnabled="False" Name="notificaties_listview" SelectionChanged="Notificatie_Click">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Notificatie">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding getDatumString}" FontWeight="Medium"/>
+                                <TextBlock Text=" - "/>
+                                <TextBlock Text="{Binding Titel}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
-        </Button>
-    </StackPanel>
-
+            <TextBox x:Name="txtGeenGevonden" Text="Nog geen abonnementen." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+            <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+            <Button Margin="0,25,0,0" Click="Logout_Click">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Back"/>
+                    <TextBlock Text="Uitloggen" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
