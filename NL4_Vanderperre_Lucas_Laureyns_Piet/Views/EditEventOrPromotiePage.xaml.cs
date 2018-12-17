@@ -14,40 +14,22 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 {
-    public sealed partial class AddEventOrPromotiePage : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class EditEventOrPromotiePage : Page
     {
-        public AddEventOrPromotiePageViewModel viewModel = new AddEventOrPromotiePageViewModel();
-
-        public AddEventOrPromotiePage()
+        public EditEventOrPromotiePageViewModel ViewModel { get; set; } = new EditEventOrPromotiePageViewModel();
+        public EditEventOrPromotiePage()
         {
             this.InitializeComponent();
         }
 
-        public async void eventAanmaakClick(object sender, RoutedEventArgs args)
-        {
-            try
-            {
-                if(datePicker1.Date > datePicker2.Date)
-                {
-                    ErrorMessage.Text = "De Einddatum moet na de Startdatum komen.";
-                }
-                else
-                {
-                    await viewModel.eventAanmaken(datePicker1.Date.UtcDateTime, datePicker2.Date.UtcDateTime);
-                    Frame parentFrame = Window.Current.Content as Frame;
-                    AppRoot root = parentFrame.Content as AppRoot;
-                    root.NavigateProfiel();
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage.Text = ex.Message;
-            }  
-        }
-
-        public async void promotieAanmaakClick(object sender, RoutedEventArgs args)
+        public async void eventWijzigClick(object sender, RoutedEventArgs args)
         {
             try
             {
@@ -57,7 +39,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 }
                 else
                 {
-                    await viewModel.promotieAanmaken(datePicker1.Date.UtcDateTime, datePicker2.Date.UtcDateTime);
+                    await ViewModel.eventWijzigen(datePicker1.Date.UtcDateTime, datePicker2.Date.UtcDateTime);
                     Frame parentFrame = Window.Current.Content as Frame;
                     AppRoot root = parentFrame.Content as AppRoot;
                     root.NavigateProfiel();
@@ -69,5 +51,26 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             }
         }
 
+        public async void promotieWijzigClick(object sender, RoutedEventArgs args)
+        {
+            try
+            {
+                if (datePicker3.Date > datePicker4.Date)
+                {
+                    ErrorMessage.Text = "De Einddatum moet na de Startdatum komen.";
+                }
+                else
+                {
+                    await ViewModel.promotieWijzigen(datePicker3.Date.UtcDateTime, datePicker4.Date.UtcDateTime);
+                    Frame parentFrame = Window.Current.Content as Frame;
+                    AppRoot root = parentFrame.Content as AppRoot;
+                    root.NavigateProfiel();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage.Text = ex.Message;
+            }
+        }
     }
 }

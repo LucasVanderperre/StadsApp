@@ -14,6 +14,25 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
         {
             HttpClient client = new HttpClient();
             var response = await client.PostAsJsonAsync(new Uri("http://localhost:51155/api/Promoties/" + ondernemingsId), promotie);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsAsync<Promotie>();
+            return result;
+        }
+
+        public async Task<Promotie> DeletePromotie(Promotie promotie)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.DeleteAsync("http://localhost:51155/api/Promoties/" + promotie.PromotieId);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsAsync<Promotie>();
+            return result;
+        }
+
+        public async Task<Promotie> UpdatePromotie(Promotie promotie)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync(new Uri("http://localhost:51155/api/Promoties/" + promotie.PromotieId), promotie);
+            response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsAsync<Promotie>();
             return result;
         }

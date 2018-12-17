@@ -37,6 +37,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
         // PUT: api/Events/5
         [ResponseType(typeof(void))]
+        [HttpPut]
+        [Route("api/Events/{id}")]
         public IHttpActionResult PutEvent(int id, Event @event)
         {
             if (!ModelState.IsValid)
@@ -73,7 +75,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
         // POST: api/Events
         [ResponseType(typeof(Event))]
         [HttpPost]
-        [Route("api/Events/{OndernemingId}")]
+        [Route("api/Events/{OndernemingId}", Name = "postEvent")]
         public IHttpActionResult PostEvent(Event @event, int OndernemingId)
         {
             if (!ModelState.IsValid)
@@ -99,14 +101,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             }
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = @event.EventId }, @event);
+            return CreatedAtRoute("postEvent", new { id = @event.EventId }, @event);
         }
 
         // DELETE: api/Events/5
         [ResponseType(typeof(Event))]
-        public IHttpActionResult DeleteEvent(int id)
+        [HttpDelete]
+        [Route("api/Events/{eventId}")]
+        public IHttpActionResult DeleteEvent(int eventId)
         {
-            Event @event = db.Events.Find(id);
+            Event @event = db.Events.Find(eventId);
             if (@event == null)
             {
                 return NotFound();

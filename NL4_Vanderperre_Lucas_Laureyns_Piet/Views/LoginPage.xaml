@@ -12,7 +12,7 @@
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Login" FontSize="36" Margin="4" TextAlignment="Center"/>
             <ProgressRing Height="20" Width="20" x:Name="progressring" IsActive="False"/>
-            <TextBox x:Name="txtLaden" Text="Inloggen..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+            <TextBlock x:Name="txtLaden" Text="Inloggen..." HorizontalAlignment="Center" Visibility="Collapsed"/>
             <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
             <TextBlock Text="Gebruikersnaam:" Margin="0,0,0,20"
                TextWrapping="Wrap" Width="300"

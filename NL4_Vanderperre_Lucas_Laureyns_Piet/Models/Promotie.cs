@@ -8,6 +8,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
 {
     public class Promotie
     {
+        public int PromotieId { get; set; }
         public string Naam { get; set; }
         public DateTime Startdatum { get; set; }
         public DateTime Einddatum { get; set; }

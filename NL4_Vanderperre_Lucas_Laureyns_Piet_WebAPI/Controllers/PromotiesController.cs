@@ -37,6 +37,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
         // PUT: api/Promoties/5
         [ResponseType(typeof(void))]
+        [HttpPut]
+        [Route("api/Promoties/{id}")]
         public IHttpActionResult PutPromotie(int id, Promotie promotie)
         {
             if (!ModelState.IsValid)
@@ -74,7 +76,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
         // POST: api/Promoties
         [ResponseType(typeof(Promotie))]
         [HttpPost]
-        [Route("api/Promoties/{OndernemingId}")]
+        [Route("api/Promoties/{OndernemingId}", Name = "postPromotie")]
         public IHttpActionResult PostPromotie(Promotie promotie, int OndernemingId)
         {
             if (!ModelState.IsValid)
@@ -85,14 +87,30 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             db.Promoties.Add(promotie);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = promotie.PromotieId }, promotie);
+            var abo = db.Abonnements.Include("Onderneming").ToList().FindAll(a => a.Onderneming.OndenemingId == OndernemingId);
+            var ondr = db.Ondernemings.FirstOrDefault(o => o.OndenemingId == OndernemingId);
+
+            foreach (var item in abo)
+            {
+                Notificatie notificatie = new Notificatie();
+                notificatie.Titel = (ondr.Naam + " heeft een nieuw promotie toegevoegd: " + promotie.Naam);
+                notificatie.Toegevoegd = DateTime.Now;
+                notificatie.StartDatum = promotie.Startdatum;
+                db.Notificaties.Add(notificatie);
+                item.Notificaties.Add(notificatie);
+            }
+            db.SaveChanges();
+
+            return CreatedAtRoute("postPromotie", new { id = promotie.PromotieId }, promotie);
         }
 
         // DELETE: api/Promoties/5
         [ResponseType(typeof(Promotie))]
-        public IHttpActionResult DeletePromotie(int id)
+        [HttpDelete]
+        [Route("api/Promoties/{promotieId}")]
+        public IHttpActionResult DeletePromotie(int promotieId)
         {
-            Promotie promotie = db.Promoties.Find(id);
+            Promotie promotie = db.Promoties.Find(promotieId);
             if (promotie == null)
             {
                 return NotFound();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 {
-    public class AddPageOrPromotiePageViewModel
+    public class AddEventOrPromotiePageViewModel
     {
         public bool isEvent { get; set; }
         public bool isPromotie { get; set; }
@@ -18,12 +18,11 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
         public DateTimeOffset eindDatum { get; set; } = DateTimeOffset.Now;
         public int ondernemingsId { get; set; }
 
-
         public EventController eventController { get; set; } = new EventController();
         public PromotieController promotieController { get; set; } = new PromotieController();
 
 
-        public AddPageOrPromotiePageViewModel()
+        public AddEventOrPromotiePageViewModel()
         {
 
         }
