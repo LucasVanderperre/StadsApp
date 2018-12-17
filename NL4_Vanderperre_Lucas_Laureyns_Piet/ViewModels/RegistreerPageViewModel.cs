@@ -13,7 +13,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
     {
         public Gebruiker gebruiker { get; set; }
         public Onderneming onderneming { get; set; }
-        public string categorie { get; set; }
         public string naam { get; set; }
         public string voornaam { get; set; }
         public string username { get; set; }
@@ -21,11 +20,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
         public string password { get; set; }
         public Adres adres { get; set; }
 
+        public Categorie[] categories { get; set; }
+
+
         private GebruikerController GebController { get; set; } = new GebruikerController();
         private LoginController LogController { get; set; } = new LoginController();
 
         public RegistreerPageViewModel()
         {
+            categories = (Categorie[])System.Enum.GetValues(typeof(Categorie));
+
             onderneming = new Onderneming();
             onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Monday, "00:00", "00:00"));
             onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Tuesday, "00:00", "00:00"));
@@ -35,33 +39,37 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Saturday, "00:00", "00:00"));
             onderneming.Openingsuren.Add(new Openingsuren(DayOfWeek.Sunday, "00:00", "00:00"));
             adres = new Adres();
+            onderneming.Categorie = Categorie.Winkel;
         }
 
-        public async Task Registreer(bool boolean)
+        public async Task Registreer(bool boolean, Categorie categorie)
         {
             if (naam == null || username == null || password == null || voornaam == null || Email == null)
             {
-                throw new Exception("Alle velden zijn verplicht");
+                throw new Exception("Alle velden zijn verplicht.");
             }
-
 
             if (boolean)
             {
                 if (onderneming.Naam == null || onderneming.Soort == null || adres.Straat == null || adres.Stad == null
                     || adres.Land == null )
                 {
-                    throw new Exception("Alle velden zijn verplicht");
+                    throw new Exception("Alle velden zijn verplicht.");
                 }
+                this.onderneming.Openingsuren.ForEach(o =>
+                {
+                    if (!IsValidTimeFormat(o.CloseTime) || !IsValidTimeFormat(o.OpenTime))
+                    {
+                        throw new Exception("De openingsuren zijn niet correct ingegeven, gelieve het hh:mm formaat te gebruiken.");
+                    }
+                });
                 Ondernemer ondernemer = new Ondernemer(naam,voornaam,username,Email);
                 ondernemer.password = password;
                 onderneming.Adressen.Add(adres);
-                Categorie myCategorie;
-                System.Enum.TryParse(categorie, out myCategorie);
-                onderneming.Categorie = myCategorie;
+                onderneming.Categorie = categorie;
                 ondernemer.Ondernemingen.Add(onderneming);
                 //Toevoegen aan de databank
                 gebruiker = await GebController.CreateOndernemer(ondernemer);
-
             }
             else
             {
@@ -72,11 +80,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
                 gebruiker = await GebController.CreateKlant(klant);
             }
            
-            //login hier doorvoeren
             LogController.LoginNieuweGebruiker(gebruiker, password);
-
-            //navigate naar homeview
-
         }
+
+        public bool IsValidTimeFormat(string input)
+        {
+            TimeSpan dummyOutput;
+            return TimeSpan.TryParse(input, out dummyOutput);
+        }
+
     }
 }

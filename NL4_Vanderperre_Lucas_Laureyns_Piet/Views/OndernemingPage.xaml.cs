@@ -50,12 +50,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
                 if (await viewModel.checkAbonnee())
                 {
-                    btnAbonneer.Content = "Uitschrijven";
+                    symbol.Symbol = Symbol.UnFavorite;
+                    abonneerText.Text = "Uitschrijven";
                     txtBevestiging.Text = "Zeker dat je wil uitschrijven";
                 }
                 else
                 {
-                    btnAbonneer.Content = "Abonneer";
+                    symbol.Symbol = Symbol.Favorite;
+                    abonneerText.Text = "Abonneer";
                     txtBevestiging.Text = "Zeker dat je wil abonneren?";
                 }
             }
@@ -66,7 +68,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             btnAbonneer.Visibility = Visibility.Collapsed;
             try
             {
-                if (btnAbonneer.Content.ToString() == "Uitschrijven")
+                if (abonneerText.Text == "Uitschrijven")
                 {
                     await viewModel.schrijfUit();
                 }

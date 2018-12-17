@@ -22,9 +22,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
                 var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Ondernemings"));
                 var lst = JsonConvert.DeserializeObject<List<OndernemingList>>(json);
                 return lst;
-            
-
-
         }
 
 
@@ -35,9 +32,22 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
             var json = await client.GetStringAsync(uri);
             var lst = JsonConvert.DeserializeObject<OndernemingList>(json);
             return lst;
+        }
 
+        public async Task<Onderneming> UpdateOnderneming(Onderneming onderneming)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync(new Uri("http://localhost:51155/api/Ondernemings/" + onderneming.OndenemingId), onderneming);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsAsync<Onderneming>();
+            return result;
+        }
 
-
+        public async Task UpdateOpeningsuren(Openingsuren openingsuren)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync(new Uri("http://localhost:51155/api/Openingsuren/" + openingsuren.OpeningsurenId), openingsuren);
+            response.EnsureSuccessStatusCode();
         }
 
         public async Task<OndernemingList> ZoekOndernemingenAsync(string naam)

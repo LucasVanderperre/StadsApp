@@ -10,26 +10,26 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel Margin="25">
-        <TextBlock FontSize="35" FontWeight="Medium" Text="Jouw Profiel" ></TextBlock>
+        <TextBlock FontSize="35" FontWeight="Medium" Text="Jouw Profiel" />
         <StackPanel DataContext="{x:Bind ViewModel.ondernemer}" Margin="0,25,0,50">
             <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="0,0,10,0" Text="Username:" FontWeight="Medium"></TextBlock>
-                <TextBlock Name="username" ></TextBlock>
+                <TextBlock Margin="0,0,10,0" Text="Username:" FontWeight="Medium"/>
+                <TextBlock Name="username"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="0,0,10,0" Text="Voornaam:" FontWeight="Medium"></TextBlock>
-                <TextBlock Name="voornaam"></TextBlock>
+                <TextBlock Margin="0,0,10,0" Text="Voornaam:" FontWeight="Medium"/>
+                <TextBlock Name="voornaam" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="0,0,10,0" Text="Familienaam:" FontWeight="Medium"></TextBlock>
-                <TextBlock Name="familienaam"></TextBlock>
+                <TextBlock Margin="0,0,10,0" Text="Familienaam:" FontWeight="Medium"/>
+                <TextBlock Name="familienaam"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="0,0,10,0" Text="E-mail:" FontWeight="Medium"></TextBlock>
-                <TextBlock Name="email" ></TextBlock>
+                <TextBlock Margin="0,0,10,0" Text="E-mail:" FontWeight="Medium"/>
+                <TextBlock Name="email" />
             </StackPanel>
         </StackPanel>
-        <TextBlock FontSize="25" FontWeight="Light" TextDecorations="Underline"  Text="Jouw Ondernemingen" ></TextBlock>
+        <TextBlock FontSize="25" FontWeight="Light" TextDecorations="Underline"  Text="Jouw Ondernemingen"/>
         <ListView IsItemClickEnabled="False" SelectionChanged="OndernemingClicked" Name="listview">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Onderneming">
@@ -40,7 +40,12 @@
                             <TextBlock Text="{x:Bind Naam}"/>
                             <TextBlock HorizontalAlignment="Center" Text="{x:Bind Naam}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
                         </StackPanel>
-                        <Button Tag="{Binding OndenemingId}" HorizontalAlignment="Center" Content="Wijzigen" Click="OndernemingWijzigClicked"></Button>
+                        <Button Tag="{Binding OndenemingId}" HorizontalAlignment="Center" Click="OndernemingWijzigClicked">
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Symbol="Edit"/>
+                                <TextBlock Text="Wijzigen" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -48,6 +53,11 @@
 
         <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
         <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
-        <Button Content="Log uit" Click="Logout_Click" />
+        <Button Margin="0,25,0,0" Click="Logout_Click">
+            <StackPanel Orientation="Horizontal">
+                <SymbolIcon Symbol="Back"/>
+                <TextBlock Text="Uitloggen" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Button>
     </StackPanel>
 </Page>

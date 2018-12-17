@@ -8,12 +8,22 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
 {
     public class Openingsuren
     {
+        public int OpeningsurenId { get; set; }
         public DayOfWeek Day { get; set; }
         public string OpenTime { get; set; }
         public string CloseTime { get; set; }
         public string HoursOfOperation
         {
-            get { return string.Format("{0}: {1} - {2}", getDayOfWeek(), OpenTime, CloseTime); }
+            get {
+                if(OpenTime == "00:00" && CloseTime == "00:00")
+                {
+                    return string.Format("{0}: gesloten", getDayOfWeek());
+                }
+                else
+                {
+                    return string.Format("{0}: {1} - {2}", getDayOfWeek(), OpenTime, CloseTime);
+                }
+            }
         }
 
 
@@ -21,8 +31,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         {
             
             Day = theDay;
-            OpenTime = startTime ?? "0000";
-            CloseTime = endTime ?? "0000";
+            OpenTime = startTime ?? "00:00";
+            CloseTime = endTime ?? "00:00";
         }
 
         public string getDayOfWeek()

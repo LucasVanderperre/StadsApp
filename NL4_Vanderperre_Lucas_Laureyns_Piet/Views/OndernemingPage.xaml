@@ -10,22 +10,24 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <ScrollViewer  VerticalScrollBarVisibility="Auto" >
     <StackPanel DataContext="{x:Bind viewModel.onderneming}" Margin="50,25,50,25" HorizontalAlignment="Left">
-            <StackPanel Orientation="Horizontal">
-                <Button Name="btnAbonneer" Content="Abonneer">
-                    <Button.Flyout>
-                        <Flyout>
-                            <StackPanel>
-                                <TextBlock Name="txtBevestiging" Style="{ThemeResource BaseTextBlockStyle}" Text="Zeker dat je wil abonneren?" Margin="0,0,0,12" />
-                                <Button Click="Abonneer_Click" Content="Ja" />
-                            </StackPanel>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
                 <StackPanel Margin="100,0,0,0">
                     <Image x:Name="image" Stretch="Fill" Height="200" Width="200" Source="{Binding ImageUrl}"  />
                     <TextBlock FontSize="25" FontWeight="SemiBold" Name="OndernemingNaam" HorizontalAlignment="Center" Text="{Binding Naam}"/>
+                    <Button Name="btnAbonneer" HorizontalAlignment="Center" Background="CadetBlue" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Name="symbol" Symbol="Add"/>
+                            <TextBlock Name="abonneerText" Text="Abon" Margin="10,0,0,0"/>
+                        </StackPanel>
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <TextBlock Name="txtBevestiging" Style="{ThemeResource BaseTextBlockStyle}" Text="Zeker dat je wil abonneren?" Margin="0,0,0,12" />
+                                    <Button HorizontalAlignment="Center" Click="Abonneer_Click" Content="Ja" Margin="0,0,10,0" Background="LimeGreen" />
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
                 </StackPanel>
-            </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="100,0,0,0">
             <StackPanel Margin="25,10,100,0">
                 <TextBlock FontSize="20" FontWeight="SemiBold" TextDecorations="Underline" Name="adresTitle" Margin="1" Text="Adres"/>
@@ -40,8 +42,8 @@
             </StackPanel>
             <StackPanel Margin="25,10,0,0">
                 <TextBlock FontSize="20" FontWeight="SemiBold" TextDecorations="Underline" Name="openingsurenTitle" Margin="1" Text="Openingsuren"/>
-                <TextBlock Text="{Binding OpeningsurenToString}" TextAlignment="right"></TextBlock>
-            </StackPanel>
+                    <TextBlock Text="{Binding OpeningsurenToString}" TextAlignment="right"/>
+                </StackPanel>
         </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock TextDecorations="Underline" Margin="25,50,0,0" FontSize="30" Name="eventsText" Text="Events" Visibility="{Binding hasEvents}"/>

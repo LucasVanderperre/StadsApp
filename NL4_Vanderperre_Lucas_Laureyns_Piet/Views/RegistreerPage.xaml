@@ -24,73 +24,79 @@
             <RowDefinition Height="13*" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10"  Grid.Column="0" Grid.Row="0">
-
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="20"  Grid.Column="0" Grid.Row="0">
             <StackPanel>
-                <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
-
-
                 <StackPanel  HorizontalAlignment="Left" MinWidth="400">
-                    <TextBox Header="Naam:" PlaceholderText="Naam" x:Name="Naam" Text="{x:Bind ViewModel.naam, Mode=TwoWay}"/>
-                    <TextBox Header="Voornaam:" PlaceholderText="Voornaam" x:Name="Voornaam" Text="{x:Bind ViewModel.voornaam, Mode=TwoWay}"/>
-                    <TextBox Header="Gebruikersnaam:" PlaceholderText="Gebruikersnaam" x:Name="Gebruikersnaam" Text="{x:Bind ViewModel.username, Mode=TwoWay}"/>
-                    <TextBox  Name="EmailValidatorForce" extensions:TextBoxRegex.ValidationType="Email" Header="Email:" PlaceholderText="voorbeeld@voorbeeld.com" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" />
+                    <TextBlock Text="Naam:" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBox PlaceholderText="Naam" x:Name="Naam" Text="{x:Bind ViewModel.naam, Mode=TwoWay}"/>
+                    <TextBlock Text="Voornaam:" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBox PlaceholderText="Voornaam" x:Name="Voornaam" Text="{x:Bind ViewModel.voornaam, Mode=TwoWay}"/>
+                    <TextBlock Text="Gebruikersnaam:" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBox  PlaceholderText="Gebruikersnaam" x:Name="Gebruikersnaam" Text="{x:Bind ViewModel.username, Mode=TwoWay}"/>
+                    <TextBlock Text="Email:" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBox Name="EmailValidatorForce" extensions:TextBoxRegex.ValidationType="Email" PlaceholderText="voorbeeld@voorbeeld.com" Text="{x:Bind ViewModel.Email, Mode=TwoWay}" />
                     <TextBlock Name="EmailValidator" Foreground="Red" Text="Ongeldige email" Visibility="{Binding (extensions:TextBoxRegex.IsValid),  ElementName=EmailValidatorForce, Converter={StaticResource InverseBoolToVisibilityConverter}}" />
-                    <PasswordBox Header="Password" PlaceholderText="Geef hier je paswoord in" PasswordChar="#" Name="Password" Password="{x:Bind ViewModel.password, Mode=TwoWay}"/>
-                    <CheckBox x:Name="Ondernemer_Checkbox" Content="Ondernemer"  Click="CheckBox_Click"/>
+                    <TextBlock Text="Password:" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <PasswordBox  PlaceholderText="Geef hier je paswoord in" PasswordChar="#" Name="Password" Password="{x:Bind ViewModel.password, Mode=TwoWay}"/>
+                    <CheckBox Margin="10" x:Name="Ondernemer_Checkbox" Content="Ondernemer"  Click="CheckBox_Click"/>
                     <!--=-->
                 </StackPanel >
-                <StackPanel x:Name="OndernemerPanel" Margin="10"  HorizontalAlignment="Left" MinWidth="400" Visibility="Collapsed">
-                    <TextBlock FontSize="30" Text="Onderneming:"/>
-                    <TextBox Header="Naam:" PlaceholderText="Naam" x:Name="O_Naam" Text="{x:Bind ViewModel.onderneming.Naam, Mode=TwoWay}"/>
-                    <ComboBox x:Name="cmbCategorie"  Header="Categorie:" PlaceholderText="Kies een categorie" SelectedItem="{x:Bind ViewModel.onderneming.Naam, Mode=TwoWay}" />
-
-
-                    <TextBox Header="Soort:" PlaceholderText="vb: Pizzeria, suppermarkt, hogeschool" x:Name="O_Soort" Text="{x:Bind ViewModel.onderneming.Soort, Mode=TwoWay}" />
-
-
+                <Button Name="registreerKlantBtn" Click="RegistreerKlant" Margin="10" Background="DodgerBlue" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="AddFriend"/>
+                        <TextBlock Text="Registreer" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <StackPanel x:Name="OndernemerPanel"  HorizontalAlignment="Left" MinWidth="400" Visibility="Collapsed">
+                    <TextBlock FontSize="30" Text="Onderneming:" TextDecorations="Underline"/>
+                    <TextBlock Text="Naam" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBox  PlaceholderText="Naam" x:Name="O_Naam" Text="{x:Bind ViewModel.onderneming.Naam, Mode=TwoWay}"/>
+                    <TextBlock Text="Categorie" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <ComboBox x:Name="categorie" ItemsSource="{x:Bind ViewModel.categories, Mode=TwoWay}" SelectedItem="{x:Bind ViewModel.onderneming.Categorie}"/>
+                    <TextBlock Text="Soort" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBox PlaceholderText="vb: Pizzeria, suppermarkt, hogeschool" x:Name="O_Soort" Text="{x:Bind ViewModel.onderneming.Soort, Mode=TwoWay}" />
+                    <TextBlock Text="Facebook(optioneel)" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBox  PlaceholderText="www.facebook.com" x:Name="facebook" Text="{x:Bind ViewModel.onderneming.Facebook, Mode=TwoWay}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition  />
-                            <RowDefinition  />
-                            <RowDefinition  />
-                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Adres:" FontSize="20"/>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Adres" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,10"/>
                         <TextBox  Grid.Column="0" Grid.Row="1"  Header="Straat:" PlaceholderText="Straatnaam" x:Name="O_Straat" Text="{x:Bind ViewModel.adres.Straat, Mode=TwoWay}"/>
                         <TextBox  Grid.Column="1" Grid.Row="1" Header="Nummer:" PlaceholderText="00" x:Name="O_Nummer" Text="{x:Bind ViewModel.adres.Nummer, Mode=TwoWay}" extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" />
                         <TextBox  Grid.Column="0" Grid.Row="2"  Header="Stad:" PlaceholderText="vb: Gent, Brussel,..." x:Name="O_Stad" Text="{x:Bind ViewModel.adres.Stad, Mode=TwoWay}"/>
                         <TextBox  Grid.Column="2" Grid.Row="2" Header="Land:" PlaceholderText="België" x:Name="O_Land" Text="{x:Bind ViewModel.adres.Land, Mode=TwoWay}"/>
-
-
                     </Grid>
-
-                    <ListView IsItemClickEnabled="False" ItemsSource="{x:Bind ViewModel.onderneming.Openingsuren}" Header="Openingsuren:">
+                    <TextBlock Text="Openingsuren" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                    <ListView Name="openingsurenListView" IsItemClickEnabled="False" ItemsSource="{x:Bind ViewModel.onderneming.Openingsuren}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="model:Openingsuren">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Width="85" VerticalAlignment="Center" Text="{x:Bind Day}" FontSize="15"/>
-                                    <TextBlock  Width="30"   VerticalAlignment="Center" Text="van" FontSize="15"/>
-                                    <TextBox  Width="30"  Text="{x:Bind OpenTime}" />
+                                    <TextBlock Width="30" VerticalAlignment="Center" Text="van" FontSize="15"/>
+                                    <TextBox  Width="30" Text="{x:Bind OpenTime, Mode=TwoWay}"/>
                                     <TextBlock  Width="30"  VerticalAlignment="Center" HorizontalAlignment="Center" Text="tot" FontSize="15"/>
-                                    <TextBox  Width="30"  Text="{x:Bind CloseTime}" />
-                                    <!--<CheckBox x:Name="{x:Bind Day}" Content="Gesloten" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-                                Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" -->
+                                    <TextBox  Width="30" Text="{x:Bind CloseTime, Mode=TwoWay}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-
                 </StackPanel>
+                <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red"/>
+                <Button Name="registreerOndernemerBtn" Click="RegistreerOndernemer" Margin="10" Background="DodgerBlue" Foreground="White" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="AddFriend"/>
+                        <TextBlock Text="Registreer" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </ScrollViewer>
-
-
-
-        <Button  Grid.Column="0" Grid.Row="1" Margin="10" Content="Registreer"  Click="Registreer_Click" VerticalAlignment="Center" />
     </Grid>
 </Page>

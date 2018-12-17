@@ -125,6 +125,7 @@
     <Compile Include="Controllers\KlantsController.cs" />
     <Compile Include="Controllers\OndernemersController.cs" />
     <Compile Include="Controllers\OndernemingsController.cs" />
+    <Compile Include="Controllers\OpeningsurensController.cs" />
     <Compile Include="Controllers\PromotiesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
