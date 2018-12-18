@@ -1,10 +1,6 @@
 ﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Data;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
@@ -13,7 +9,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
     {
 
         private OndernemingController controller { get; set; } = new OndernemingController();
-
         public OndernemingList ondernemingen { get; set; } = new OndernemingList(Categorie.Winkel);
         public bool zoekfunctie { get; set; } = false;
         public string zoekterm { get; set; } = "";
@@ -33,9 +28,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             else
             {
                 ondernemingen = await controller.GetOndernemingenAsync(ondernemingen.categorie);
-
             }
-
         }
     }
 }

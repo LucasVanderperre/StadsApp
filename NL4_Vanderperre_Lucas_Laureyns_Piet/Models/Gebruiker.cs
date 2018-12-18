@@ -17,7 +17,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
 
         public Gebruiker()
         {
-         
+
         }
 
         protected Gebruiker(string naam, string voornaam, string username, string email)

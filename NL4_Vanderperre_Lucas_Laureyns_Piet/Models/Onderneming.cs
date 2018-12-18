@@ -1,14 +1,8 @@
 ﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using System.Drawing;
-using System.ComponentModel;
 
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
 {
@@ -23,7 +17,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
             set
             {
                 this.cat = value;
-                switch (cat) // ImageUrl zal nog als string moeten opgeslaan worden in db + mss nog wat extra fotos opzoeken.
+                switch (cat)
                 {
                     case Categorie.Winkel:
                         ImageUrl = "/Assets/winkel_icon.png";
@@ -53,18 +47,16 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public BitmapImage Image { get; set; } = new BitmapImage();
         public string ImageUrl { get; set; }
         public List<Promotie> Promoties { get; set; } = new List<Promotie>();
-        public List<Promotie> CurentPromoties { get { return Promoties.FindAll(p => p.Einddatum > DateTime.Now); } } 
-
+        public List<Promotie> CurentPromoties { get { return Promoties.FindAll(p => p.Einddatum > DateTime.Now); } }
         public List<Event> Events { get; set; } = new List<Event>();
         public string FacebookUrl { get { return "https://" + Facebook; } }
         public bool hasEvents { get { return Events.Count > 0; } }
         public bool hasPromoties { get { return Promoties.Count > 0; } }
-
+        public bool hasFacebook { get { return Facebook != null; } }
 
         public Onderneming()
         {
             Categorie = Categorie.Winkel;
-           
         }
 
         public Onderneming(string naam, Categorie categorie, Adres adres)
@@ -72,8 +64,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
             Naam = naam;
             Categorie = categorie;
             Adressen.Add(adres);
-
-
         }
 
         public string OpeningsurenToString

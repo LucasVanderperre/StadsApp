@@ -27,7 +27,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
             this.Einddatum = einddatum;
         }
 
-        public string datum { get
+        public string datum
+        {
+            get
             {
                 return Startdatum.ToString("dd/MM/yy") + " - " + Einddatum.ToString("dd/MM/yy");
             }

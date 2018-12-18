@@ -1,9 +1,6 @@
 ﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
@@ -17,7 +14,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
         public DateTimeOffset startDatum { get; set; } = DateTimeOffset.Now;
         public DateTimeOffset eindDatum { get; set; } = DateTimeOffset.Now;
         public int ondernemingsId { get; set; }
-
         public EventController eventController { get; set; } = new EventController();
         public PromotieController promotieController { get; set; } = new PromotieController();
 
@@ -31,7 +27,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
         {
             if (this.checkRequired())
             {
-                await eventController.CreateEvent(new Event(naam, beschrijving, date1, date2),ondernemingsId);
+                await eventController.CreateEvent(new Event(naam, beschrijving, date1, date2), ondernemingsId);
             }
             else
             {
@@ -55,7 +51,5 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
         {
             return (naam != null || beschrijving != null);
         }
-
-
     }
 }

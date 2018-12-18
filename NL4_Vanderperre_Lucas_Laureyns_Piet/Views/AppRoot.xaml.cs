@@ -162,8 +162,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                     queue.Push(tag);
                     break;
                 case "promoties":
-                    PromotiesPageViewModel viewmodel = new PromotiesPageViewModel();
-                    ContentFrame.Navigate(typeof(PromotiesPage), viewmodel);
+                    PromotiesPageViewModel viewmodel2 = new PromotiesPageViewModel();
+                    ContentFrame.Navigate(typeof(PromotiesPage), viewmodel2);
                     NavView.Header = "Promoties";
                     queue.Push(tag);
                     break;
@@ -200,6 +200,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         {
             EditOndernemingPageViewModel viewmodel = new EditOndernemingPageViewModel();
             viewmodel.onderneming = onderneming;
+            viewmodel.adres = onderneming.Adressen[0];
             ContentFrame.Navigate(typeof(EditOndernemingPage), viewmodel);
             NavView.Header = "Wijzig " + onderneming.Naam;
         }

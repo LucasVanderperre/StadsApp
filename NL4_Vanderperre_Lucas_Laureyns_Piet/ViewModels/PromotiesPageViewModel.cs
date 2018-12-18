@@ -28,7 +28,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             {
                 list.ondernemingen.ToList().ForEach(onderneming =>
                 {
-                    onderneming.Promoties.ForEach(promotie =>
+                    onderneming.CurentPromoties.ForEach(promotie =>
                     {
                         promotieOndernemingIds.Add(promotie.PromotieId, onderneming.OndenemingId);
                         Promoties.Add(promotie);

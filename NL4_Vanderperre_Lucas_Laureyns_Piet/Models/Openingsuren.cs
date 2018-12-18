@@ -14,8 +14,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public string CloseTime { get; set; }
         public string HoursOfOperation
         {
-            get {
-                if(OpenTime == "00:00" && CloseTime == "00:00")
+            get
+            {
+                if (OpenTime == "00:00" && CloseTime == "00:00")
                 {
                     return string.Format("{0}: gesloten", getDayOfWeek());
                 }
@@ -29,7 +30,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
 
         public Openingsuren(DayOfWeek theDay, string startTime, string endTime)
         {
-            
             Day = theDay;
             OpenTime = startTime ?? "00:00";
             CloseTime = endTime ?? "00:00";
@@ -48,7 +48,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
                 case DayOfWeek.Sunday: return "zo";
                 default: return "";
             }
-
         }
     }
 }

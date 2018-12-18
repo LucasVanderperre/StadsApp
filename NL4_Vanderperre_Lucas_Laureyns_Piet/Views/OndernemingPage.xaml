@@ -35,7 +35,7 @@
                 <TextBlock Name="AdresNaam" Margin="1" Text="{Binding Naam}"/>
                 <TextBlock Name="AdresStraat" Margin="1" Text="{Binding Adressen[0].adresStraat}"/>
                 <TextBlock Name="AdresStad" Margin="1" Text="{Binding Adressen[0].adresStad}"/>
-                <TextBlock Name="NewItemInput" Margin="0,10,0,0" FontSize="15" FontStyle="Italic">               
+                    <TextBlock Name="NewItemInput" Margin="0,10,0,0" FontSize="15" FontStyle="Italic" Visibility="{Binding hasFacebook}">               
                         <Hyperlink x:Name="hyperLink" NavigateUri="{Binding FacebookUrl}">
                             Facebook
                         </Hyperlink>
