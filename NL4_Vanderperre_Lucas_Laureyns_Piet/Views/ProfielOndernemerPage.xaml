@@ -29,7 +29,15 @@
                 <TextBlock Name="email" />
             </StackPanel>
         </StackPanel>
-        <TextBlock FontSize="25" FontWeight="Light" TextDecorations="Underline"  Text="Jouw Ondernemingen"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock FontSize="25" FontWeight="Light" TextDecorations="Underline"  Text="Jouw Ondernemingen"/>
+            <Button Click="createOndernemingClick" Margin="25,0,0,0" Background="DarkSeaGreen">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Add"/>
+                    <TextBlock Text="Nieuwe Onderneming Aanmaken" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>   
         <ListView IsItemClickEnabled="False" SelectionChanged="OndernemingClicked" Name="listview" 
                   ScrollViewer.HorizontalScrollMode="Enabled"
           ScrollViewer.HorizontalScrollBarVisibility="Auto"

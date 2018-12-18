@@ -58,6 +58,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             AppRoot root = parentFrame.Content as AppRoot;
             root.NavigateLogin();
         }
+       
+
+        private void createOndernemingClick(object sender, RoutedEventArgs args)
+        {
+            Frame parentFrame = Window.Current.Content as Frame;
+            AppRoot root = parentFrame.Content as AppRoot;
+            root.NavigateAddOndernemingFrame(ViewModel.ondernemer);
+        }
 
         private void OndernemingClicked(object sender, RoutedEventArgs args)
         {

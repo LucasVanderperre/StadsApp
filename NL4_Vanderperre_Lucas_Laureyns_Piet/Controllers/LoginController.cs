@@ -56,7 +56,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             User.Username = gebruiker.username;
             User.isKlant = isKlant;
             User.isOndernemer = !isKlant;
-            User.Id = gebruiker.id;
+            User.Id = gebruiker.GebruikerId;
         }
 
         public void LoginNieuweGebruiker(Gebruiker gebruiker, string password)
@@ -67,7 +67,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             User.Username = gebruiker.username;
             User.isKlant = (gebruiker.GetType() == typeof(Klant));
             User.isOndernemer = (gebruiker.GetType() == typeof(Ondernemer));
-            User.Id = gebruiker.id;
+            User.Id = gebruiker.GebruikerId;
         }
 
 
