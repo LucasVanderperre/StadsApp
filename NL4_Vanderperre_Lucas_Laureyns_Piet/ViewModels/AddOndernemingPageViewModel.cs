@@ -2,16 +2,12 @@
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Enum;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 {
     public class AddOndernemingPageViewModel
     {
-
         public Onderneming onderneming { get; set; }
         public OndernemingController ondernemingController { get; set; } = new OndernemingController();
         public Categorie[] categories { get; set; }
@@ -36,7 +32,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 
         public async Task CreateOnderneming(Categorie categorie)
         {
-            if(onderneming.Naam == null || onderneming.Soort == null || adres.Land == null || adres.Stad == null || adres.Straat == null)
+            if (onderneming.Naam == null || onderneming.Soort == null || adres.Land == null || adres.Stad == null || adres.Straat == null)
             {
                 throw new Exception("Gelieve alle velden in te vullen.");
             }
@@ -50,6 +46,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
                     }
                 });
                 onderneming.Adressen.Add(adres);
+                onderneming.Categorie = categorie;
                 await ondernemingController.CreateOnderneming(onderneming, ondernemerId);
             }
         }

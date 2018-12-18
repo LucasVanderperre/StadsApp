@@ -13,7 +13,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 
         public bool isEvent { get; set; }
         public bool isPromotie { get; set; }
-
         public Event Event { get;set; }
         public Promotie Promotie { get; set; }
 

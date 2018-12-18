@@ -19,10 +19,13 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
         public Categorie[] categories { get; set; }
         public bool editOpeningsuren { get; set; } = false;
 
+        public Adres adres { get; set; }
+
 
         public EditOndernemingPageViewModel()
         {
             categories = (Categorie[])System.Enum.GetValues(typeof(Categorie));
+            adres = new Adres();
         }
 
         public async Task wijzigPromotie(int id)
@@ -50,6 +53,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             {
                 ondernemingController.UpdateOpeningsuren(o);
             });
+            onderneming.Adressen[0] = adres;
             await ondernemingController.UpdateOnderneming(onderneming);
         }
 

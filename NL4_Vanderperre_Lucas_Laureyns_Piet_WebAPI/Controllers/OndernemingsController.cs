@@ -51,9 +51,11 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
         // GET: api/Ondernemings/5
         [ResponseType(typeof(Onderneming))]
+        [HttpGet]
+        [Route("api/Ondernemings/one/{id}")]
         public IHttpActionResult GetOnderneming(int id)
         {
-            Onderneming onderneming = db.Ondernemings.Find(id);
+            Onderneming onderneming = db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FirstOrDefault(o => o.OndenemingId == id);
             if (onderneming == null)
             {
                 return NotFound();

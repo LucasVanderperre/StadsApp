@@ -25,6 +25,13 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
                 return lst;
         }
 
+        public async Task<Onderneming> GetOnderneming(int ondernemingId)
+        {
+            HttpClient client = new HttpClient();
+            var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Ondernemings/one/" + ondernemingId));
+            var lst = JsonConvert.DeserializeObject<Onderneming>(json);
+            return lst;
+        }
 
         public async Task<OndernemingList> GetOndernemingenAsync(Categorie cat)
         {

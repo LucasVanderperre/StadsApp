@@ -33,10 +33,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Adres" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,10"/>
-            <TextBox  Grid.Column="0" Grid.Row="1"  Header="Straat:" PlaceholderText="Straatnaam" x:Name="O_Straat" Text="{x:Bind ViewModel.onderneming.Adressen[0].Straat, Mode=TwoWay}"/>
-            <TextBox  Grid.Column="1" Grid.Row="1" Header="Nummer:" PlaceholderText="00" x:Name="O_Nummer" Text="{x:Bind ViewModel.onderneming.Adressen[0].Nummer, Mode=TwoWay}" extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" />
-            <TextBox  Grid.Column="0" Grid.Row="2"  Header="Stad:" PlaceholderText="vb: Gent, Brussel,..." x:Name="O_Stad" Text="{x:Bind ViewModel.onderneming.Adressen[0].Stad, Mode=TwoWay}"/>
-            <TextBox  Grid.Column="2" Grid.Row="2" Header="Land:" PlaceholderText="België" x:Name="O_Land" Text="{x:Bind ViewModel.onderneming.Adressen[0].Land, Mode=TwoWay}"/>
+            <TextBox  Grid.Column="0" Grid.Row="1"  Header="Straat:" PlaceholderText="Straatnaam" x:Name="O_Straat" Text="{x:Bind ViewModel.adres.Straat, Mode=TwoWay}"/>
+                <TextBox  Grid.Column="1" Grid.Row="1" Header="Nummer:" PlaceholderText="00" x:Name="O_Nummer" Text="{x:Bind ViewModel.adres.Nummer, Mode=TwoWay}" extensions:TextBoxRegex.ValidationMode="Dynamic" extensions:TextBoxRegex.ValidationType="Decimal" />
+                <TextBox  Grid.Column="0" Grid.Row="2"  Header="Stad:" PlaceholderText="vb: Gent, Brussel,..." x:Name="O_Stad" Text="{x:Bind ViewModel.adres.Stad, Mode=TwoWay}"/>
+                <TextBox  Grid.Column="2" Grid.Row="2" Header="Land:" PlaceholderText="België" x:Name="O_Land" Text="{x:Bind ViewModel.adres.Land, Mode=TwoWay}"/>
         </Grid>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Openingsuren" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>

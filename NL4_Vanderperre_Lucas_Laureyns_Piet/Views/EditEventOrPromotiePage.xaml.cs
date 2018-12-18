@@ -72,5 +72,10 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 ErrorMessage.Text = ex.Message;
             }
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ViewModel = (EditEventOrPromotiePageViewModel)e.Parameter;
+        }
     }
 }

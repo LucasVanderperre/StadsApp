@@ -64,6 +64,11 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             nit.Tag = "about";
             nit.Icon = new SymbolIcon((Symbol)0xE946);
             NavView.MenuItems.Add(nit);
+            nit = new NavigationViewItem();
+            nit.Content = "Promoties";
+            nit.Tag = "promoties";
+            nit.Icon = new SymbolIcon(Symbol.Favorite);
+            NavView.MenuItems.Add(nit);
 
         }
 
@@ -156,6 +161,12 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                     NavView.Header = "About";
                     queue.Push(tag);
                     break;
+                case "promoties":
+                    PromotiesPageViewModel viewmodel2 = new PromotiesPageViewModel();
+                    ContentFrame.Navigate(typeof(PromotiesPage), viewmodel2);
+                    NavView.Header = "Promoties";
+                    queue.Push(tag);
+                    break;
                 default:
                     // ContentListPage page = (ContentListPage)ContentFrame.Content;
                     Categorie myCategorie;
@@ -189,6 +200,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
         {
             EditOndernemingPageViewModel viewmodel = new EditOndernemingPageViewModel();
             viewmodel.onderneming = onderneming;
+            viewmodel.adres = onderneming.Adressen[0];
             ContentFrame.Navigate(typeof(EditOndernemingPage), viewmodel);
             NavView.Header = "Wijzig " + onderneming.Naam;
         }
