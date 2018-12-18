@@ -32,7 +32,10 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             {
                 foreach(var not in item.Notificaties)
                 {
-                    Notificaties.Add(not, item.Onderneming);
+                    if (!not.Gelezen)
+                    {
+                        Notificaties.Add(not, item.Onderneming);
+                    }
 
                 }
             }
@@ -42,6 +45,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 
         public async Task NotificatieGelezen(Notificatie notificatie)
         {
+            notificatie.Gelezen = true;
             await GebrController.NotificatieGelezen(notificatie);
         }
     }

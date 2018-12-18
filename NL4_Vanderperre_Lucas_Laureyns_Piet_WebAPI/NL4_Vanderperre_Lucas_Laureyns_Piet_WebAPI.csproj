@@ -123,6 +123,7 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GebruikersController.cs" />
     <Compile Include="Controllers\KlantsController.cs" />
+    <Compile Include="Controllers\NotificatiesController.cs" />
     <Compile Include="Controllers\OndernemersController.cs" />
     <Compile Include="Controllers\OndernemingsController.cs" />
     <Compile Include="Controllers\OpeningsurensController.cs" />

@@ -65,8 +65,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        [ResponseType(typeof(void))]
-        [Route("api/Gebruikers/NotificaiteGelezen/")]
+        [HttpPut]
+        [Route("api/Gebruikers/NotificatieGelezen")]
         public IHttpActionResult NotificatieGelezen(Notificatie n)
         {
             if (!ModelState.IsValid)

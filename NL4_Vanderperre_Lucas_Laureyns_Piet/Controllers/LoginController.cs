@@ -36,9 +36,17 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             {
                 try
                 {
-                    await LoginBackend(gebruiker);
-                    vault.Add(new Windows.Security.Credentials.PasswordCredential(
-                        "My App", gebruiker.username, gebruiker.password));
+                    try
+                    {
+                        await LoginBackend(gebruiker);
+                        vault.Add(new Windows.Security.Credentials.PasswordCredential(
+                            "My App", gebruiker.username, gebruiker.password));
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("De username of passwoord is niet correct");
+                    }
+                    
                 }
                 catch (Exception)
                 {
