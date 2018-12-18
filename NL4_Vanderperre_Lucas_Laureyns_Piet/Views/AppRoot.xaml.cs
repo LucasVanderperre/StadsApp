@@ -65,6 +65,11 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
             nit.Tag = "about";
             nit.Icon = new SymbolIcon((Symbol)0xE946);
             NavView.MenuItems.Add(nit);
+            nit = new NavigationViewItem();
+            nit.Content = "Promoties";
+            nit.Tag = "promoties";
+            nit.Icon = new SymbolIcon(Symbol.Favorite);
+            NavView.MenuItems.Add(nit);
 
         }
 
@@ -155,6 +160,12 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                 case "about":
                     ContentFrame.Navigate(typeof(RegistreerPage));
                     NavView.Header = "About";
+                    queue.Push(tag);
+                    break;
+                case "promoties":
+                    PromotiesPageViewModel viewmodel = new PromotiesPageViewModel();
+                    ContentFrame.Navigate(typeof(PromotiesPage), viewmodel);
+                    NavView.Header = "Promoties";
                     queue.Push(tag);
                     break;
                 default:

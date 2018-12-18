@@ -19,7 +19,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
         // GET: api/Promoties
         public IQueryable<Promotie> GetPromoties()
         {
-            return db.Promoties;
+            return db.Promoties.Where(p => p.Einddatum > DateTime.Now);
         }
 
         // GET: api/Promoties/5

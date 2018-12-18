@@ -1,4 +1,5 @@
-﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
+﻿using Newtonsoft.Json;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsAsync<Promotie>();
             return result;
+        }
+
+        public async Task<List<Promotie>> getPromoties()
+        {
+            HttpClient client = new HttpClient();
+            var json = await client.GetStringAsync(new Uri("http://localhost:51155/api/Promoties"));
+            var lst = JsonConvert.DeserializeObject<List<Promotie>>(json);
+            return lst;
         }
 
     }

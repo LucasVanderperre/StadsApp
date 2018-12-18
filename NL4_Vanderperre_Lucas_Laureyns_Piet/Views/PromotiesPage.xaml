@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="NL4_Vanderperre_Lucas_Laureyns_Piet.Views.PromotiesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Views"
+    xmlns:model="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <ListView Margin="25,0,0,0" x:Name="promoties" SelectionChanged="PromotieClick">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Promotie">
+                    <StackPanel Margin="0,10,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" FontSize="20" Text="{Binding Naam}"/>
+                                <TextBlock Text="{Binding Beschrijving}"/>
+                                <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
+                            </StackPanel>
+                            <!--<Button Tag="{Binding PromotieId}" Margin="50,0,0,0" Background="Gray" Click="PromotieClick">
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="Print"/>
+                                    <TextBlock Text="Print Pdf" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </Button>-->
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ProgressRing Height="100" Width="100" x:Name="progressring" IsActive="False"/>
+        <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
+    </StackPanel>
+</Page>
