@@ -21,7 +21,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Migrations
                 new Adres() { AdresId = 1, Land = "België", Nummer = 44, Postcode = 9000, Stad = "Gent", Straat = "Populierstraat" },
                 new Adres() { AdresId = 2, Straat = "Kazernelaan", Nummer = 800, Postcode = 9000, Stad = "Gent", Land = "België" },
                 new Adres() { AdresId = 3, Straat = "Veldstraat", Nummer = 1, Postcode = 9000, Stad = "Gent", Land = "België" });
-            
+
 
             context.Openingsurens.AddOrUpdate(x => x.OpeningsurenId,
                 new Openingsuren() { OpeningsurenId = 1, Day = DayOfWeek.Monday, OpenTime = "09:00", CloseTime = "18:00" },
@@ -32,11 +32,29 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Migrations
                 new Openingsuren() { OpeningsurenId = 6, Day = DayOfWeek.Saturday, OpenTime = "09:00", CloseTime = "18:00" },
                 new Openingsuren() { OpeningsurenId = 7, Day = DayOfWeek.Sunday, OpenTime = "09:00", CloseTime = "18:00" });
 
+            context.Openingsurens.AddOrUpdate(x => x.OpeningsurenId,
+               new Openingsuren() { OpeningsurenId = 8, Day = DayOfWeek.Monday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 9, Day = DayOfWeek.Tuesday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 10, Day = DayOfWeek.Wednesday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 11, Day = DayOfWeek.Thursday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 12, Day = DayOfWeek.Friday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 13, Day = DayOfWeek.Saturday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 14, Day = DayOfWeek.Sunday, OpenTime = "09:00", CloseTime = "18:00" });
+
+            context.Openingsurens.AddOrUpdate(x => x.OpeningsurenId,
+               new Openingsuren() { OpeningsurenId = 15, Day = DayOfWeek.Monday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 16, Day = DayOfWeek.Tuesday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 17, Day = DayOfWeek.Wednesday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 18, Day = DayOfWeek.Thursday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 19, Day = DayOfWeek.Friday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 20, Day = DayOfWeek.Saturday, OpenTime = "09:00", CloseTime = "18:00" },
+               new Openingsuren() { OpeningsurenId = 21, Day = DayOfWeek.Sunday, OpenTime = "09:00", CloseTime = "18:00" });
+
             context.Promoties.AddOrUpdate(x => x.PromotieId,
                 new Promotie() { PromotieId = 1, Naam = "1+1 Gratis", Startdatum = new DateTime(2018, 12, 12), Einddatum = new DateTime(2018, 12, 13), Beschrijving = "Bij aankoop van 1 artikel een tweede gratis", Barcode = "ABCD1234" });
 
             context.Events.AddOrUpdate(x => x.EventId,
-                new Event() { EventId = 1, Naam = "Opendeurdag", Startdatum = new DateTime(2018, 12, 12), Einddatum = new DateTime(2018, 12, 13), Beschrijving = "Vandaag staan onze deuren open voor bezoek!!"});
+                new Event() { EventId = 1, Naam = "Opendeurdag", Startdatum = new DateTime(2018, 12, 12), Einddatum = new DateTime(2018, 12, 13), Beschrijving = "Vandaag staan onze deuren open voor bezoek!!" });
 
             context.SaveChanges();
 
@@ -58,6 +76,25 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Migrations
             openingsuren1.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(5).First());
             openingsuren1.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(6).First());
 
+            List<Openingsuren> openingsuren2 = new List<Openingsuren>();
+            openingsuren2.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(7).First());
+            openingsuren2.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(8).First());
+            openingsuren2.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(9).First());
+            openingsuren2.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(10).First());
+            openingsuren2.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(11).First());
+            openingsuren2.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(12).First());
+            openingsuren2.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(13).First());
+
+            List<Openingsuren> openingsuren3 = new List<Openingsuren>();
+            openingsuren3.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(14).First());
+            openingsuren3.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(15).First());
+            openingsuren3.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(16).First());
+            openingsuren3.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(17).First());
+            openingsuren3.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(18).First());
+            openingsuren3.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(19).First());
+            openingsuren3.Add(context.Openingsurens.OrderBy(x => x.OpeningsurenId).Skip(20).First());
+
+
             List<Promotie> promoties1 = new List<Promotie>();
             promoties1.Add(context.Promoties.OrderBy(x => x.PromotieId).Skip(0).First());
 
@@ -73,9 +110,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Migrations
                 Adressen = adressen1.ToList(),
                 Facebook = "www.facebook.com/SchoenenLuc",
                 Soort = "Schoenenwinkel",
-                Openingsuren = openingsuren1.ToList(),
+                Openingsuren = openingsuren1,
                 Events = events1.ToList(),
-                Promoties = promoties1.ToList()
+                Promoties = promoties1
             },
              new Onderneming()
              {
@@ -85,7 +122,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Migrations
                  Adressen = adressen2.ToList(),
                  Facebook = "www.facebook.com/McDo",
                  Soort = "Fast Food",
-                 Openingsuren = openingsuren1.ToList(),
+                 Openingsuren = openingsuren2,
                  Events = events1.ToList()
              },
               new Onderneming()
@@ -96,7 +133,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Migrations
                   Adressen = adressen3.ToList(),
                   Facebook = "www.facebook.com/HoGent",
                   Soort = "Hogeschool",
-                  Openingsuren = openingsuren1.ToList(),
+                  Openingsuren = openingsuren3,
                   Events = events1.ToList()
               });
 
@@ -137,18 +174,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Migrations
 
 
 
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
         }
     }
 }
