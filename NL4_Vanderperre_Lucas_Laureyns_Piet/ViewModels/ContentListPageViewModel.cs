@@ -14,16 +14,27 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
 
         private OndernemingController controller { get; set; } = new OndernemingController();
 
-        public OndernemingList ondernemingen { get; set; }
+        public OndernemingList ondernemingen { get; set; } = new OndernemingList(Categorie.Winkel);
+        public bool zoekfunctie { get; set; } = false;
+        public string zoekterm { get; set; } = "";
+
 
         public ContentListPageViewModel()
         {
 
         }
 
-        public async Task LoadData(Categorie cat)
+        public async Task LoadData()
         {
-            ondernemingen = await controller.GetOndernemingenAsync(cat);
+            if (zoekfunctie)
+            {
+                ondernemingen = await controller.ZoekOndernemingenAsync(zoekterm);
+            }
+            else
+            {
+                ondernemingen = await controller.GetOndernemingenAsync(ondernemingen.categorie);
+
+            }
 
         }
     }

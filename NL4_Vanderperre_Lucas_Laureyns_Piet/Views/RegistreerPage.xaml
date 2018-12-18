@@ -16,6 +16,8 @@
         <common:BoolToObjectConverter x:Key="InverseBoolToVisibilityConverter" TrueValue="Collapsed" FalseValue="Visible" />
 
     </Page.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -102,4 +104,5 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
+            </ScrollViewer>
 </Page>

@@ -64,7 +64,7 @@
             <StackPanel Orientation="Horizontal" Margin="25,50,0,0">
                 <TextBlock TextDecorations="Underline"  FontSize="30" Name="promotiesText" Text="Promoties" Visibility="{Binding hasPromoties}"/>
             </StackPanel>
-            <ListView Margin="25,0,0,0" x:Name="promoties" ItemsSource="{Binding Promoties}" Visibility="{Binding hasPromoties}">
+            <ListView Margin="25,0,0,0" x:Name="promoties" ItemsSource="{Binding CurentPromoties}" Visibility="{Binding hasPromoties}">
                 <ListView.ItemTemplate>
                 <DataTemplate x:DataType="datamodels:Promotie">
                     <StackPanel Margin="0,10,0,0">
@@ -74,12 +74,14 @@
                                     <TextBlock Text="{Binding Beschrijving}"/>
                                     <TextBlock FontWeight="Thin" Text="{Binding datum}"/>
                                 </StackPanel>
-                                <Button Margin="50,0,0,0" Background="Gray">
+                                <Button Tag="{Binding PromotieId}" Margin="50,0,0,0" Background="Gray" Click="PDF_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <SymbolIcon Symbol="Print"/>
                                         <TextBlock Text="Print Pdf" Margin="10,0,0,0"/>
                                     </StackPanel>
                                 </Button>
+                                <ProgressRing Height="20" Width="20" x:Name="progressring" IsActive="False" VerticalAlignment="Center"/>
+                                <TextBox x:Name="txtLaden" Text="Laden..." HorizontalAlignment="Center" BorderThickness="0" Visibility="Collapsed"/>
                             </StackPanel>
                         </StackPanel>
                 </DataTemplate>

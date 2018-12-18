@@ -33,10 +33,11 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
         // GET: api/Ondernemings/categorie
         [HttpGet]
         [Route("api/Ondernemings/categorie/{categorie}")]
-        public IHttpActionResult GetOndernemingList(string categorie) {
+        public IHttpActionResult GetOndernemingList(string categorie)
+        {
             CategorieEnum myCategorie;
             Enum.TryParse(categorie, out myCategorie);
-            OndernemingList list =  new OndernemingList(myCategorie)
+            OndernemingList list = new OndernemingList(myCategorie)
             {
                 ondernemingen = db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FindAll(o => o.Categorie.Equals(myCategorie))
             };
@@ -62,6 +63,29 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
 
             return Ok(onderneming);
         }
+
+        // GET: api/Ondernemings/5
+        [HttpGet]
+        [Route("api/Ondernemings/Zoek/{naam}")]
+        public IHttpActionResult GetOnderneming(string naam)
+        {
+            string[] zoektermen = naam.Split(' ');
+            OndernemingList lijst = new OndernemingList(CategorieEnum.Winkel);
+            List<Onderneming> volLijst = new List<Onderneming>();
+            foreach(string item in zoektermen)
+            {
+                volLijst.AddRange(db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FindAll(o => o.Naam.ToLower().Contains(item)));
+                volLijst.AddRange(db.Ondernemings.Include("Adressen").Include("Openingsuren").Include("Promoties").Include("Events").ToList().FindAll(o => o.Soort.ToLower().Contains(item)));
+            }
+            lijst.ondernemingen.AddRange(volLijst.Distinct());
+            if (lijst == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(lijst);
+        }
+
 
         // PUT: api/Ondernemings/5
         [ResponseType(typeof(void))]

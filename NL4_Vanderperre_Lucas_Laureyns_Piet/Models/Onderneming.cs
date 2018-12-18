@@ -37,6 +37,9 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
                     case Categorie.School:
                         ImageUrl = "/Assets/school_icon.png";
                         break;
+                    case Categorie.Andere:
+                        ImageUrl = "/Assets/andere_icon.png";
+                        break;
                     default:
                         ImageUrl = "/Assets/Square44x44Logo.scale-200.png";
                         break;
@@ -50,6 +53,8 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
         public BitmapImage Image { get; set; } = new BitmapImage();
         public string ImageUrl { get; set; }
         public List<Promotie> Promoties { get; set; } = new List<Promotie>();
+        public List<Promotie> CurentPromoties { get { return Promoties.FindAll(p => p.Einddatum > DateTime.Now); } } 
+
         public List<Event> Events { get; set; } = new List<Event>();
         public string FacebookUrl { get { return "https://" + Facebook; } }
         public bool hasEvents { get { return Events.Count > 0; } }
@@ -83,5 +88,6 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
                 return me.ToString();
             }
         }
+
     }
 }

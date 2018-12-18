@@ -7,48 +7,49 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid DataContext="{x:Bind ViewModel}">
-        <StackPanel>
-            <TextBlock Text="Event Wijzigen" FontSize="25" FontWeight="SemiBold" TextDecorations="Underline" Visibility="{Binding isEvent}"/>
-            <TextBlock Text="Promotie Wijzigen" FontSize="25" FontWeight="SemiBold" TextDecorations="Underline" Visibility="{Binding isPromotie}"/>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10"  Grid.Column="0" Grid.Row="0">
-                <StackPanel>
-                    <StackPanel  HorizontalAlignment="Left" Width="500" Visibility="{Binding isEvent}">
-                        <TextBlock Text="Naam" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-                        <TextBox PlaceholderText="Naam" x:Name="Naam" Text="{x:Bind ViewModel.Event.Naam, Mode=TwoWay}"/>
-                        <TextBlock Text="Beschrijving" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-                        <TextBox PlaceholderText="Beschrijving" x:Name="Beschrijving" Text="{x:Bind ViewModel.Event.Beschrijving, Mode=TwoWay}"/>
-                        <TextBlock Text="Start Datum" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-                        <DatePicker Name="datePicker1" Date="{Binding ViewModel.Event.Startdatum,Mode=TwoWay}" />
-                        <TextBlock Text="Eind Datum" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-                        <DatePicker Name="datePicker2" Date="{Binding ViewModel.Event.Einddatum, Mode=TwoWay}" />
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid DataContext="{x:Bind ViewModel}">
+            <StackPanel>
+                <TextBlock Text="Event Wijzigen" FontSize="25" FontWeight="SemiBold" TextDecorations="Underline" Visibility="{Binding isEvent}"/>
+                <TextBlock Text="Promotie Wijzigen" FontSize="25" FontWeight="SemiBold" TextDecorations="Underline" Visibility="{Binding isPromotie}"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10"  Grid.Column="0" Grid.Row="0">
+                    <StackPanel>
+                        <StackPanel  HorizontalAlignment="Left" Width="500" Visibility="{Binding isEvent}">
+                            <TextBlock Text="Naam" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                            <TextBox PlaceholderText="Naam" x:Name="Naam" Text="{x:Bind ViewModel.Event.Naam, Mode=TwoWay}"/>
+                            <TextBlock Text="Beschrijving" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                            <TextBox PlaceholderText="Beschrijving" x:Name="Beschrijving" Text="{x:Bind ViewModel.Event.Beschrijving, Mode=TwoWay}"/>
+                            <TextBlock Text="Start Datum" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                            <DatePicker Name="datePicker1" Date="{Binding ViewModel.Event.Startdatum,Mode=TwoWay}" />
+                            <TextBlock Text="Eind Datum" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                            <DatePicker Name="datePicker2" Date="{Binding ViewModel.Event.Einddatum, Mode=TwoWay}" />
+                        </StackPanel>
+                        <StackPanel  HorizontalAlignment="Left" Width="500" Visibility="{Binding isPromotie}">
+                            <TextBlock Text="Naam" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                            <TextBox PlaceholderText="Naam" x:Name="Naam2" Text="{x:Bind ViewModel.Promotie.Naam, Mode=TwoWay}"/>
+                            <TextBlock Text="Beschrijving" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                            <TextBox PlaceholderText="Beschrijving" x:Name="Beschrijving2" Text="{x:Bind ViewModel.Promotie.Beschrijving, Mode=TwoWay}"/>
+                            <TextBlock Text="Start Datum" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                            <DatePicker Name="datePicker3" Date="{Binding ViewModel.Promotie.Startdatum,Mode=TwoWay}" />
+                            <TextBlock Text="Eind Datum" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
+                            <DatePicker Name="datePicker4" Date="{Binding ViewModel.Promotie.Einddatum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel  HorizontalAlignment="Left" Width="500" Visibility="{Binding isPromotie}">
-                        <TextBlock Text="Naam" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-                        <TextBox PlaceholderText="Naam" x:Name="Naam2" Text="{x:Bind ViewModel.Promotie.Naam, Mode=TwoWay}"/>
-                        <TextBlock Text="Beschrijving" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-                        <TextBox PlaceholderText="Beschrijving" x:Name="Beschrijving2" Text="{x:Bind ViewModel.Promotie.Beschrijving, Mode=TwoWay}"/>
-                        <TextBlock Text="Start Datum" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-                        <DatePicker Name="datePicker3" Date="{Binding ViewModel.Promotie.Startdatum,Mode=TwoWay}" />
-                        <TextBlock Text="Eind Datum" FontWeight="SemiBold" FontSize="20" Margin="0,10,0,0"/>
-                        <DatePicker Name="datePicker4" Date="{Binding ViewModel.Promotie.Einddatum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </ScrollViewer>
+                <Button Visibility="{Binding isEvent}" Margin="10" Click="eventWijzigClick" VerticalAlignment="Center" Background="DodgerBlue" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Edit"/>
+                        <TextBlock Text="Wijzigen" Margin="10,0,0,0"/>
                     </StackPanel>
-                </StackPanel>
-            </ScrollViewer>
-            <Button Visibility="{Binding isEvent}" Margin="10" Click="eventWijzigClick" VerticalAlignment="Center" Background="DodgerBlue" Foreground="White">
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Edit"/>
-                    <TextBlock Text="Wijzigen" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
-            <Button Visibility="{Binding isPromotie}" Margin="10" Click="promotieWijzigClick" VerticalAlignment="Center" Background="DodgerBlue" Foreground="White">
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Edit"/>
-                    <TextBlock Text="Wijzigen" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
-            <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red"/>
-        </StackPanel>
-    </Grid>
+                </Button>
+                <Button Visibility="{Binding isPromotie}" Margin="10" Click="promotieWijzigClick" VerticalAlignment="Center" Background="DodgerBlue" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Edit"/>
+                        <TextBlock Text="Wijzigen" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>

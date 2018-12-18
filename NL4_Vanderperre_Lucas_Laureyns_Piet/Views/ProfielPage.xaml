@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
 
     <StackPanel Margin="25">
         <TextBlock FontSize="35" FontWeight="Medium" Text="Jouw Profiel" />
@@ -73,5 +74,5 @@
             </StackPanel>
         </Button>
     </StackPanel>
-
+</ScrollViewer>
 </Page>

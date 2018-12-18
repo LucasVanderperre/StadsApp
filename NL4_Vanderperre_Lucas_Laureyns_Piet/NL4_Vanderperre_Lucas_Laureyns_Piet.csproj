@@ -129,6 +129,9 @@
     <Compile Include="ViewModels\ProfielPageViewModel.cs" />
     <Compile Include="ViewModels\PromotiesPageViewModel.cs" />
     <Compile Include="ViewModels\RegistreerPageViewModel.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddEventOrPromotiePage.xaml.cs">
       <DependentUpon>AddEventOrPromotiePage.xaml</DependentUpon>
     </Compile>
@@ -179,9 +182,11 @@
     <None Include="NL4_Vanderperre_Lucas_Laureyns_Piet_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AppLogo.scale-100.png" />
     <Content Include="Assets\cafe_icon.png" />
     <Content Include="Assets\restaurant_icon.png" />
     <Content Include="Assets\school_icon.png" />
+    <Content Include="Assets\andere_icon.png" />
     <Content Include="Assets\winkel_icon.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -197,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddEventOrPromotiePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -275,6 +284,9 @@
     </PackageReference>
     <PackageReference Include="System.Net.Http.Formatting.Extension">
       <Version>5.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net">
+      <Version>0.16.4</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

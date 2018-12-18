@@ -11,6 +11,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Enum
         Winkel,
         Café,
         Restaurant,
-        School
+        School,
+        Andere
     }
 }

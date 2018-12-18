@@ -127,9 +127,10 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
                 if (abo.Onderneming.OndenemingId == onderneming.OndenemingId)
                 {
                     db.Abonnements.Remove(abo);
-                    db.SaveChanges();
-                    return StatusCode(HttpStatusCode.NoContent);
+                   
                 }
+                db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
 
 

@@ -11,13 +11,12 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
     public class OndernemingList
     {
         public Categorie categorie { get; set; }
-        public string catString { get; set; }
+        public string catString { get { return categorie.ToString(); } }
         public ObservableCollection<Onderneming> ondernemingen { get; set; } = new ObservableCollection<Onderneming>();
 
         public OndernemingList(Categorie cat)
         {
             categorie = cat;
-            catString = categorie.ToString();
         }
     }
 }

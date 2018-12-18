@@ -17,8 +17,9 @@
                         <StackPanel>
                             <TextBlock FontSize="25" FontWeight="Bold" TextDecorations="Underline" Text="{x:Bind categorie}"/>
                             <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                                <GridView ItemsSource="{x:Bind ondernemingen, Mode=OneWay}" SelectionChanged="GridView_SelectionChanged">
-                                    <GridView.ItemTemplate>
+                                <ListView ScrollViewer.HorizontalScrollBarVisibility="Visible"
+          ScrollViewer.HorizontalScrollMode="Enabled" ItemsSource="{x:Bind ondernemingen, Mode=OneWay}" SelectionChanged="GridView_SelectionChanged">
+                                    <ListView.ItemTemplate>
                                         <DataTemplate  x:DataType="datamodels:Onderneming">
                                             <StackPanel Height="280" Width="200" Margin="12">
                                                 <Image x:Name="image"  HorizontalAlignment="Left" Stretch="Uniform" Height="200" Width="200" Source="{Binding ImageUrl}">
@@ -29,13 +30,14 @@
                                                 </StackPanel>
                                             </StackPanel>
                                         </DataTemplate>
-                                    </GridView.ItemTemplate>
-                                    <GridView.ItemsPanel>
+                                    </ListView.ItemTemplate>
+                                    <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal"/>
+                                            <VirtualizingStackPanel Orientation="Horizontal" />
                                         </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                </GridView>
+                                    </ListView.ItemsPanel>
+
+                                </ListView>
                             </ScrollViewer>
                         </StackPanel>
                     </DataTemplate>

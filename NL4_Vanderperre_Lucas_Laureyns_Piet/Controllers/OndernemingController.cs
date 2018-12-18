@@ -67,5 +67,17 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Data
             var response = await client.PutAsJsonAsync(new Uri("http://localhost:51155/api/Openingsuren/" + openingsuren.OpeningsurenId), openingsuren);
             response.EnsureSuccessStatusCode();
         }
+
+        public async Task<OndernemingList> ZoekOndernemingenAsync(string naam)
+        {
+            HttpClient client = new HttpClient();
+            Uri uri = new Uri("http://localhost:51155/api/Ondernemings/Zoek/" + naam.ToString().ToLower());
+            var json = await client.GetStringAsync(uri);
+            var result = JsonConvert.DeserializeObject<OndernemingList>(json);
+            return result;
+
+
+
+        }
     }
 }

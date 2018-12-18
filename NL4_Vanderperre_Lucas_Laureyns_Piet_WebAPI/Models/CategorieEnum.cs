@@ -10,6 +10,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Models
         Winkel,
         Café,
         Restaurant,
-        School
+        School,
+        Andere
     }
 }
