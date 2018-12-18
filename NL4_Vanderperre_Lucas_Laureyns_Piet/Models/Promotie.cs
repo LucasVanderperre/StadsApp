@@ -26,12 +26,20 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Models
             this.Startdatum = startdatum;
             this.Einddatum = einddatum;
             this.Beschrijving = beschrijving;
-            this.Barcode = barcode;
+            this.Barcode = RandomString(8);
         }
         public string datum{
             get{
                 return Startdatum.ToString("dd/MM/yy") + " - " + Einddatum.ToString("dd/MM/yy");
             }
+        }
+
+        private static Random random = new Random();
+        private static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
     }

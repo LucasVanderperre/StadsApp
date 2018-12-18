@@ -10,6 +10,8 @@ using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.qrcode;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Data;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -21,10 +23,11 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
 {
     public class PDFController
     {
-        public async  Task PrintFile()
+        public async  Task PrintFile(Promotie promotie)
         {
+            
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync("sample.pdf",
+            Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync(string.Format(@"{0}.pdf", Guid.NewGuid()),
                     Windows.Storage.CreationCollisionOption.ReplaceExisting);
            
             string path = sampleFile.Path;
@@ -35,7 +38,12 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             pdfDoc.Open();
 
             pdfDoc.AddTitle("Kortingsbon");
-            pdfDoc.Add(new Paragraph("Kortingsbon voor de promotie "));
+            pdfDoc.Add(new Paragraph("Kortingsbon voor de promotie "+ promotie.Naam));
+            pdfDoc.Add(new Paragraph("Deze bon is geldig van "+ promotie.Startdatum.ToShortDateString() +
+                " tot " +promotie.Einddatum.ToShortDateString()));
+            pdfDoc.Add(new Paragraph("De code van deze bon: "+ promotie.Barcode));
+
+
 
             //BarcodeEAN barcode = new BarcodeEAN();
             //barcode.CodeType = (Barcode.EAN8);

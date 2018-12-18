@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="NL4_Vanderperre_Lucas_Laureyns_Piet.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NL4_Vanderperre_Lucas_Laureyns_Piet.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel>
+        <TextBlock FontSize="50" Text="Over ons"></TextBlock>
+        <TextBlock>Met onze stadsapp proberen wij een platform te voorzien waarop alle Gentse ondernemers hun zaak online kunnen promoten.
+        Op deze manier krijgen klanten een handig overzicht van alle ondernemingen in Gent.</TextBlock>
+        <TextBlock FontSize="35">Contact:</TextBlock>
+        <TextBlock>LucasVdPerre@gmail.com</TextBlock>
+        <TextBlock>PietLaureyns@gmail.com</TextBlock>
+    </StackPanel>
+</Page>

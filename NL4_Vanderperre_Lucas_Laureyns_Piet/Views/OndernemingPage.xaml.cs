@@ -1,4 +1,5 @@
 ﻿using NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers;
+using NL4_Vanderperre_Lucas_Laureyns_Piet.Models;
 using NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -99,7 +100,15 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
         private async void PDF_Click(object sender, RoutedEventArgs args)
         {
-            await PrintController.PrintFile();
+            Button btn = (sender as Button);
+            btn.Visibility = Visibility.Collapsed;
+            progressring.IsActive = true;
+            Promotie prom = viewModel.onderneming.Promoties.Find(p => p.PromotieId ==(int) btn.Tag);
+            txtLaden.Visibility = Visibility.Visible;
+            await PrintController.PrintFile(prom);
+            btn.Visibility = Visibility.Visible;
+            progressring.IsActive = false;
+            txtLaden.Visibility = Visibility.Collapsed;
         }
 
     }

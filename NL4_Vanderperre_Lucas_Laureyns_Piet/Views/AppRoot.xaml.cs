@@ -152,7 +152,7 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
                     queue.Push(tag);
                     break;
                 case "about":
-                    ContentFrame.Navigate(typeof(RegistreerPage));
+                    ContentFrame.Navigate(typeof(AboutPage));
                     NavView.Header = "About";
                     queue.Push(tag);
                     break;
