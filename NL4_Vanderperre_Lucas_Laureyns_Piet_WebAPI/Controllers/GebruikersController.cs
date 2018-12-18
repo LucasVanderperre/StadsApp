@@ -65,6 +65,30 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet_WebAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [ResponseType(typeof(void))]
+        [Route("api/Gebruikers/NotificaiteGelezen/")]
+        public IHttpActionResult NotificatieGelezen(Notificatie n)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Notificatie noti = db.Notificaties.Find(n.NotificatieId);
+            noti.Gelezen = true;
+
+            if (noti == null )
+            {
+                return BadRequest();
+            }
+
+            db.SaveChanges();
+
+
+            db.Entry(noti).State = EntityState.Modified;
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         // POST: api/Gebruikers
         [ResponseType(typeof(Gebruiker))]
         public IHttpActionResult PostGebruiker(Gebruiker gebruiker)

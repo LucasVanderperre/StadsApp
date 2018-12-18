@@ -39,5 +39,10 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.ViewModels
             Notificaties.OrderBy(o => o.Key.Toegevoegd);
 
         }
+
+        public async Task NotificatieGelezen(Notificatie notificatie)
+        {
+            await GebrController.NotificatieGelezen(notificatie);
+        }
     }
 }

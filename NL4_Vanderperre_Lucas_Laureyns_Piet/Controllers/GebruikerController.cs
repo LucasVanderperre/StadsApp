@@ -84,6 +84,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Controllers
             bool isKlant = Boolean.Parse(json);
             return isKlant;
         }
+
+
+        public async Task NotificatieGelezen(Notificatie notificatie)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.PutAsJsonAsync("http://localhost:51155/api/Gebruikers/NotificaiteGelezen/", notificatie);
+            response.EnsureSuccessStatusCode();
+        }
     }
 }
 

@@ -82,13 +82,14 @@ namespace NL4_Vanderperre_Lucas_Laureyns_Piet.Views
 
 
         //navigeert naar de onderneming die bij de notificatie hoort
-        private void Notificatie_Click(object sender, RoutedEventArgs args)
+        private async void Notificatie_Click(object sender, RoutedEventArgs args)
         {
             Frame parentFrame = Window.Current.Content as Frame;
             AppRoot root = parentFrame.Content as AppRoot;
             Onderneming onderneming = ViewModel.Notificaties[(Notificatie)notificaties_listview.SelectedItem];
             
             root.NavigateOndernemingFrame(onderneming);
+            await ViewModel.NotificatieGelezen((Notificatie)notificaties_listview.SelectedItem);
         }
 
     }
